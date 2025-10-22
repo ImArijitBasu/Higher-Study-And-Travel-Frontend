@@ -4,16 +4,9 @@ import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { MapPin, GraduationCap, Calendar, DollarSign } from "lucide-react";
 import Image from "next/image";
+import { ScholarshipCardProps } from "@/types";
 
-interface ScholarshipCardProps {
-  title: string;
-  country: string;
-  degree: string;
-  deadline: string;
-  amount: string;
-  flag: string;
 
-}
 
 export function ScholarshipCard({
   title,
