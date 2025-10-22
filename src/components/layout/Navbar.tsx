@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import AuthToggle from "../ui/AuthToggle";
+import { PiAirplaneTiltFill } from "react-icons/pi";
 
 const Navbar = () => {
   const navLinks = (
@@ -49,8 +50,9 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl uppercase font-extrabold">
-            Study & travel
+          <a className="btn btn-ghost text-xs md:text-xl uppercase font-extrabold">
+            <PiAirplaneTiltFill className="text-lg md:text-4xl text-cyan-400" /> Study &
+            travel
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

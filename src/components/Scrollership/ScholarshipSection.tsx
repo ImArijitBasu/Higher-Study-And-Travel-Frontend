@@ -45,7 +45,7 @@ export default function ScholarshipsSection() {
   ];
 
   return (
-    <section className="py-12">
+    <section className="py-12 container mx-auto">
       <h2 className="text-2xl font-semibold mb-8">Scholarships</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {scholarships.map((item, idx) => (

@@ -18,7 +18,7 @@ const AuthToggle = () => {
             setActiveTab("login");
             setIsLoginOpen(true);
           }}
-          className={`px-3 py-2 text-sm font-semibold transition-all rounded-full ${
+          className={`px-3 py-2 text-xs md:text-sm font-semibold transition-all rounded-full ${
             activeTab === "login"
               ? "bg-sky-500 text-white"
               : "text-black hover:bg-gray-100"
