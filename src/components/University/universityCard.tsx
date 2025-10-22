@@ -1,23 +1,15 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { UniversityCardProps } from "@/types";
 
-interface UniversityCardProps {
-  universityName: string;
-  programType: string;
-  availableSemesters: string;
-  price: string;
-  featured: boolean;
-  availablePrograms: string;
-  image?: string;
-}
+
 
 export function UniversityCard({
   universityName,
   programType,
   availableSemesters,
   price,
-  
   availablePrograms,
   image,
 }: UniversityCardProps) {

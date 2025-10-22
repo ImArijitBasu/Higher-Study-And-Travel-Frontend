@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { ScholarshipCard } from "./shcrollershipCard";
+import { ScholarshipCard } from "./ScholarshipCard";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 
 export default function ScholarshipsSection() {
