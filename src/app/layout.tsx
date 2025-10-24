@@ -36,7 +36,7 @@ export default function RootLayout({
 
       >
         <Navbar />
-        <div className="w-11/12 mx-auto mt-4">{children}</div>
+        <div className="w-11/12 mx-auto mt-20">{children}</div>
         <Footer></Footer>
       </body>
     </html>
