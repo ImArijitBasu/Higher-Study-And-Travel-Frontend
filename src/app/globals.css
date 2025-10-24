@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@import "flowbite/dist/flowbite.css";
 @plugin "daisyui";
 
 :root {
   --background: #ffffff;
   --foreground: #dc4242;
+  --primary: #B27179;
 }
 
 @theme inline {
@@ -25,3 +27,23 @@
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 } */ 
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
