@@ -6,12 +6,17 @@ import TopTravelPackages from "@/components/TravelPackages/TopTravelPackages";
 import { UniversitiesSection } from "@/components/University/university_section";
 import WorkSection from "@/components/Work_Section/Work _Section";
 
+import MainBanner from "@/components/Banner/MainBanner";
+import BlogCard from "@/components/Blogs/BlogCard";
+import ScholarshipsSection from "@/components/Scrollership/ScholarshipSection";
+import TopTravelPackages from "@/components/TravelPackages/TopTravelPackages";
+import { UniversitiesSection } from "@/components/University/university_section";
 
 
 export default function Home() {
   return (
     <div className="">
-      Study abroad and travel website
+      <MainBanner/>
       <UniversitiesSection />
       <ScholarshipsSection/>
       <TopTravelPackages/>
@@ -19,6 +24,9 @@ export default function Home() {
       <JoinCommunity/>
       <FooterSection/>
 
+    <TopTravelPackages/>
+    <BlogCard></BlogCard>
+    
     </div>
   );
 }
