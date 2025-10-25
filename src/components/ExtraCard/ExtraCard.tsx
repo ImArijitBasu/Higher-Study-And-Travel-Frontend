@@ -61,7 +61,7 @@ export default function ExtraCard() {
   }, [controls, width, isPaused]);
 
   return (
-    <section className="py-16 px-6 font-sans select-none">
+    <section className="py-16 px-6 font-sans select-none container mx-auto">
       <h2 className="text-4xl font-bold text-center mb-12">✈️ Travel Deals</h2>
 
       <div

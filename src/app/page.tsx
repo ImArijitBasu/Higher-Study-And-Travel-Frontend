@@ -1,24 +1,25 @@
-import MainBanner from "@/components/Banner/MainBanner";
-import BlogCard from "@/components/Blogs/BlogCard";
 import ScholarshipsSection from "@/components/Scrollership/ScholarshipSection";
 import TopTravelPackages from "@/components/TravelPackages/TopTravelPackages";
+import { UniversitiesSection } from "@/components/University/university_section";
+import MainBanner from "@/components/Banner/MainBanner";
 import AboutStudy from "@/components/ui/AboutStudy";
 import ExtraCard from "@/components/ExtraCard/ExtraCard";
 import StudyAbroadWork from "@/components/ui/StudyAbroadWork";
-import { UniversitiesSection } from "@/components/University/university_section";
-
+import WorkSection from "@/components/Work_Section/Work _Section";
+import CarouselCards from "@/components/CarouselCard/CarouselCard";
 
 export default function Home() {
   return (
-    <div className="">
-      <MainBanner/>
+    <div>
+      <MainBanner />
       <UniversitiesSection />
-      <ScholarshipsSection/>
-      <TopTravelPackages/>
-      <BlogCard></BlogCard>
-      <AboutStudy></AboutStudy>
-      <StudyAbroadWork></StudyAbroadWork>
-      <ExtraCard></ExtraCard>
+      <ScholarshipsSection />
+      <TopTravelPackages />
+      <CarouselCards />
+      <AboutStudy />
+      <StudyAbroadWork />
+      <WorkSection />
+      <ExtraCard/>
     </div>
   );
 }
