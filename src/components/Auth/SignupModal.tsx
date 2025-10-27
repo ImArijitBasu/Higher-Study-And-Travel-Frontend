@@ -1,52 +1,3 @@
-// "use client"
-// import { FC } from "react";
-
-// interface SignupModalProps {
-//   onClose: () => void;
-// }
-
-// const SignupModal: FC<SignupModalProps> = ({ onClose }) => {
-//   return (
-//     <div className="fixed inset-0 flex items-center justify-center z-50">
-//       {/* Blur Background */}
-//       <div
-//         className="absolute inset-0 bg-black/30 backdrop-blur-sm"
-//         onClick={onClose}
-//       ></div>
-
-//       {/* Modal */}
-//       <div className="relative bg-white p-6 rounded-2xl shadow-xl w-80">
-//         <h2 className="text-xl font-bold mb-4 text-center">Sign Up</h2>
-//         <form className="flex flex-col space-y-3">
-//           <input
-//             type="text"
-//             placeholder="Full Name"
-//             className="border rounded-md p-2 focus:outline-sky-500"
-//           />
-//           <input
-//             type="email"
-//             placeholder="Email"
-//             className="border rounded-md p-2 focus:outline-sky-500"
-//           />
-//           <input
-//             type="password"
-//             placeholder="Password"
-//             className="border rounded-md p-2 focus:outline-sky-500"
-//           />
-//           <button
-//             type="submit"
-//             className="bg-sky-500 text-white py-2 rounded-md hover:bg-sky-600 transition"
-//           >
-//             Sign Up
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SignupModal;
-
 "use client";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
@@ -55,7 +6,7 @@ import planeBg from "../../../public/plane-bg.jpg";
 import girlImg from "../../../public/girl.jpg";
 import { PiAirplaneTiltFill } from "react-icons/pi";
 import { FaGoogle, FaTwitter } from "react-icons/fa";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface SignupModalProps {
@@ -63,7 +14,6 @@ interface SignupModalProps {
 }
 
 const SignupModal: FC<SignupModalProps> = ({ onClose }) => {
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -91,20 +41,16 @@ const SignupModal: FC<SignupModalProps> = ({ onClose }) => {
       });
 
       onClose(); // modal close
-    } catch (err: any) {
-      console.error(err.response?.data || err.message);
-
-      // Registration error toast
-      toast.error(err.response?.data?.message || "Something went wrong!", {
-        position: "top-center",
-      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "Registration failed!", {
+          position: "top-center",
+        });
+      } else {
+        toast.error("Something went wrong!", { position: "top-center" });
+      }
     }
   };
-
-
-
-
-
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -205,5 +151,3 @@ const SignupModal: FC<SignupModalProps> = ({ onClose }) => {
 };
 
 export default SignupModal;
-
-
