@@ -2,14 +2,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "encrypted-tbn0.gstatic.com", 
-      "images.unsplash.com",  
-      "flagcdn.com"      
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  images: {
     remotePatterns: [
       {
         protocol: 'https',

@@ -34,7 +34,7 @@ const CarouselCards = () => {
 
   return (
     <div className="w-full overflow-hidden py-12 container mx-auto">
-      <h2 className="text-2xl font-semibold mb-6 text-center">Top Destinations</h2>
+      <h2 className="text-2xl font-semibold mb-6 ">Top Destinations</h2>
 
       <div ref={containerRef} className="overflow-hidden">
         <motion.div
