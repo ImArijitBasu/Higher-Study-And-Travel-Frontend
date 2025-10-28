@@ -56,6 +56,8 @@ import girlImg from "../../../public/girl.jpg";
 import { PiAirplaneTiltFill } from "react-icons/pi";
 import { FaGoogle, FaTwitter } from "react-icons/fa";
 import { toast } from "react-toastify"; 
+
+
 import "react-toastify/dist/ReactToastify.css";
 
 interface SignupModalProps {
