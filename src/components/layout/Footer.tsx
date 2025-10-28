@@ -30,7 +30,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="grid max-w-11/12 mx-auto md:grid-cols-2 gap-10 px-6 md:px-16 mt-10">
+      <div className="grid max-w-11/12 mx-auto md:grid-cols-2 gap-10 px-6 md:px-16 mt-10 container">
         {/* Left Section */}
         <div>
           <div className="flex items-center gap-2">

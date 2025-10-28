@@ -1,4 +1,5 @@
 // "use client";
+
 // import { useState } from "react";
 // import LoginModal from "../Auth/LoginModal";
 // import SignupModal from "../Auth/SignupModal";
@@ -166,14 +167,17 @@ const AuthToggle = () => {
 
 
 
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/users");
         if (res.data && res.data.length > 0) {
 
+
           setUser(res.data[0]); 
+
+          setUser(res.data[0]); 
+
 
           setUser(res.data[0]); 
 
@@ -207,9 +211,11 @@ const AuthToggle = () => {
             <button
               onClick={handleLogout}
 
+
               className="px-3 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-100 rounded-full"
 
            
+
 
             >
               LOGOUT
