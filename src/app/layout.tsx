@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono , Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans", 
@@ -16,7 +18,7 @@ const geistMono = Geist_Mono({
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "500", "700" , "900"], // you can include more if needed
+  weight: ["400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -33,11 +35,11 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
-
       >
         <Navbar />
         <div className="w-11/12 mx-auto mt-20">{children}</div>
-        <Footer></Footer>
+        <Footer />
+        <ToastContainer position="top-center" autoClose={3000} />
       </body>
     </html>
   );

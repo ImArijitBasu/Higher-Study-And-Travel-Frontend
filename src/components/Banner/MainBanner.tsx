@@ -27,11 +27,11 @@ const MainBanner = () => {
             <FaSearch className="text-gray-500 ml-2" />
           </div>
           {/* buttons  */}
-          <div className=" flex gap-5">
-            <Button className="bg-[#56c4f8] hover:bg-[#47b0e5] text-black  rounded-full px-6 capitalize text-md">
+          <div className=" flex gap-2 md:gap-5">
+            <Button className="bg-[#56c4f8] hover:bg-[#47b0e5] text-black  rounded-full px-0 md:px-6 capitalize text-xs md:text-md">
               find universities <AiOutlineDoubleRight size={20} />
             </Button>
-            <Button className="bg-[#56c4f8] hover:bg-[#47b0e5] text-black  rounded-full px-6 capitalize text-md">
+            <Button className="bg-[#56c4f8] hover:bg-[#47b0e5] text-black  rounded-full px-0 md:px-6  capitalize text-xs md:text-md">
               explore travel packages <AiOutlineDoubleRight size={20} />
             </Button>
           </div>
