@@ -17,8 +17,8 @@ const MainBanner = () => {
           </h2>
         </div>
         <div className="">
-            {/* search  */}
-          <div className="w-full relative rounded-full bg-gray-200 shadow-md shadow-gray-400 flex items-center px-4 my-10">
+          {/* search  */}
+          <div className="w-full  relative rounded-full bg-gray-200 shadow-md shadow-gray-400 flex items-center px-4 my-10">
             <input
               type="text"
               placeholder="Search for Universities or Destinations"
