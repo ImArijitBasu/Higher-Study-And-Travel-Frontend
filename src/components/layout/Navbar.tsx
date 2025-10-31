@@ -7,16 +7,16 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li className="capitalize text-md font-semibold">
-        <Link href="/universities">Universities</Link>
+        <Link href="/u/universities">Universities</Link>
       </li>
       <li className="capitalize text-md font-semibold">
-        <Link href="/blog">scholarships</Link>
+        <Link href="/u/scholarships">scholarships</Link>
       </li>
       <li className="capitalize text-md font-semibold">
-        <Link href="/blog">travel</Link>
+        <Link href="/u/travel">travel</Link>
       </li>
       <li className="capitalize text-md font-semibold">
-        <Link href="/blog">blog</Link>
+        <Link href="/u/blogs">blog</Link>
       </li>
     </>
   );
@@ -50,10 +50,10 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xs md:text-xl uppercase font-extrabold">
+          <Link href={"/"} className="btn btn-ghost text-xs md:text-xl uppercase font-extrabold">
             <PiAirplaneTiltFill className="text-lg md:text-4xl text-cyan-400" /> Study &
             travel
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>

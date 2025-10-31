@@ -6,11 +6,17 @@ export interface University {
 }
  
 export interface UniversityCardProps {
+  id:number;
   universityName: string;
-  programType: string;
-  availableSemesters: string;
-  price: string;
-  featured: boolean;
-  availablePrograms: string;
+  programName: string;
+  location: string;
+  worldRank: string;
+  degree: string;
+  intakeDate: string;
+  entryScore: string;
+  tuitionFee: string;
   image?: string;
+  featured?: boolean;
 }
+
+//http://localhost:3000/u/universities/university_Name/degree_Name

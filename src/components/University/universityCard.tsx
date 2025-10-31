@@ -1,53 +1,105 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
+import { IoIosSchool } from "react-icons/io";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BsCalendarEvent, BsGlobe } from "react-icons/bs";
 import { UniversityCardProps } from "@/types";
-
-
 
 export function UniversityCard({
   universityName,
-  programType,
-  availableSemesters,
-  price,
-  availablePrograms,
+  programName,
+  location,
+  worldRank,
+  degree,
+  intakeDate,
+  entryScore,
+  tuitionFee,
   image,
+  featured,
 }: UniversityCardProps) {
+  console.log({
+  universityName,
+  programName,
+  location,
+  worldRank,
+  degree,
+  intakeDate,
+  entryScore,
+  tuitionFee,
+  image,
+  featured,
+});
+
   return (
-    <div className="card bg-base-100 border-2 border-gray-200  shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-      {/* ✅ Image Section */}
-      <figure className="px-6 pt-6">
+    <div className="w-full bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 flex flex-col justify-between">
+      {/* Header Section */}
+      <div className="flex justify-between items-start mb-3">
+        <AiOutlineHeart className="text-gray-400 text-xl hover:text-red-500 cursor-pointer" />
+      </div>
+      {/* University Logo */}
+      <div className="flex justify-around mb-4">
         <Image
           src={
             image ||
-            "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+            "https://upload.wikimedia.org/wikipedia/en/thumb/d/d0/University_of_Melbourne_coat_of_arms.svg/800px-University_of_Melbourne_coat_of_arms.svg.png"
           }
           alt={universityName}
-          width={400}
-          height={250}
-          className="rounded-xl object-cover h-48 w-full"
-          unoptimized 
+          width={64}
+          height={64}
+          className="object-contain"
+          unoptimized
         />
-      </figure>
+        <div className="">
+          <h3 className="text-lg font-semibold text-blue-700 text-center leading-tight mb-1">
+        {programName}
+      </h3>
+      <p className="text-gray-700 text-sm text-center mb-4">
+        {universityName}
+      </p>
+        </div>
+      </div>
 
-      {/* ✅ Card Body */}
-      <div className="card-body items-center text-center">
-        {/* Featured Tag */}
-        
+      {/* Title */}
+      
 
-        <h2 className="card-title text-xl font-bold text-gray-900">
-          {universityName}
-        </h2>
-
-        <p className="text-gray-600 text-sm">{programType}</p>
-
-        <p className="text-gray-700 text-sm mt-2">
-          <span className="font-semibold">Semesters:</span> {availableSemesters}
+      {/* Info Section */}
+      <div className="space-y-2 text-gray-600 text-sm">
+        <p className="flex items-center gap-2">
+          <BsGlobe className="text-gray-500" />
+          THE World Ranking: <span className="font-medium">{worldRank}</span>
         </p>
+        <p className="flex items-center gap-2">
+          <IoIosSchool className="text-gray-500" />
+          {degree}
+        </p>
+        <p className="flex items-center gap-2">
+          <FaMapMarkerAlt className="text-gray-500" />
+          {location}
+        </p>
+        <p className="flex items-center gap-2">
+          <BsCalendarEvent className="text-gray-500" />
+          Next intake: <span className="font-medium">{intakeDate}</span>
+        </p>
+        <p className="flex items-center gap-2">
+          <BsGlobe className="text-gray-500" />
+          Entry Score: <span className="font-medium">{entryScore}</span>
+        </p>
+        <p className="flex items-center gap-2">
+          <FaMoneyBillWave className="text-gray-500" />
+          {tuitionFee}
+        </p>
+      </div>
 
-        <p className="text-lg font-bold  mt-2">{price}</p>
-
-       
+      {/* Buttons */}
+      <div className="flex flex-col gap-2 mt-5">
+        <button className="bg-[#0070C0] hover:bg-[#005999] text-white font-semibold py-2.5 rounded-md text-sm transition-all">
+          See if I qualify
+        </button>
+        <button className="border border-gray-300 hover:bg-gray-100 text-gray-800 font-medium py-2.5 rounded-md text-sm transition-all">
+          View details
+        </button>
       </div>
     </div>
   );
