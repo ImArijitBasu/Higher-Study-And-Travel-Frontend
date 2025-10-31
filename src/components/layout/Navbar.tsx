@@ -7,7 +7,7 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li className="capitalize text-md font-semibold">
-        <Link href="/blog">universities</Link>
+        <Link href="/universities">Universities</Link>
       </li>
       <li className="capitalize text-md font-semibold">
         <Link href="/blog">scholarships</Link>

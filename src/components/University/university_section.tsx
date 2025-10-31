@@ -1,5 +1,7 @@
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { UniversityCard } from "./universityCard";
+import Link from "next/link";
+
 
 
 
@@ -78,7 +80,7 @@ export function UniversitiesSection() {
                 {/* CTA Button */}
                 <div className="text-center mt-12">
                     <button className="bg-[#87E0FE] hover:bg-[#3396D3]  font-semibold py-3 px-8 rounded-3xl transition-colors duration-300 flex items-center gap-2 mx-auto">
-                        View All Universities
+                        <Link href={'/universities'}>View All Universities</Link>
                         <AiOutlineDoubleRight size={20} />
                     </button>
                 </div>
