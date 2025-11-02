@@ -50,7 +50,7 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link href={"/"} className="btn btn-ghost text-xs md:text-xl uppercase font-extrabold">
+          <Link href={"/"} className="flex justify-center items-center text-xs md:text-xl uppercase font-extrabold">
             <PiAirplaneTiltFill className="text-lg md:text-4xl text-cyan-400" /> Study &
             travel
           </Link>
