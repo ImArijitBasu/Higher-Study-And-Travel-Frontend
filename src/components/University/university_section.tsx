@@ -106,11 +106,11 @@ export function UniversitiesSection() {
     <section className="container py-12 mx-auto">
       <div className=" px-4">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-left mb-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Featured Universities
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p className="text-green-600 text-sm">
             Find top-ranked universities and explore their study programs.
           </p>
         </div>
@@ -123,16 +123,6 @@ export function UniversitiesSection() {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="text-center mt-12">
-          <Link
-            href="/universities"
-            className="inline-flex items-center gap-2 bg-[#0097A7] hover:bg-[#007f8f] text-white font-semibold py-3 px-8 rounded-full transition-all"
-          >
-            View All Universities
-            <AiOutlineDoubleRight size={20} />
-          </Link>
-        </div>
       </div>
     </section>
   );

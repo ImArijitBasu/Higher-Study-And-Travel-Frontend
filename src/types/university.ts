@@ -16,7 +16,10 @@ export interface UniversityCardProps {
   entryScore: string;
   tuitionFee: string;
   image?: string;
-  featured?: boolean;
+  // isFeatured?: boolean;
+  // description?: string;
+  // website?: string;
+  // highlights?: string[];
 }
 
 //http://localhost:3000/u/universities/university_Name/degree_Name

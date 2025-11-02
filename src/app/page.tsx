@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <MainBanner />
-      <UniversitiesSection />
+      {/* <UniversitiesSection /> */}
       <ScholarshipsSection />
       <TopTravelPackages />
       <CarouselCards />

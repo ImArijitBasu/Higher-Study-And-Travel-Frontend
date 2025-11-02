@@ -17,20 +17,19 @@ export function UniversityCard({
   entryScore,
   tuitionFee,
   image,
-  featured,
 }: UniversityCardProps) {
-  console.log({
-  universityName,
-  programName,
-  location,
-  worldRank,
-  degree,
-  intakeDate,
-  entryScore,
-  tuitionFee,
-  image,
-  featured,
-});
+//   console.log({
+//   universityName,
+//   programName,
+//   location,
+//   worldRank,
+//   degree,
+//   intakeDate,
+//   entryScore,
+//   tuitionFee,
+//   image,
+//   featured,
+// });
 
   return (
     <div className="w-full bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 flex flex-col justify-between">
