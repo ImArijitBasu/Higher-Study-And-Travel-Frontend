@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <div>
       <MainBanner />
-      {/* <UniversitiesSection /> */}
-      <ScholarshipsSection />
+      <UniversitiesSection  limit={6}/>
+      <ScholarshipsSection limit={4}/>
       <TopTravelPackages />
       <CarouselCards />
       <AboutStudy />

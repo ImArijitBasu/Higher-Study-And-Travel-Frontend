@@ -17,6 +17,7 @@ export function UniversityCard({
   entryScore,
   tuitionFee,
   image,
+  
 }: UniversityCardProps) {
 //   console.log({
 //   universityName,

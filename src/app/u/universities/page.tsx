@@ -52,7 +52,7 @@ export default function UniversitiesPage() {
         <FilterSection/>
 
         {/* University Section */}
-        <UniversitiesSection />
+        <UniversitiesSection limit={undefined} />
       </div>
     </>
   );
