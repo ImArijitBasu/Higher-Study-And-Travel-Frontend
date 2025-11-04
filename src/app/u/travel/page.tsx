@@ -7,18 +7,18 @@ import TriBanner from "@/components/TravelPackages/triBanner";
 import { FaSearch } from "react-icons/fa";
 
 export const metadata = {
-  title: "Scholarships | Study & Travel Portal",
-  description: "Find and explore top Scholarships.",
+    title: "Scholarships | Study & Travel Portal",
+    description: "Find and explore top Scholarships.",
 };
 export default function TravelsPage() {
-  return (
-    <>
-      <div className="w-full flex flex-col items-center mt-20">
-        {/* Title */}
-        <TriBanner/>
+    return (
+        <>
+            <div className="w-full flex flex-col items-center mt-20">
+                {/* Title */}
+                <TriBanner />
 
-        {/* Search Bar */}
-        {/* <div className="w-full max-w-xl mx-auto mt-5">
+                {/* Search Bar */}
+                {/* <div className="w-full max-w-xl mx-auto mt-5">
           <div className="relative flex items-center bg-white rounded-full  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl focus-within:shadow-xl">
             <input
               type="text"
@@ -31,8 +31,8 @@ export default function TravelsPage() {
           </div>
         </div> */}
 
-        {/* Filters */}
-        {/* <div className="w-11/12 mx-auto mt-10">
+                {/* Filters */}
+                {/* <div className="w-11/12 mx-auto mt-10">
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {[
               "Country",
@@ -50,11 +50,14 @@ export default function TravelsPage() {
             ))}
           </div>
         </div> */}
-        {/* <SciFilterSection/> */}
+                {/* <SciFilterSection/> */}
 
-        {/* University Section */}
-        <DestinationsPage/>
-      </div>
-    </>
-  );
+                {/* University Section */}
+                <DestinationsPage />
+            </div>
+        </>
+    );
 }
+
+
+
