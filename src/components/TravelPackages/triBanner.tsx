@@ -9,7 +9,7 @@ const TriBanner = () => {
         <div className="relative w-full container mx-auto h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-xl shadow-lg group">
             {/* Background Image */}
             <Image
-                src="/plane-bg.jpg" // তোমার background image path
+                src="/plane-bg.jpg" 
                 alt="Travel Banner"
                 fill
                 style={{ objectFit: "cover" }}
@@ -28,36 +28,8 @@ const TriBanner = () => {
                 </h1>
 
                 {/* Search Section */}
-                <div>
-                    {/* Search Input */}
-                    <div className="relative ">
-                      <div className="">
-                          <FaSearch className="absolute left-3 top-3 text-gray-500" />
-                        <input
-                            type="text"
-                            placeholder="Search Destinations"
-                            className="pl-10 px-5 pr-4 py-2 w-[280px] md:w-[300px] rounded-full bg-white/80 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </div>
-                    </div>
-                </div>
-                <div className="flex flex-col md:flex-row items-center gap-3">
-                    {/* Country Dropdown */}
-                    <select className="px-4 py-2 rounded-full bg-white/80 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <option>Country</option>
-                        <option>Bangladesh</option>
-                        <option>Thailand</option>
-                        <option>Maldives</option>
-                    </select>
-
-                    {/* Activities Dropdown */}
-                    <select className="px-8 py-2 rounded-full bg-white/80 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <option>Activities</option>
-                        <option>Beach</option>
-                        <option>Hiking</option>
-                        <option>City Tour</option>
-                    </select>
-                </div>
+              
+                
             </div>
         </div>
     );
