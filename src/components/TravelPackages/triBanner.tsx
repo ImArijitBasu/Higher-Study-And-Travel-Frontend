@@ -9,7 +9,7 @@ const TriBanner = () => {
         <div className="relative w-full container mx-auto h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-xl shadow-lg group">
             {/* Background Image */}
             <Image
-                src="/plane-bg.jpg" 
+                src="/nature.jpg"  
                 alt="Travel Banner"
                 fill
                 style={{ objectFit: "cover" }}

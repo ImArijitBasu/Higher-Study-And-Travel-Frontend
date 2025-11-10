@@ -216,7 +216,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
                 <div className="text-2xl font-bold text-gray-900">{price}</div>
                 <div className="text-xs text-gray-500">total package</div>
               </div>
-              <button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-5 py-2.5 rounded-xl font-semibold shadow-md hover:shadow-lg hover:from-cyan-600 hover:to-blue-600 transition-transform transform hover:scale-105 flex items-center gap-2">
+              <button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-black px-5 py-2.5 rounded-xl font-semibold shadow-md hover:shadow-lg hover:from-cyan-600 hover:to-blue-600 transition-transform transform hover:scale-105 flex items-center gap-2">
                 <FiEye className="w-4 h-4" />
                 Details
               </button>
@@ -306,7 +306,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
             <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-semibold">
               <FiEye className="w-4 h-4 inline mr-2" /> Preview
             </button>
-            <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl hover:from-cyan-600 hover:to-blue-600 font-semibold shadow-lg transition-all hover:scale-105">
+            <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black rounded-xl hover:from-cyan-600 hover:to-blue-600 font-semibold shadow-lg transition-all hover:scale-105">
               Enroll Now
             </button>
           </div>
