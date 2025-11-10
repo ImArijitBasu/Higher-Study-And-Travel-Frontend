@@ -33,7 +33,7 @@ const AboutStudy: React.FC = () => {
         "Beyond academics, you’ll develop valuable life skills, expand your global network, and create unforgettable memories.",
       ],
       image:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        "https://scholarszone.com.bd/wp-content/uploads/2025/06/Study-Abroad-2025.jpg.webp",
       link: "HOW TO PICK A PROGRAM",
     },
     who: {
@@ -44,7 +44,7 @@ const AboutStudy: React.FC = () => {
         "If you’re open-minded and eager to experience the world from a new perspective, studying abroad is for you!",
       ],
       image:
-        "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80",
+        "https://media.licdn.com/dms/image/v2/D4D12AQHrYeNb3llXJQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1691898107626?e=2147483647&v=beta&t=lXnJxTKOCPHdhVJajHNNyMN0RqkG2aNzbs0yiZCUEIg",
       link: "HOW TO APPLY FOR A PROGRAM",
     },
     why: {
@@ -55,7 +55,7 @@ const AboutStudy: React.FC = () => {
         "It’s a journey that transforms your education and your future.",
       ],
       image:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+        "https://cdn.prod.website-files.com/5e6bef9160e290b99b7644b5/6516aeb88a1b8cf8e3b1047c_1%20(1)%20(1).webp",
       link: "BENEFITS OF STUDYING ABROAD",
     },
   };
@@ -98,7 +98,7 @@ const AboutStudy: React.FC = () => {
 
         {/* Image */}
         <div className="rounded-2xl overflow-hidden shadow-md">
-          <Image
+          <img
             src={content[activeTab].image}
             alt={content[activeTab].title}
             width={600}

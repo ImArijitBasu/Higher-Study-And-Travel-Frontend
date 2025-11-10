@@ -120,7 +120,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
         <div className="flex flex-col bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 group-hover:-translate-y-2">
           {/* Image */}
           <div className="relative h-60 sm:h-64 overflow-hidden">
-            <Image
+            <img
               src={image}
               alt={title}
               fill

@@ -28,34 +28,34 @@ const deals: Deal[] = [
 
 export default function DestinationsPage() {
   const regions = {
-    ASIA: { 
-      countries: ["Indonesia", "China", "South Korea", "Taiwan", "Thailand"], 
-      image: "https://images.unsplash.com/photo-1535139262971-c51845709a48", 
+    ASIA: {
+      countries: ["Indonesia", "China", "South Korea", "Taiwan", "Thailand"],
+      image: "https://images.unsplash.com/photo-1535139262971-c51845709a48",
       icon: "🗼"
     },
-    EUROPE: { 
-      countries: ["Croatia","Cyprus","Czech Republic","England","France","Georgia","Hungary"], 
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b", 
+    EUROPE: {
+      countries: ["Croatia", "Cyprus", "Czech Republic", "England", "France", "Georgia", "Hungary"],
+      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b",
       icon: "🏛️"
     },
-    IRELAND: { 
-      countries: ["Italy","Northern Ireland","Portugal","Scotland","Spain"], 
-      image: "https://images.unsplash.com/photo-1515586838455-8f8f940d6853", 
+    IRELAND: {
+      countries: ["Italy", "Northern Ireland", "Portugal", "Scotland", "Spain"],
+      image: "https://images.unsplash.com/photo-1515586838455-8f8f940d6853",
       icon: "🍀"
     },
-    AFRICA: { 
-      countries: ["Morocco", "South Africa","Find Land"], 
-      image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 
+    AFRICA: {
+      countries: ["Morocco", "South Africa", "Find Land"],
+      image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5",
       icon: "🌍"
     },
-    AMERICAS: { 
-      countries: ["Argentina", "Mexico", "United States"], 
-      image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325", 
+    AMERICAS: {
+      countries: ["Argentina", "Mexico", "United States"],
+      image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325",
       icon: "🌎"
     },
-    OCEANIA: { 
-      countries: ["New Zealand","Colombia","Green Land"], 
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9", 
+    OCEANIA: {
+      countries: ["New Zealand", "Colombia", "Green Land"],
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9",
       icon: "🌊"
     },
   };
@@ -121,13 +121,11 @@ export default function DestinationsPage() {
         <div className="flex flex-col gap-4 items-center">
           {/* Modern Search Bar */}
           <div className="w-full max-w-xl mx-auto mt-5">
-            <div className="relative flex items-center bg-white rounded-full shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl focus-within:shadow-xl">
+            <div className="relative flex items-center bg-white rounded-full  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl focus-within:shadow-xl">
               <input
                 type="text"
                 placeholder="Search Universities"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200"
+                className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200 border-4 rounded-full "
               />
               <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
                 <FaSearch />
@@ -142,10 +140,9 @@ export default function DestinationsPage() {
                 key={filter}
                 onClick={() => setActiveFilter(filter === "All" ? null : filter)}
                 className={`px-5 py-3 rounded-full font-medium whitespace-nowrap transition-colors duration-200 
-                  ${
-                    activeFilter === filter || (filter === "All" && !activeFilter)
-                      ? "bg-blue-600 text-white shadow-lg"
-                      : "bg-white text-gray-700 border border-gray-300 hover:bg-blue-50 hover:text-blue-600"
+                  ${activeFilter === filter || (filter === "All" && !activeFilter)
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-white text-gray-700 border border-gray-300 hover:bg-blue-50 hover:text-blue-600"
                   }`}
               >
                 {filter === "POPULAR" ? "Most Popular" : filter}
@@ -168,12 +165,12 @@ export default function DestinationsPage() {
                 >
                   {/* Image & Icon */}
                   <div className="relative h-48 w-full">
-                    <Image 
-                      src={data.image} 
-                      alt={region} 
-                      fill 
-                      className="object-cover" 
-                      priority 
+                    <Image
+                      src={data.image}
+                      alt={region}
+                      fill
+                      className="object-cover"
+                      priority
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute top-3 left-3 bg-white/80 backdrop-blur-md p-2 rounded-lg shadow-md text-2xl">
@@ -191,8 +188,8 @@ export default function DestinationsPage() {
                     {data.countries.slice(0, 4).map((country) => (
                       <div key={country} className="flex items-center py-1">
                         <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                        <Link 
-                          href={`/destinations/${country.toLowerCase().replace(/[,\s]+/g,"-")}`} 
+                        <Link
+                          href={`/destinations/${country.toLowerCase().replace(/[,\s]+/g, "-")}`}
                           className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
@@ -208,12 +205,11 @@ export default function DestinationsPage() {
                   </div>
 
                   {/* Dropdown */}
-                  <div 
-                    className={`absolute left-0 right-0 bottom-0 translate-y-full bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 z-10 ${
-                      isOpen 
-                        ? "opacity-100 visible translate-y-2" 
+                  <div
+                    className={`absolute left-0 right-0 bottom-0 translate-y-full bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 z-10 ${isOpen
+                        ? "opacity-100 visible translate-y-2"
                         : "opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-2"
-                    }`}
+                      }`}
                   >
                     <div className="p-6">
                       <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
@@ -222,9 +218,9 @@ export default function DestinationsPage() {
                       </h3>
                       <div className="grid grid-cols-1 gap-2 max-h-60 overflow-y-auto">
                         {data.countries.map((country) => (
-                          <Link 
-                            key={country} 
-                            href={`/destinations/${country.toLowerCase().replace(/[,\s]+/g,"-")}`} 
+                          <Link
+                            key={country}
+                            href={`/destinations/${country.toLowerCase().replace(/[,\s]+/g, "-")}`}
                             className="flex items-center py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-100"
                             onClick={(e) => e.stopPropagation()}
                           >
@@ -246,14 +242,14 @@ export default function DestinationsPage() {
 
       {/* ================= Travel Deals Section ================= */}
       <section className="py-16 px-4 font-sans select-none container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">✈️ Hot Travel Deals</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">✈️ Top Destinations</h2>
 
-        <div 
-          className="overflow-hidden cursor-grab" 
-          onMouseEnter={() => setIsPaused(true)} 
+        <div
+          className="overflow-hidden cursor-grab"
+          onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <motion.div 
+          <motion.div
             ref={containerRef}
             animate={controls}
             style={{ x }}
@@ -263,7 +259,7 @@ export default function DestinationsPage() {
             className="flex space-x-6 pb-6"
           >
             {extendedDeals.map((deal, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
@@ -271,8 +267,8 @@ export default function DestinationsPage() {
                 className="min-w-[280px] bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex-shrink-0"
               >
                 <div className="relative h-48 w-full">
-                  <Image 
-                    src={deal.image} 
+                  <Image
+                    src={deal.image}
                     alt={deal.destination}
                     fill
                     className="object-cover"
@@ -298,11 +294,7 @@ export default function DestinationsPage() {
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-8">
-          <button className="bg-white text-blue-600 border border-blue-600 px-8 py-3 rounded-2xl hover:bg-blue-50 transition-colors font-semibold">
-            View All Deals
-          </button>
-        </div>
+        
       </section>
 
       {/* ================= CTA Section ================= */}

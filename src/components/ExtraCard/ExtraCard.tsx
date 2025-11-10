@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Deal {
   id: number;
@@ -24,7 +25,7 @@ const deals: Deal[] = [
   { id: 8, image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c", destination: "Rome, Italy", duration: "10h 20m, 1 stop", dates: "Sat 15/11 → Fri 21/11", price: "from Tk 77,890" },
   { id: 9, image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad", destination: "Istanbul, Turkey", duration: "8h 5m, direct", dates: "Mon 18/11 → Sun 23/11", price: "from Tk 64,420" },
   { id: 10, image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c", destination: "New York, USA", duration: "14h 50m, 1 stop", dates: "Wed 26/11 → Tue 2/12", price: "from Tk 120,850" },
-  { id: 11, image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d", destination: "Cape Town, South Africa", duration: "11h 30m, 1 stop", dates: "Sun 23/11 → Sat 29/11", price: "from Tk 88,600" },
+  { id: 11, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGtyEQSbs-6HMGsvoAPPCkbEv-O5HmD9X9Q&s", destination: "Cape Town, South Africa", duration: "11h 30m, 1 stop", dates: "Sun 23/11 → Sat 29/11", price: "from Tk 88,600" },
   { id: 12, image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad", destination: "Santorini, Greece", duration: "9h 20m, 1 stop", dates: "Fri 14/11 → Thu 20/11", price: "from Tk 72,300" },
 ];
 
@@ -62,7 +63,7 @@ export default function ExtraCard() {
 
   return (
     <section className="py-16 px-6 font-sans select-none container mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-12">✈️ Travel Deals</h2>
+      <h2 className="text-4xl font-bold text-center mb-12">✈️ Top Destinations</h2>
 
       <div
         className="overflow-hidden cursor-grab"
@@ -108,11 +109,15 @@ export default function ExtraCard() {
       </div>
 
       <div className="mt-10 flex items-center justify-center">
-        <a href="#" className="text-gray-600 font-semibold hover:text-blue-600 transition-colors duration-300 group">
+        <Link
+          href="u/destinations"
+          className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center gap-2"
+        >
           See More Destinations
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 ml-1">→</span>
-        </a>
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </Link>
       </div>
+
     </section>
   );
 }
