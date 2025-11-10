@@ -195,7 +195,7 @@ export function UniversitiesSection({ limit }) {
                 <div className="flex justify-between items-center">
                   <span className="text-gray-800 font-semibold">{uni.tuitionFee}</span>
                   <button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition-transform duration-300 flex items-center gap-1">
-                    Apply <AiOutlineDoubleRight />
+                    Details<AiOutlineDoubleRight />
                   </button>
                 </div>
               </div>

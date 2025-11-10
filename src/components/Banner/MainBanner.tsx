@@ -4,18 +4,39 @@ import React from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const MainBanner = () => {
   return (
-    <section 
-      className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center text-gray-900 mx-auto  "
+    <section
+      className="relative w-full h-screen min-h-[600px] flex items-center justify-center text-gray-900 mx-auto  "
+      // style={{
+      //   backgroundImage: `linear-gradient(to right, #e0f7fa, #c2f0fc, #f0fcff)`,
+      //   backgroundSize: 'cover',
+      //   backgroundPosition: 'center',
+      //   backgroundAttachment: 'fixed',
+      //   backgroundBlendMode: 'overlay',
+      // }}
+
+      //2nd
+      // style={{
+      //   backgroundImage: `radial-gradient(circle at bottom center, #b6e0e6, #7bc9dd, #f0fcff)`,
+      //   backgroundSize: 'cover',
+      //   backgroundPosition: 'center',
+      //   backgroundAttachment: 'fixed',
+      //   backgroundBlendMode: 'overlay',
+      // }}
+
       style={{
-        backgroundImage: `linear-gradient(to right, #e0f7fa, #c2f0fc, #f0fcff), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1')`,
-        backgroundSize: 'cover',
+        backgroundImage: `radial-gradient(circle at bottom center, #e0f7fa, #b0e8f6, #f0fcff)`,
+        backgroundSize: '150% 150%',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
         backgroundBlendMode: 'overlay',
+        animation: 'zoomGradient 1s ease-in-out infinite alternate',
       }}
+
+
     >
       {/* Content Container */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 text-center pt-10 ">
@@ -31,9 +52,9 @@ const MainBanner = () => {
 
         {/* Highlighted Tagline */}
         <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
+          {/* <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-300"></div>
-          </div>
+          </div> */}
           <div className="relative flex justify-center">
             <span className="bg-white/40 px-6 text-xl font-semibold text-cyan-500 rounded-2xl">
               Cut the cost, not the experience.
@@ -59,8 +80,8 @@ const MainBanner = () => {
 
         {/* Main CTA Button */}
         <div className="flex justify-center mb-6">
-          <Button className=" bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-500 hover:to-blue-500 text-white text-base font-semibold px-10 py-5 rounded-full shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
-            Find a Program
+          <Button className=" bg-gradient-to-r from-cyan-400 to-blue-400  text-white text-base font-semibold px-10 py-5 rounded-full shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+            <Link href={'/u/scholarships'}>Find a Program</Link>
             <AiOutlineDoubleRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
@@ -79,13 +100,6 @@ const MainBanner = () => {
             <div className="text-2xl font-bold text-cyan-500 mb-1">10K+</div>
             <div className="text-gray-700 text-sm">Students Placed</div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-gray-300 rounded-full mt-2"></div>
         </div>
       </div>
     </section>
