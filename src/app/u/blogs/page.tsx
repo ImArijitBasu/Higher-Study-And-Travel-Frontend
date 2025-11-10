@@ -157,8 +157,8 @@ const BlogPage = () => {
                                 key={category.id}
                                 onClick={() => setActiveCategory(category.id)}
                                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeCategory === category.id
-                                    ? "bg-cyan-500 text-white shadow-lg"
-                                    : "bg-white text-gray-700 hover:bg-cyan-50 hover:text-cyan-600 shadow-sm"
+                                        ? "bg-cyan-500 text-white shadow-lg"
+                                        : "bg-white text-gray-700 hover:bg-cyan-50 hover:text-cyan-600 shadow-sm"
                                     }`}
                             >
                                 {category.name} ({category.count})
@@ -258,8 +258,8 @@ const BlogPage = () => {
                         </div>
                     )}
                 </section>
-            </main>
 
+            </main>
         </div>
     );
 };

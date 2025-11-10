@@ -10,6 +10,7 @@ const Navbar = () => {
   const pathname = usePathname(); // get current path
 
   const navLinks = [
+    { name: "Home", href: "/" },
     { name: "Destinations", href: "/u/destinations" },
     { name: "Universities", href: "/u/universities" },
     { name: "Scholarships", href: "/u/scholarships" },
