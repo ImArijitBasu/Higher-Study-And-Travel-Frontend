@@ -32,10 +32,10 @@ const MainBanner = () => {
         {/* Highlighted Tagline */}
         <div className="relative my-8">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
+            {/* <div className="w-full border-t border-gray-300"></div> */}
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-white/40 px-6 text-xl font-semibold text-cyan-500 rounded-2xl">
+            <span className="bg-white/30 px-6 text-xl font-semibold text-cyan-500 rounded-2xl">
               Cut the cost, not the experience.
             </span>
           </div>
@@ -59,7 +59,7 @@ const MainBanner = () => {
 
         {/* Main CTA Button */}
         <div className="flex justify-center mb-6">
-          <Button className=" bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-500 hover:to-blue-500 text-white text-base font-semibold px-10 py-5 rounded-full shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+          <Button className=" bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-500  text-white text-base font-semibold px-10 py-5 rounded-full shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
             Find a Program
             <AiOutlineDoubleRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Button>
