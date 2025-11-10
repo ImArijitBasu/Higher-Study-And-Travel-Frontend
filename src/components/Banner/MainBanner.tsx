@@ -9,57 +9,34 @@ import Link from "next/link";
 const MainBanner = () => {
   return (
     <section
-      className="relative w-full h-screen min-h-[600px] flex items-center justify-center text-gray-900 mx-auto  "
-      // style={{
-      //   backgroundImage: `linear-gradient(to right, #e0f7fa, #c2f0fc, #f0fcff)`,
-      //   backgroundSize: 'cover',
-      //   backgroundPosition: 'center',
-      //   backgroundAttachment: 'fixed',
-      //   backgroundBlendMode: 'overlay',
-      // }}
-
-      //2nd
-      // style={{
-      //   backgroundImage: `radial-gradient(circle at bottom center, #b6e0e6, #7bc9dd, #f0fcff)`,
-      //   backgroundSize: 'cover',
-      //   backgroundPosition: 'center',
-      //   backgroundAttachment: 'fixed',
-      //   backgroundBlendMode: 'overlay',
-      // }}
-
+      className="relative w-full h-[90vh] min-h-[600px] flex items-center justify-center text-gray-900 overflow-hidden"
       style={{
-        backgroundImage: `radial-gradient(circle at bottom center, #e0f7fa, #b0e8f6, #f0fcff)`,
-        backgroundSize: '150% 150%',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        backgroundBlendMode: 'overlay',
-        animation: 'zoomGradient 1s ease-in-out infinite alternate',
+        backgroundImage: `linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 40%, #e3f2fd 100%)`, // ❄️ Ice-blue gradient
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
-
-
     >
-      {/* Content Container */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 text-center pt-10 ">
-        {/* Main Heading */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-          Study and Travel for <span className="text-cyan-500">Everyone</span>
+      {/* Optional light overlay for depth */}
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]" />
+
+      {/* Content */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 text-center">
+        {/* Heading */}
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-gray-900">
+          Study and Travel for{" "}
+          <span className="text-cyan-600">Everyone</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed max-w-4xl mx-auto">
-          Quality education, incredible destinations—your dream study abroad program, for less.
+        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed max-w-3xl mx-auto">
+          Quality education and incredible destinations — your dream study abroad program made affordable.
         </p>
 
-        {/* Highlighted Tagline */}
-        <div className="relative my-8">
-          {/* <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div> */}
-          <div className="relative flex justify-center">
-            <span className="bg-white/40 px-6 text-xl font-semibold text-cyan-500 rounded-2xl">
-              Cut the cost, not the experience.
-            </span>
-          </div>
+        {/* Tagline */}
+        <div className="my-8 flex justify-center">
+          <span className="bg-white/50 backdrop-blur-sm px-6 py-2 text-lg font-semibold text-cyan-600 rounded-full shadow-sm">
+            Cut the cost, not the experience.
+          </span>
         </div>
 
         {/* Search Bar */}
@@ -68,36 +45,39 @@ const MainBanner = () => {
             <input
               type="text"
               placeholder="Search for programs..."
-              className="w-full py-3 pl-6 pr-16 rounded-full bg-white/40 backdrop-blur-sm border border-white/30 text-gray-900 placeholder-gray-600 focus:bg-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 text-base"
+              className="w-full py-3 pl-6 pr-16 rounded-full bg-white/60 backdrop-blur-md border border-white/40 text-gray-900 placeholder-gray-600 focus:bg-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300 text-base"
             />
             <div className="absolute right-2 top-1/2 -translate-y-1/2">
-              <Button className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full p-3 shadow-lg hover:shadow-cyan-500/25 transition-all duration-300">
+              <Button className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full p-3 shadow-md hover:shadow-cyan-400/40 transition-all duration-300">
                 <FaSearch size={18} />
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Main CTA Button */}
-        <div className="flex justify-center mb-6">
-          <Button className=" bg-gradient-to-r from-cyan-400 to-blue-400  text-white text-base font-semibold px-10 py-5 rounded-full shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
-            <Link href={'/u/scholarships'}>Find a Program</Link>
-            <AiOutlineDoubleRight size={18} className="group-hover:translate-x-1 transition-transform" />
+        {/* CTA Button */}
+        <div className="flex justify-center mb-8">
+          <Button className="bg-gradient-to-r from-cyan-400 to-blue-400 text-white text-base font-semibold px-10 py-5 rounded-full shadow-lg hover:shadow-cyan-300/40 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+            <Link href="/u/scholarships">Find a Program</Link>
+            <AiOutlineDoubleRight
+              size={18}
+              className="group-hover:translate-x-1 transition-transform"
+            />
           </Button>
         </div>
 
-        {/* Additional Info Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white/20 max-w-4xl mx-auto">
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white/30 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="text-2xl font-bold text-cyan-500 mb-1">500+</div>
+            <div className="text-2xl font-bold text-cyan-600 mb-1">500+</div>
             <div className="text-gray-700 text-sm">Partner Universities</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-cyan-500 mb-1">50+</div>
+            <div className="text-2xl font-bold text-cyan-600 mb-1">50+</div>
             <div className="text-gray-700 text-sm">Countries Worldwide</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-cyan-500 mb-1">10K+</div>
+            <div className="text-2xl font-bold text-cyan-600 mb-1">10K+</div>
             <div className="text-gray-700 text-sm">Students Placed</div>
           </div>
         </div>

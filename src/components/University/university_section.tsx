@@ -159,7 +159,7 @@ export function UniversitiesSection({ limit }) {
     : universities;
 
   return (
-    <section className="w-full py-20 bg-gray-50 relative">
+    <section className="w-full py-10 relative">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 max-w-11/12">
         {/* Header */}
         <div className="text-center mb-16">

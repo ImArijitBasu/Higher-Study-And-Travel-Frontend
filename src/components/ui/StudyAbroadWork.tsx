@@ -9,6 +9,7 @@ import {
   FaWallet,
   FaSuitcase,
   FaPlaneDeparture,
+  FaGlobeAmericas,
 } from "react-icons/fa";
 
 interface Step {
@@ -24,7 +25,7 @@ const steps: Step[] = [
     icon: <FaSearch className="text-3xl text-emerald-600" />,
     title: "Explore Your Options",
     description:
-      "Start by browsing study abroad programs that align with your academic goals and personal interests. Whether you dream of studying art in Italy or language and culture in South Korea, there’s an exciting world of opportunities waiting for you.",
+      "Discover top-rated universities and programs that match your passion, goals, and future career ambitions across the globe.",
     linkText: "BROWSE PROGRAMS",
     linkUrl: "#browse",
   },
@@ -32,7 +33,7 @@ const steps: Step[] = [
     icon: <FaGraduationCap className="text-3xl text-emerald-600" />,
     title: "Pick a Program",
     description:
-      "Once you’ve explored your options, select a program that best fits your aspirations. Consider factors like course offerings, location, and cultural experiences to make an informed decision.",
+      "Select your dream destination and program by comparing course options, campus life, and international opportunities.",
     linkText: "TALK TO AN ADVISOR",
     linkUrl: "#advisor",
   },
@@ -40,7 +41,7 @@ const steps: Step[] = [
     icon: <FaCheckSquare className="text-3xl text-emerald-600" />,
     title: "Submit an Application",
     description:
-      "Fill out our simple and easy online application, then keep an eye on your email for a response from one of our advisors.",
+      "Apply online with ease and get step-by-step support from our expert advisors throughout your admission process.",
     linkText: "APPLY NOW",
     linkUrl: "#apply",
   },
@@ -48,7 +49,7 @@ const steps: Step[] = [
     icon: <FaWallet className="text-3xl text-emerald-600" />,
     title: "Funding Your Program",
     description:
-      "Make studying abroad even more affordable by exploring scholarships, grants, and financial aid options.",
+      "Explore scholarships, grants, and financial aid options to make your study abroad experience affordable and stress-free.",
     linkText: "EXPLORE FUNDING OPTIONS",
     linkUrl: "#funding",
   },
@@ -56,52 +57,67 @@ const steps: Step[] = [
     icon: <FaSuitcase className="text-3xl text-emerald-600" />,
     title: "Prepare to Travel",
     description:
-      "Once accepted, start preparing for your adventure! This includes applying for a visa, booking your travel, and packing essentials for your new home away from home.",
-    linkText: "THINGS YOU'LL NEED",
+      "Get ready for your journey! Secure your visa, book travel, and pack for your exciting new life abroad.",
+    linkText: "TRAVEL CHECKLIST",
     linkUrl: "#travel",
   },
   {
     icon: <FaPlaneDeparture className="text-3xl text-emerald-600" />,
     title: "Embark on Your Journey",
     description:
-      "Immerse yourself in a new culture, challenge yourself, and create unforgettable memories. Studying abroad is a transformative journey—make the most of every moment!",
-    linkText: "HEAR FROM OUR ALUMNI",
+      "Step into a new culture, broaden your horizons, and experience the world as your classroom.",
+    linkText: "HEAR FROM ALUMNI",
     linkUrl: "#alumni",
   },
 ];
 
 const StudyAbroadWork: React.FC = () => {
   return (
-    <section className="py-16 bg-white text-center">
-      <h2 className="text-3xl font-bold text-gray-800 mb-12">
-        HOW STUDY ABROAD WORKS
-      </h2>
+    <section className="py-20 bg-gradient-to-b from-white to-emerald-50 text-center">
+      {/* Elegant Professional Header */}
+      <div className="mb-16">
+        <div className="flex justify-center items-center gap-3 mb-4">
+          <FaGlobeAmericas className="text-4xl text-emerald-600" />
+          <h2 className="text-4xl font-extrabold text-gray-900">
+            How <span className="text-emerald-600">Study Abroad</span> Works
+          </h2>
+        </div>
+        <p className="text-gray-700 max-w-3xl mx-auto text-base">
+          From choosing the perfect destination to boarding your flight — here’s a simple step-by-step
+          guide to begin your global education journey.
+        </p>
+      </div>
 
+      {/* Steps Grid */}
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 max-w-6xl mx-auto container">
         {steps.map((step, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-gray-700 px-4"
+            className="flex flex-col items-center text-gray-700 px-4 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6"
           >
-            {/* Jumping Icon */}
+            {/* Animated Icon */}
             <motion.div
               className="mb-4"
-              animate={{ y: [0, -15, 0] }}
+              animate={{ y: [0, -10, 0] }}
               transition={{
                 duration: 1.2,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: index * 0.2, // stagger effect
+                delay: index * 0.2,
               }}
             >
               {step.icon}
             </motion.div>
 
-            <h3 className="font-semibold text-lg mb-3">{step.title}</h3>
-            <p className="text-sm leading-relaxed mb-4">{step.description}</p>
+            <h3 className="font-semibold text-lg mb-3 text-emerald-700">
+              {step.title}
+            </h3>
+            <p className="text-sm leading-relaxed mb-4 text-gray-600">
+              {step.description}
+            </p>
             <a
               href={step.linkUrl}
-              className="text-yellow-600 font-semibold text-sm uppercase tracking-wide hover:underline"
+              className="text-emerald-600 font-semibold text-sm uppercase tracking-wide hover:underline"
             >
               {step.linkText}
             </a>

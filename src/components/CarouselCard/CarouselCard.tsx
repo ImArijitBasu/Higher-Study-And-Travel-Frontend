@@ -33,13 +33,13 @@ const CarouselCards = () => {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden py-16 container mx-auto">
+    <div className="w-full overflow-hidden py-10 container mx-auto">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-3">
+        <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-8">
           Explore Our <span className="text-blue-500">Gallery</span>
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
           Discover breathtaking destinations from around the world. Scroll through our curated gallery of top travel spots.
         </p>
       </div>

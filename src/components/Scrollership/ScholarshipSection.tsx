@@ -208,12 +208,12 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
   };
 
   return (
-    <section className="py-16 container mx-auto px-4">
+    <section className="py-10 container mx-auto px-4">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-gray-900 mb-4">
           Featured <span className="text-blue-600">Scholarships</span>
         </h2>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-700 text-lg max-w-3xl mx-auto">
           Discover exclusive scholarship opportunities from top universities worldwide
         </p>
       </div>

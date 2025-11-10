@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { FaGlobeAmericas } from "react-icons/fa"; // 🌍 added React icon
 
 interface Deal {
   id: number;
@@ -36,7 +37,7 @@ export default function ExtraCard() {
   const [width, setWidth] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const extendedDeals = [...deals, ...deals]; // duplicate for seamless scroll
+  const extendedDeals = [...deals, ...deals];
 
   useEffect(() => {
     if (containerRef.current) {
@@ -62,9 +63,21 @@ export default function ExtraCard() {
   }, [controls, width, isPaused]);
 
   return (
-    <section className="py-16 px-6 font-sans select-none container mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-12">✈️ Top Destinations</h2>
+    <section className="py-4 px-6 font-sans select-none container mx-auto">
+      {/* Updated professional header */}
+      <div className="text-center mb-12">
+        <div className="flex items-center justify-center gap-3">
+          <FaGlobeAmericas className="text-4xl text-blue-600" />
+          <h2 className="text-4xl font-extrabold text-gray-900">
+            Exclusive <span className="text-blue-600">Global Destinations</span>
+          </h2>
+        </div>
+        <p className="text-gray-800 mt-3 text-base max-w-3xl mx-auto">
+          Explore our curated list of premium destinations from around the world — designed for unforgettable journeys and cultural discovery.
+        </p>
+      </div>
 
+      {/* Carousel Section */}
       <div
         className="overflow-hidden cursor-grab"
         onMouseEnter={() => setIsPaused(true)}
@@ -108,16 +121,16 @@ export default function ExtraCard() {
         </motion.div>
       </div>
 
+      {/* See More Button */}
       <div className="mt-10 flex items-center justify-center">
         <Link
           href="u/destinations"
           className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center gap-2"
         >
           See More Destinations
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+          
         </Link>
       </div>
-
     </section>
   );
 }

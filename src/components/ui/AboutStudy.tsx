@@ -61,7 +61,7 @@ const AboutStudy: React.FC = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 container">
+    <div className="max-w-6xl mx-auto px-6 py-4 container">
       {/* Tabs */}
       <div className="flex gap-6 border-b border-yellow-300 pb-2 mb-10">
         {tabs.map((tab) => (
