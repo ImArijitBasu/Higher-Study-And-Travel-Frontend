@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
 
 interface Deal {
   id: number;
@@ -27,21 +28,6 @@ const deals: Deal[] = [
 
 export default function DestinationsPage() {
   const regions = {
-    AFRICA: { 
-      countries: ["Morocco", "South Africa"], 
-      image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 
-      icon: "🌍"
-    },
-    AMERICAS: { 
-      countries: ["Argentina", "Colombia", "Costa Rica", "Mexico", "United States"], 
-      image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325", 
-      icon: "🌎"
-    },
-    OCEANIA: { 
-      countries: ["New Zealand"], 
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9", 
-      icon: "🌊"
-    },
     ASIA: { 
       countries: ["Indonesia", "China", "South Korea", "Taiwan", "Thailand"], 
       image: "https://images.unsplash.com/photo-1535139262971-c51845709a48", 
@@ -57,9 +43,26 @@ export default function DestinationsPage() {
       image: "https://images.unsplash.com/photo-1515586838455-8f8f940d6853", 
       icon: "🍀"
     },
+    AFRICA: { 
+      countries: ["Morocco", "South Africa","Find Land"], 
+      image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 
+      icon: "🌍"
+    },
+    AMERICAS: { 
+      countries: ["Argentina", "Mexico", "United States"], 
+      image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325", 
+      icon: "🌎"
+    },
+    OCEANIA: { 
+      countries: ["New Zealand","Colombia","Green Land"], 
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9", 
+      icon: "🌊"
+    },
   };
 
   const [openRegion, setOpenRegion] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   // ================= Scroll Travel Deals Setup =================
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,21 +96,69 @@ export default function DestinationsPage() {
     }
   }, [controls, width, isPaused]);
 
+  // ================= Filtered Destinations =================
+  const filteredRegions = Object.entries(regions).filter(([region, data]) => {
+    const matchesFilter = !activeFilter || activeFilter === region || activeFilter === "POPULAR";
+    const matchesSearch = searchQuery === "" || data.countries.some(c =>
+      c.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    return matchesFilter && matchesSearch;
+  });
+
   return (
-    <main className="min-h-screen bg-white from-blue-50 to-cyan-50 pt-20">
+    <main className="min-h-screen bg-cyan-50 pt-16">
 
       {/* ================= Hero Section ================= */}
       <section className="text-center py-16 px-4">
-        <h1 className="text-5xl font-bold text-gray-900 mb-6">Study and Travel Destinations</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Explore your dream study locations worldwide, from Europe  top universities to Asia cultural hubs.
+        <h1 className="text-5xl font-extrabold text-gray-900 mb-6">
+          Discover Your Next Study & Travel Adventure
+        </h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          Explore top universities, cultural hubs, and amazing destinations worldwide.
         </p>
+
+        {/* ================= Search & Filters ================= */}
+        <div className="flex flex-col gap-4 items-center">
+          {/* Modern Search Bar */}
+          <div className="w-full max-w-xl mx-auto mt-5">
+            <div className="relative flex items-center bg-white rounded-full shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl focus-within:shadow-xl">
+              <input
+                type="text"
+                placeholder="Search Universities"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200"
+              />
+              <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
+                <FaSearch />
+              </button>
+            </div>
+          </div>
+
+          {/* Horizontal Filter Pills */}
+          <div className="flex flex-wrap sm:flex-nowrap gap-2 justify-center mt-4 overflow-x-auto">
+            {["All", "ASIA", "EUROPE", "IRELAND", "AFRICA", "AMERICAS", "OCEANIA", "POPULAR"].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter === "All" ? null : filter)}
+                className={`px-5 py-3 rounded-full font-medium whitespace-nowrap transition-colors duration-200 
+                  ${
+                    activeFilter === filter || (filter === "All" && !activeFilter)
+                      ? "bg-blue-600 text-white shadow-lg"
+                      : "bg-white text-gray-700 border border-gray-300 hover:bg-blue-50 hover:text-blue-600"
+                  }`}
+              >
+                {filter === "POPULAR" ? "Most Popular" : filter}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ================= Destinations Grid ================= */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(regions).map(([region, data]) => {
+          {filteredRegions.map(([region, data]) => {
             const isOpen = openRegion === region;
             return (
               <div key={region} className="relative">
@@ -125,7 +176,6 @@ export default function DestinationsPage() {
                       priority 
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    {/* Icon Badge */}
                     <div className="absolute top-3 left-3 bg-white/80 backdrop-blur-md p-2 rounded-lg shadow-md text-2xl">
                       {data.icon}
                     </div>
@@ -196,7 +246,7 @@ export default function DestinationsPage() {
 
       {/* ================= Travel Deals Section ================= */}
       <section className="py-16 px-4 font-sans select-none container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">✈️ Travel Deals</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">✈️ Hot Travel Deals</h2>
 
         <div 
           className="overflow-hidden cursor-grab" 
