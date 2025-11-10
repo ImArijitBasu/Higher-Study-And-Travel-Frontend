@@ -37,7 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >
         <Navbar />
-        <div className="w-11/12 mx-auto mt-20">{children}</div>
+        <div className=" mx-auto ">{children}</div>
         <Footer />
         <ToastContainer position="top-center" autoClose={3000} />
       </body>
