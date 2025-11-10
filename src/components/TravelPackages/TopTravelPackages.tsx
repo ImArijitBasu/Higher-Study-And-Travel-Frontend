@@ -15,19 +15,19 @@ const travelPackages = [
   {
     id: 2,
     title: "Grand Palace, Bangkok",
-     image:
+    image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzHeZ9YsdC0EKMr_KlJN9Rt9JeuPOb1uU0g&s",
   },
   {
     id: 3,
     title: "Grand Palace, Bangkok",
-      image:
+    image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzHeZ9YsdC0EKMr_KlJN9Rt9JeuPOb1uU0g&s",
   },
   {
     id: 4,
     title: "Grand Palace, Bangkok",
-     image:
+    image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzHeZ9YsdC0EKMr_KlJN9Rt9JeuPOb1uU0g&s",
   },
 ];

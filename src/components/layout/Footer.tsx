@@ -4,6 +4,7 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
 import { MdOutlineMail } from "react-icons/md";
 import { PiAirplaneTiltFill } from "react-icons/pi";
+import { GiCommercialAirplane } from "react-icons/gi";
 
 const Footer = () => {
   return (
@@ -33,10 +34,14 @@ const Footer = () => {
       <div className="grid max-w-11/12 mx-auto md:grid-cols-2 gap-10 px-6 md:px-16 mt-10 container">
         {/* Left Section */}
         <div>
-          <div className="flex items-center gap-2">
-            <PiAirplaneTiltFill className="text-4xl text-cyan-400" />
-            <h2 className="text-2xl font-extrabold">STUDY & TRAVEL</h2>
-          </div>
+          {/* Logo */}
+          <Link
+            href={"/"}
+            className="flex justify-start text-black items-center text-xs md:text-xl uppercase font-extrabold "
+          >
+            <GiCommercialAirplane className="text-2xl md:text-4xl mr-2 text-cyan-800" />
+            Study & Travel
+          </Link>
 
           <h3 className="mt-6 font-bold text-gray-800">
             STUDY ABROAD FOR EVERYONE
