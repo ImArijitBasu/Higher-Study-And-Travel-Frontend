@@ -11,7 +11,7 @@ const DestinationsPage = () => {
 
   const destinations = [
     {
-      image: "/Travel.jpg",
+      image: "https://westernsydney.org.au/wp-content/uploads/2023/11/London-e1699403544417.jpeg",
       title: "London Study Tour",
       price: "$1,500",
       days: "7",
@@ -29,7 +29,7 @@ const DestinationsPage = () => {
       highlights: ["University of London Campus Tour", "British Museum Visit", "Thames River Cruise", "Academic Workshops"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://media.cntraveller.com/photos/6343df288d5d266e2e66f082/16:9/w_2560%2Cc_limit/tokyoGettyImages-1031467664.jpeg",
       title: "Tokyo Language Immersion Program",
       price: "$2,200",
       days: "14",
@@ -47,7 +47,7 @@ const DestinationsPage = () => {
       highlights: ["Daily Language Classes", "Traditional Tea Ceremony", "Akihabara Tech Tour", "Mount Fuji Day Trip"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://cdn.sanity.io/images/nxpteyfv/goguides/dd05bddc197a1c9dba9ecb43e26b30af4dbcf4f9-1600x1066.jpg",
       title: "New York Business Leadership Program",
       price: "$1,800",
       days: "10",
@@ -64,7 +64,7 @@ const DestinationsPage = () => {
       highlights: ["Wall Street Trading Floor Tour", "Columbia Business School Workshops", "Startup Pitch Sessions", "Networking Dinners"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://www.rayburntours.com/wp-content/uploads/2019/06/Berlin-blog-banner.jpg",
       title: "Berlin Tech Innovation & AI Course",
       price: "$1,200",
       days: "21",
@@ -82,7 +82,7 @@ const DestinationsPage = () => {
       highlights: ["AI Lab Sessions", "Berlin Startup Hub Tour", "Tech Museum Visit", "Project Presentation Day"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/474000/474916-Sydney-Opera-House.jpg",
       title: "Sydney Marine Biology Research Expedition",
       price: "$3,000",
       days: "30",
@@ -100,7 +100,7 @@ const DestinationsPage = () => {
       highlights: ["Great Barrier Reef Research", "Marine Lab Sessions", "Conservation Projects", "Research Paper Opportunity"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://img.freepik.com/free-photo/cityscape-paris-sunlight-blue-sky-fra_181624-50289.jpg?semt=ais_hybrid&w=740&q=80",
       title: "Paris Art & Design Master Workshop",
       price: "$1,600",
       days: "14",
@@ -117,7 +117,7 @@ const DestinationsPage = () => {
       highlights: ["Louvre Museum Private Tour", "Eiffel Tower Sketching", "Montmartre Art Sessions", "Final Exhibition"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://img.freepik.com/free-photo/cityscape-singapore-city-skyline_74190-6349.jpg?semt=ais_hybrid&w=740&q=80",
       title: "Singapore Global Leadership Program",
       price: "$2,500",
       days: "21",
@@ -134,7 +134,7 @@ const DestinationsPage = () => {
       highlights: ["NUS Business School Seminars", "Singapore Corporate Visits", "Cultural Exchange Programs", "Leadership Project"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://images.contentstack.io/v3/assets/blt06f605a34f1194ff/blta5abe00235919420/67ce9162ef4ce61b7bd21dd1/BCC-2024-EXPLORER-TORONTO-BEST_PLACES_TO_VISIT-HEADER-MOBILE.jpg?format=webp&quality=60&width=1440",
       title: "Toronto Engineering & Robotics Intensive",
       price: "$2,100",
       days: "28",
@@ -151,7 +151,7 @@ const DestinationsPage = () => {
       highlights: ["Robotics Lab Access", "Toronto Tech Company Tours", "Engineering Challenges", "Project Demo Day"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://lp-cms-production.imgix.net/2021-07/GettyRF_977622304.jpg?auto=format,compress&q=72&w=1095&fit=crop&crop=faces,edges",
       title: "Seoul K-Pop & Digital Culture Experience",
       price: "$1,400",
       days: "10",
@@ -183,7 +183,7 @@ const DestinationsPage = () => {
         {/* Page Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Discover Study <span className="text-blue-600">Destinations</span>
+            Discover Your <span className="text-blue-600">Dream</span> Places
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Explore {destinations.length}+ carefully curated study programs at world-class universities worldwide

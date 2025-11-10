@@ -16,9 +16,9 @@ export default function Home() {
       <ScholarshipsSection limit={4}/>
       <TopTravelPackages />
       <CarouselCards />
+      <WorkSection />
       <AboutStudy />
       <StudyAbroadWork />
-      <WorkSection />
       <ExtraCard/>
     </div>
   );

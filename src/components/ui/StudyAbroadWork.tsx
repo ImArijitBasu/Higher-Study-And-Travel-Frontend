@@ -1,6 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
+import { motion } from "framer-motion";
 import {
   FaSearch,
   FaGraduationCap,
@@ -71,7 +72,7 @@ const steps: Step[] = [
 
 const StudyAbroadWork: React.FC = () => {
   return (
-    <section className="py-16 bg-white text-center ">
+    <section className="py-16 bg-white text-center">
       <h2 className="text-3xl font-bold text-gray-800 mb-12">
         HOW STUDY ABROAD WORKS
       </h2>
@@ -82,7 +83,20 @@ const StudyAbroadWork: React.FC = () => {
             key={index}
             className="flex flex-col items-center text-gray-700 px-4"
           >
-            <div className="mb-4">{step.icon}</div>
+            {/* Jumping Icon */}
+            <motion.div
+              className="mb-4"
+              animate={{ y: [0, -15, 0] }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: index * 0.2, // stagger effect
+              }}
+            >
+              {step.icon}
+            </motion.div>
+
             <h3 className="font-semibold text-lg mb-3">{step.title}</h3>
             <p className="text-sm leading-relaxed mb-4">{step.description}</p>
             <a

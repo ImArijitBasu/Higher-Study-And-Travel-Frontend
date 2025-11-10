@@ -7,7 +7,7 @@ const SciBanner = () => {
   return (
     <div className="relative w-full container mx-auto h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-xl shadow-lg group">
       <Image
-        src="/plane-bg.jpg" 
+        src="/scholarship.jpeg" 
         alt="University Banner"
         fill
         style={{ objectFit: "cover" }}

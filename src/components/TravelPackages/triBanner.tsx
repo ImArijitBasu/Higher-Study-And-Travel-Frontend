@@ -24,7 +24,7 @@ const TriBanner = () => {
             <div className="absolute inset-0 flex flex-col items-center justify-center px-4 space-y-5">
                 {/* Heading */}
                 <h1 className="text-white text-3xl md:text-5xl lg:text-[54px] font-bold text-center leading-tight drop-shadow-lg">
-                    Find Your Dream Destination
+                    Find Your Dream Traveling Places
                 </h1>
 
                 {/* Search Section */}
