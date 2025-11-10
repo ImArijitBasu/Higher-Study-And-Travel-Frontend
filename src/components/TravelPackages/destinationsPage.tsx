@@ -11,7 +11,7 @@ const DestinationsPage = () => {
 
   const destinations = [
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRacs1nOie6Q-A83LGsIeIahsUfY21gM1zVaA&s",
       title: "London Study Tour",
       price: "$1,500",
       days: "7",
@@ -29,7 +29,7 @@ const DestinationsPage = () => {
       highlights: ["University of London Campus Tour", "British Museum Visit", "Thames River Cruise", "Academic Workshops"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbkPSQpSL36XD7CHtnbDMBDa9rxCxI4S-3muBH8xrg9qGbtrF_G1Om6SGnmu3MqttrvN4&usqp=CAU",
       title: "Tokyo Language Immersion Program",
       price: "$2,200",
       days: "14",
@@ -47,7 +47,7 @@ const DestinationsPage = () => {
       highlights: ["Daily Language Classes", "Traditional Tea Ceremony", "Akihabara Tech Tour", "Mount Fuji Day Trip"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXlVWA4CJr46l4Jl5_i6lXGhaawEaT-iwtGofOg20dCSlw-XfRPIrtyqiGhMkbZ4AWAss&usqp=CAU",
       title: "New York Business Leadership Program",
       price: "$1,800",
       days: "10",
@@ -64,7 +64,7 @@ const DestinationsPage = () => {
       highlights: ["Wall Street Trading Floor Tour", "Columbia Business School Workshops", "Startup Pitch Sessions", "Networking Dinners"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOAyFZfmIwY36EXfx0u-HclZUFnqbhzRT6Jluj8QsPhfO1apQsehoX4KkGEPJOMvNcC8A&usqp=CAU",
       title: "Berlin Tech Innovation & AI Course",
       price: "$1,200",
       days: "21",
@@ -82,7 +82,7 @@ const DestinationsPage = () => {
       highlights: ["AI Lab Sessions", "Berlin Startup Hub Tour", "Tech Museum Visit", "Project Presentation Day"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiYxoGQvDklpv1UGLQYP5N6LLv4677KY1WSGLjh2Oh2p1CKB1w9WQGb7pGb-iKoVXmAqA&usqp=CAU",
       title: "Sydney Marine Biology Research Expedition",
       price: "$3,000",
       days: "30",
@@ -100,7 +100,7 @@ const DestinationsPage = () => {
       highlights: ["Great Barrier Reef Research", "Marine Lab Sessions", "Conservation Projects", "Research Paper Opportunity"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3fCacGUILy6KgKBse8yHTznOlvGcMqeC5Y5zhJ1ST6ftC4eg8lwBpXoRhzdIaGIcZLLY&usqp=CAU",
       title: "Paris Art & Design Master Workshop",
       price: "$1,600",
       days: "14",
@@ -117,7 +117,7 @@ const DestinationsPage = () => {
       highlights: ["Louvre Museum Private Tour", "Eiffel Tower Sketching", "Montmartre Art Sessions", "Final Exhibition"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkrzEhP_tUMNwRoxIFHEKztqKJ3kqNT_db8g&s",
       title: "Singapore Global Leadership Program",
       price: "$2,500",
       days: "21",
@@ -134,7 +134,7 @@ const DestinationsPage = () => {
       highlights: ["NUS Business School Seminars", "Singapore Corporate Visits", "Cultural Exchange Programs", "Leadership Project"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrhPQabVeOR1K0g_xiNj8Y45LiO1DxX1kk6g&s",
       title: "Toronto Engineering & Robotics Intensive",
       price: "$2,100",
       days: "28",
@@ -151,7 +151,7 @@ const DestinationsPage = () => {
       highlights: ["Robotics Lab Access", "Toronto Tech Company Tours", "Engineering Challenges", "Project Demo Day"]
     },
     {
-      image: "/Travel.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxqgZTxRzUluAqxb_QFnESHhM00W0TcK7am9-wl71jeZ6veNNR4H33BH0Z7cbxkkErNWY&usqp=CAU",
       title: "Seoul K-Pop & Digital Culture Experience",
       price: "$1,400",
       days: "10",
