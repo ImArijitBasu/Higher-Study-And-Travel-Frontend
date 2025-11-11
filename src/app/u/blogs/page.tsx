@@ -131,11 +131,11 @@ const BlogPage = () => {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50/30">
+        <div className="min-h-screen bg-gradient-to-b mt-20 from-slate-50 to-blue-50/30">
             {/* Header */}
 
             {/* Professional Hero Section */}
-            <section className="relative py-16 bg-slate-900 text-white overflow-hidden">
+            <section className="max-w-10/12 rounded-2xl mx-auto relative scroll -pt-6 py-16 pb-20 bg-slate-900 text-white overflow-hidden">
                 {/* Background with subtle pattern */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-slate-900">
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent"></div>
@@ -152,7 +152,7 @@ const BlogPage = () => {
                         
                         {/* Main heading */}
                         <div className="max-w-4xl mx-auto ">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight pt-28">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight pt-10">
                                 Global Education
                                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mt-2">
                                     Insights & Resources
