@@ -4,84 +4,28 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 import Link from "next/link";
 
 export function UniversitiesSection({ limit }) {
-  const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [universities, setUniversities] = useState([]);
+  const [particlePositions, setParticlePositions] = useState([]);
+  const sectionRef = useRef(null);
 
-const universities = [
-    {
-      id: 1,
-      universityName: "The University of Melbourne",
-      programName: "Bachelor of Commerce",
-      location: "Parkville, Australia",
-      worldRank: "39",
-      degree: "Bachelor Degree",
-      intakeDate: "02.03.2026",
-      entryScore: "IELTS 6.5",
-      tuitionFee: "AUD 52,360",
-      image: "https://static.sliit.lk/wp-content/uploads/2024/10/28052224/University-of-Melbourne.jpg",
-      featured: true,
-    },
-    {
-      id: 2,
-      universityName: "Harvard University",
-      programName: "Bachelor of Science",
-      location: "Cambridge, USA",
-      worldRank: "1",
-      degree: "Bachelor Degree",
-      intakeDate: "10.09.2026",
-      entryScore: "IELTS 7.0",
-      tuitionFee: "USD 55,000",
-      image: "https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_1090_29-15:00_o-HARVARD-UNIVERSITY-BUILDING-facebook.jpeg",
-    },
-    {
-      id: 3,
-      universityName: "Stanford University",
-      programName: "Master of Engineering",
-      location: "California, USA",
-      worldRank: "3",
-      degree: "Master Degree",
-      intakeDate: "15.08.2026",
-      entryScore: "IELTS 6.5",
-      tuitionFee: "USD 48,000",
-      image: "https://www.meridean.org/assets/img/university/16905355981672387200243744.jpg",
-    },
-    {
-      id: 4,
-      universityName: "University of Oxford",
-      programName: "Bachelor of Arts",
-      location: "Oxford, UK",
-      worldRank: "2",
-      degree: "Bachelor Degree",
-      intakeDate: "05.10.2026",
-      entryScore: "IELTS 7.5",
-      tuitionFee: "GBP 40,000",
-      image: "https://dxp.plus/cdn-cgi/image/w=3840,q=90,f=webp,fit=contain/https://us-cdn.dxp.plus/4e7f1e24-6b44-4103-9287-7bfb88f988b8/Oxford%20City.jpg.preview.png",
-    },
-    {
-      id: 5,
-      universityName: "MIT",
-      programName: "Master of Science",
-      location: "Cambridge, USA",
-      worldRank: "4",
-      degree: "Master Degree",
-      intakeDate: "12.09.2026",
-      entryScore: "IELTS 7.0",
-      tuitionFee: "USD 53,000",
-      image: "https://images.shiksha.com/mediadata/images/1533214461phpjrUmK2_g.jpg",
-    },
-    {
-      id: 6,
-      universityName: "University of Cambridge",
-      programName: "Bachelor of Engineering",
-      location: "Cambridge, UK",
-      worldRank: "5",
-      degree: "Bachelor Degree",
-      intakeDate: "15.10.2026",
-      entryScore: "IELTS 7.5",
-      tuitionFee: "GBP 42,000",
-      image: "https://edunirvana.in/wp-content/uploads/2025/07/corpus-christi-1600x0-c-default.jpg",
-    },
-  ];
+  useEffect(() => {
+    fetch("/university.json")
+      .then((res) => res.json())
+      .then((data) => setUniversities(data))
+      .catch((err) => console.error("Failed to fetch universities:", err));
+  }, []);
+
+  // Client-side only particle positions
+  useEffect(() => {
+    const positions = Array.from({ length: 15 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: `${15 + Math.random() * 10}s`
+    }));
+    setParticlePositions(positions);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -177,15 +121,12 @@ const universities = [
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden group relative border border-white/50"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ?
-                  'translateY(0) scale(1)' :
-                  'translateY(50px) scale(0.9)',
+                transform: isVisible
+                  ? 'translateY(0) scale(1)'
+                  : 'translateY(50px) scale(0.9)',
                 transition: `all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`
               }}
             >
-              {/* Animated Border Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/20 to-purple-500/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-
               {/* Image Container */}
               <div className="relative w-full h-56 overflow-hidden">
                 <img
@@ -224,24 +165,27 @@ const universities = [
                   <span className="text-gray-800 font-semibold transform group-hover:scale-105 transition-transform duration-300">
                     {uni.tuitionFee}
                   </span>
-                  {/* Enhanced Button with Stylish Animation */}
-                  <button className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-5 py-2.5 rounded-xl font-semibold transform transition-all duration-500 flex items-center gap-2 shadow-lg hover:shadow-blue-300 group/btn hover:scale-105 hover:-translate-y-0.5">
+                  {/* Fixed Details Button */}
+                  <Link 
+                    href={`/u/universities/${uni.id}`} 
+                    className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-5 py-2.5 rounded-xl font-semibold transform transition-all duration-500 flex items-center gap-2 shadow-lg hover:shadow-blue-300 group/btn hover:scale-105 hover:-translate-y-0.5"
+                  >
                     <span className="relative z-10 transform group-hover/btn:translate-x-1 transition-transform duration-300">
                       Details
                     </span>
                     <AiOutlineDoubleRight className="relative z-10 transform group-hover/btn:translate-x-2 transition-transform duration-300" />
-
+                    
                     {/* Button Shine Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-
+                    
                     {/* Pulse Ring Effect */}
                     <div className="absolute inset-0 border-2 border-white rounded-xl opacity-0 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all duration-500"></div>
-
+                    
                     {/* Ripple Effect Container */}
                     <div className="absolute inset-0 overflow-hidden rounded-xl">
                       <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 group-hover/btn:scale-150 transition-all duration-500 ease-out rounded-full transform origin-center"></div>
                     </div>
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -278,7 +222,7 @@ const universities = [
                 {/* Shine Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
-                {/* Floating Particles on Hover */}
+                {/* Floating Particles on Hover - Fixed */}
                 <div className="absolute inset-0 overflow-hidden rounded-2xl">
                   {[...Array(3)].map((_, i) => (
                     <div
@@ -302,17 +246,17 @@ const universities = [
         )}
       </div>
 
-      {/* Floating Particles */}
+      {/* Floating Particles - Fixed with client-side only rendering */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {particlePositions.map((position, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-30 animate-float"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${15 + Math.random() * 10}s`
+              left: position.left,
+              top: position.top,
+              animationDelay: position.animationDelay,
+              animationDuration: position.animationDuration
             }}
           />
         ))}
