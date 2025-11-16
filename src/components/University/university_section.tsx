@@ -7,7 +7,7 @@ export function UniversitiesSection({ limit }) {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  const universities = [
+const universities = [
     {
       id: 1,
       universityName: "The University of Melbourne",
@@ -105,7 +105,7 @@ export function UniversitiesSection({ limit }) {
     : universities;
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="w-full py-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-100"
     >
@@ -122,36 +122,36 @@ export function UniversitiesSection({ limit }) {
           <div className="relative inline-block mb-8">
             {/* Decorative elements */}
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl blur-xl opacity-0 animate-fade-in-delayed"></div>
-            
+
             {/* Main title with gradient and effects */}
             <div className="relative">
               <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
                 <span className="block transform transition-all duration-700 delay-300"
-                      style={{
-                        opacity: isVisible ? 1 : 0,
-                        transform: isVisible ? 'translateY(0)' : 'translateY(-30px)'
-                      }}>
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? 'translateY(0)' : 'translateY(-30px)'
+                  }}>
                   Featured
                 </span>
                 <span className="block text-cyan-500 bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 font-black tracking-tighter transform transition-all duration-700 delay-500"
-                      style={{
-                        opacity: isVisible ? 1 : 0,
-                        transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(-20px) scale(0.95)'
-                      }}>
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(-20px) scale(0.95)'
+                  }}>
                   Universities
                 </span>
               </h2>
-              
+
               {/* Underline effect */}
               <div className="relative h-1 w-24 mx-auto mt-6 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 transform transition-all duration-1000 delay-700"
-                     style={{
-                       transform: isVisible ? 'translateX(0)' : 'translateX(-100%)'
-                     }}></div>
+                  style={{
+                    transform: isVisible ? 'translateX(0)' : 'translateX(-100%)'
+                  }}></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 transform transition-all duration-1000 delay-800"
-                     style={{
-                       transform: isVisible ? 'translateX(0)' : 'translateX(100%)'
-                     }}></div>
+                  style={{
+                    transform: isVisible ? 'translateX(0)' : 'translateX(100%)'
+                  }}></div>
               </div>
             </div>
 
@@ -161,10 +161,10 @@ export function UniversitiesSection({ limit }) {
           </div>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light transform transition-all duration-1000 delay-700"
-             style={{
-               opacity: isVisible ? 1 : 0,
-               transform: isVisible ? 'translateY(0)' : 'translateY(-20px)'
-             }}>
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(-20px)'
+            }}>
             Partnering with world-class institutions to provide exceptional educational opportunities globally.
           </p>
         </div>
@@ -177,15 +177,15 @@ export function UniversitiesSection({ limit }) {
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden group relative border border-white/50"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 
-                  'translateY(0) scale(1)' : 
+                transform: isVisible ?
+                  'translateY(0) scale(1)' :
                   'translateY(50px) scale(0.9)',
                 transition: `all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`
               }}
             >
               {/* Animated Border Glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-500/20 to-purple-500/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-              
+
               {/* Image Container */}
               <div className="relative w-full h-56 overflow-hidden">
                 <img
@@ -195,7 +195,7 @@ export function UniversitiesSection({ limit }) {
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Animated Rank Badge */}
                 <div className="absolute top-4 right-4 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
                   <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg hover:shadow-blue-300 transition-shadow duration-300">
@@ -230,13 +230,13 @@ export function UniversitiesSection({ limit }) {
                       Details
                     </span>
                     <AiOutlineDoubleRight className="relative z-10 transform group-hover/btn:translate-x-2 transition-transform duration-300" />
-                    
+
                     {/* Button Shine Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                    
+
                     {/* Pulse Ring Effect */}
                     <div className="absolute inset-0 border-2 border-white rounded-xl opacity-0 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all duration-500"></div>
-                    
+
                     {/* Ripple Effect Container */}
                     <div className="absolute inset-0 overflow-hidden rounded-xl">
                       <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 group-hover/btn:scale-150 transition-all duration-500 ease-out rounded-full transform origin-center"></div>
@@ -255,14 +255,14 @@ export function UniversitiesSection({ limit }) {
         {/* Enhanced CTA Button with Premium Animation */}
         {limit && (
           <div className="mt-16 text-center transform transition-all duration-1000 delay-800"
-               style={{
-                 opacity: isVisible ? 1 : 0,
-                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
-               }}>
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
+            }}>
             <div className="relative inline-block">
               {/* Background Glow Effect */}
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-              
+
               <Link
                 href="/u/universities"
                 className="relative inline-flex items-center gap-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold px-12 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 group overflow-hidden"
@@ -271,13 +271,13 @@ export function UniversitiesSection({ limit }) {
                   Browse All Universities
                 </span>
                 <AiOutlineDoubleRight size={24} className="relative z-10 transform group-hover:translate-x-3 group-hover:scale-110 transition-transform duration-300" />
-                
+
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Shine Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                
+
                 {/* Floating Particles on Hover */}
                 <div className="absolute inset-0 overflow-hidden rounded-2xl">
                   {[...Array(3)].map((_, i) => (
@@ -292,7 +292,7 @@ export function UniversitiesSection({ limit }) {
                     />
                   ))}
                 </div>
-                
+
                 {/* Border Animation */}
                 <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-border opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-400 blur-sm opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-20"></div>
