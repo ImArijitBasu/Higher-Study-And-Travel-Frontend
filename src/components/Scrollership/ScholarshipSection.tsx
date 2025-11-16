@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import { AiOutlineDoubleRight, AiFillStar } from "react-icons/ai";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaAward, FaGlobe } from "react-icons/fa";
 
 interface Scholarship {
   id: number;
@@ -78,123 +79,13 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
       rating: 4.7,
       eligibility: "STEM background, programming skills",
     },
-    {
-      id: 5,
-      image: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?auto=format&fit=crop&w=800&q=80",
-      title: "ETH Zurich Science Scholarship",
-      university: "ETH Zurich",
-      field: "Biotechnology",
-      country: "Switzerland",
-      degree: "PhD",
-      deadline: "Apr 05, 2026",
-      amount: "$52,000",
-      flag: "https://flagcdn.com/w40/ch.png",
-      rating: 4.8,
-      eligibility: "Lab experience, research publications",
-    },
-    {
-      id: 6,
-      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
-      title: "Cambridge Business Leadership Award",
-      university: "University of Cambridge",
-      field: "Business Administration",
-      country: "United Kingdom",
-      degree: "MBA",
-      deadline: "May 15, 2026",
-      amount: "$40,000",
-      flag: "https://flagcdn.com/w40/gb.png",
-      rating: 4.9,
-      eligibility: "3+ years work experience, leadership",
-    },
-    {
-      id: 7,
-      image: "https://images.unsplash.com/photo-1576495199011-ebf36cd8c9f5?auto=format&fit=crop&w=800&q=80",
-      title: "MIT Technology Innovation Grant",
-      university: "MIT",
-      field: "Robotics & Automation",
-      country: "United States",
-      degree: "Master's",
-      deadline: "Jun 30, 2026",
-      amount: "$38,000",
-      flag: "https://flagcdn.com/w40/us.png",
-      rating: 4.9,
-      eligibility: "Engineering projects, innovation portfolio",
-    },
-    {
-      id: 8,
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
-      title: "National University of Singapore Award",
-      university: "NUS",
-      field: "Data Science",
-      country: "Singapore",
-      degree: "Bachelor's",
-      deadline: "Jul 25, 2026",
-      amount: "$25,000",
-      flag: "https://flagcdn.com/w40/sg.png",
-      rating: 4.6,
-      eligibility: "Strong math background, coding experience",
-    },
-    {
-      id: 9,
-      image: "https://images.unsplash.com/photo-1541336187922-bffa57ef2d55?auto=format&fit=crop&w=800&q=80",
-      title: "University of Toronto Excellence Fund",
-      university: "University of Toronto",
-      field: "Environmental Science",
-      country: "Canada",
-      degree: "Master's",
-      deadline: "Aug 12, 2026",
-      amount: "$32,000",
-      flag: "https://flagcdn.com/w40/ca.png",
-      rating: 4.7,
-      eligibility: "Environmental projects, research interest",
-    },
-    {
-      id: 10,
-      image: "https://images.unsplash.com/photo-1583324113626-70b8f5b2ad36?auto=format&fit=crop&w=800&q=80",
-      title: "University of Melbourne Research Scholarship",
-      university: "University of Melbourne",
-      field: "Medical Research",
-      country: "Australia",
-      degree: "PhD",
-      deadline: "Sep 08, 2026",
-      amount: "$48,000",
-      flag: "https://flagcdn.com/w40/au.png",
-      rating: 4.7,
-      eligibility: "Medical background, research experience",
-    },
-    {
-      id: 11,
-      image: "https://images.unsplash.com/photo-1551524164-6ca64fb04d0d?auto=format&fit=crop&w=800&q=80",
-      title: "Technical University of Munich Scholarship",
-      university: "TUM",
-      field: "Renewable Energy",
-      country: "Germany",
-      degree: "Master's",
-      deadline: "Oct 20, 2026",
-      amount: "$30,000",
-      flag: "https://flagcdn.com/w40/de.png",
-      rating: 4.6,
-      eligibility: "Engineering degree, sustainability interest",
-    },
-    {
-      id: 12,
-      image: "https://images.unsplash.com/photo-1577512627231-7834437bfaa2?auto=format&fit=crop&w=800&q=80",
-      title: "Seoul National University Scholarship",
-      university: "Seoul National University",
-      field: "Computer Engineering",
-      country: "South Korea",
-      degree: "Bachelor's",
-      deadline: "Nov 15, 2026",
-      amount: "$22,000",
-      flag: "https://flagcdn.com/w40/kr.png",
-      rating: 4.5,
-      eligibility: "High school top 10%, math proficiency",
-    }
   ];
 
   const displayedScholarships = limit
     ? scholarships.slice(0, limit)
     : scholarships;
+
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const getDeadlineColor = (deadline: string) => {
     const deadlineDate = new Date(deadline);
@@ -202,128 +93,519 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
     const diffTime = deadlineDate.getTime() - today.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays < 30) return "text-red-600 bg-red-50 border border-red-200";
-    if (diffDays < 60) return "text-orange-600 bg-orange-50 border border-orange-200";
-    return "text-green-600 bg-green-50 border border-green-200";
+    if (diffDays < 30) return "text-red-600 bg-red-50 border-red-200";
+    if (diffDays < 60) return "text-orange-600 bg-orange-50 border-orange-200";
+    return "text-green-600 bg-green-50 border-green-200";
+  };
+
+  // New Animation Variants - Premium but not 3D
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 80,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    },
+    hover: {
+      y: -15,
+      scale: 1.03,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25
+      }
+    }
+  };
+
+  const floatVariants = {
+    floating: {
+      y: [-10, 10, -10],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const shimmerVariants = {
+    initial: { x: "-100%", rotate: -45 },
+    animate: {
+      x: "200%",
+      rotate: -45,
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const glowVariants = {
+    pulse: {
+      scale: [1, 1.05, 1],
+      opacity: [0.5, 0.8, 0.5],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
   };
 
   return (
-    <section className="py-10 container mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Featured <span className="text-blue-600">Scholarships</span>
-        </h2>
-        <p className="text-gray-700 text-lg max-w-3xl mx-auto">
-          Discover exclusive scholarship opportunities from top universities worldwide
-        </p>
-      </div>
-
-      {/* Scholarships Grid with Better Gaps */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-        {displayedScholarships.map((scholarship, index) => (
-          <motion.div
-            key={scholarship.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -8 }}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100 mx-2"
-          >
-            {/* Image Section */}
-            <div className="relative h-48 w-full overflow-hidden">
-              <img
-                src={scholarship.image}
-                alt={scholarship.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-              {/* University Badge */}
-              <div className="absolute top-4 left-4">
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg px-3 py-1.5 shadow-lg">
-                  <p className="text-xs font-semibold text-gray-900">{scholarship.university.split(' ')[0]}</p>
-                </div>
-              </div>
-
-              {/* Flag & Country */}
-              <div className="absolute top-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-lg px-2 py-1 shadow-lg">
-                <img
-                  src={scholarship.flag}
-                  alt={scholarship.country}
-                  className="w-5 h-4 rounded-sm"
-                />
-                <span className="text-xs font-medium text-gray-900">{scholarship.country.split(' ')[0]}</span>
-              </div>
-
-              {/* Rating */}
-              <div className="absolute bottom-4 left-4 flex items-center gap-1 bg-black/80 rounded-full px-3 py-1.5">
-                <AiFillStar className="text-yellow-400 text-sm" />
-                <span className="text-white text-sm font-semibold">
-                  {scholarship.rating.toFixed(1)}
-                </span>
-              </div>
-            </div>
-
-            {/* Content with Better Spacing */}
-            <div className="p-6 space-y-4">
-              {/* Title & Field */}
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold text-gray-900 line-clamp-2 leading-tight">
-                  {scholarship.title}
-                </h3>
-                <p className="text-blue-600 font-semibold text-sm">
-                  {scholarship.field} • {scholarship.degree}
-                </p>
-              </div>
-
-              {/* Eligibility */}
-              <div className="space-y-2">
-                <p className="text-xs text-gray-500 uppercase font-semibold">Eligibility</p>
-                <p className="text-sm text-gray-700 line-clamp-2 leading-relaxed">
-                  {scholarship.eligibility}
-                </p>
-              </div>
-
-              {/* Details Grid */}
-              <div className="grid grid-cols-2 gap-4 pt-2">
-                <div className="space-y-1">
-                  <p className="text-xs text-gray-500 uppercase font-semibold">Amount</p>
-                  <p className="text-lg font-bold text-gray-900">{scholarship.amount}</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-xs text-gray-500 uppercase font-semibold">Deadline</p>
-                  <span className={`text-sm font-semibold px-2 py-1 rounded-full ${getDeadlineColor(scholarship.deadline)}`}>
-                    {scholarship.deadline}
-                  </span>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700  text-white py-3 rounded-xl font-semibold transition-all duration-300 transform group-hover:scale-105 shadow-md hover:shadow-lg mt-4">
-                See Details
-              </button>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Explore More Button */}
-      {limit && (
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/30 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <motion.div
+        variants={floatVariants}
+        animate="floating"
+        className="absolute top-10 left-10 w-32 h-32 bg-blue-200/30 rounded-full blur-3xl"
+      />
+      <motion.div
+        variants={floatVariants}
+        animate="floating"
+        transition={{ delay: 2 }}
+        className="absolute bottom-20 right-20 w-40 h-40 bg-emerald-200/20 rounded-full blur-3xl"
+      />
+      
+      {/* Floating Academic Icons */}
+      {[...Array(8)].map((_, i) => (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex justify-center mt-20"
+          key={i}
+          className="absolute text-blue-300/20"
+          animate={{
+            y: [0, -30, 0],
+            x: [0, Math.sin(i) * 20, 0],
+            rotate: [0, 180, 360],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: 6 + Math.random() * 4,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+            ease: "easeInOut"
+          }}
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
         >
-          <Link
-            href="u/scholarships"
-            className="group flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-600  text-white px-10 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            <span>Explore All Scholarships</span>
-            <AiOutlineDoubleRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
-          </Link>
+          <FaGraduationCap size={24} />
         </motion.div>
-      )}
+      ))}
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Enhanced Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center mb-20"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+            className="flex justify-center items-center gap-6 mb-8"
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full"
+            />
+            <motion.div
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <motion.div
+                variants={glowVariants}
+                animate="pulse"
+                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full opacity-20 blur-lg"
+              />
+              <FaAward className="w-16 h-16 text-blue-600 relative z-10" />
+            </motion.div>
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="w-16 h-0.5 bg-gradient-to-l from-emerald-600 to-blue-600 rounded-full"
+            />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+          >
+            Premium{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+              Scholarships
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          >
+            Discover life-changing opportunities from world-class institutions. 
+            Your future starts with the right scholarship.
+          </motion.p>
+        </motion.div>
+
+        {/* Enhanced Cards Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {displayedScholarships.map((scholarship, index) => (
+            <motion.div
+              key={scholarship.id}
+              variants={cardVariants}
+              whileHover="hover"
+              className="group cursor-pointer"
+              onMouseEnter={() => setHoveredCard(scholarship.id)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 relative">
+                {/* Magnetic Shine Effect */}
+                <motion.div
+                  variants={shimmerVariants}
+                  initial="initial"
+                  animate="animate"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+
+                {/* Image Section with Parallax Effect */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <motion.img
+                    src={scholarship.image}
+                    alt={scholarship.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ 
+                      scale: 1.1,
+                    }}
+                    transition={{ duration: 0.7 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+                  {/* Animated University Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                    className="absolute top-4 left-4"
+                  >
+                    <div className="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-2xl border border-white/20">
+                      <div className="flex items-center gap-2">
+                        <motion.div
+                          animate={{ rotate: [0, 360] }}
+                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                        >
+                          <FaUniversity className="text-blue-600 text-sm" />
+                        </motion.div>
+                        <p className="text-sm font-bold text-gray-900">{scholarship.university.split(' ')[0]}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Animated Flag & Country */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+                    className="absolute top-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 shadow-2xl border border-white/20"
+                  >
+                    <motion.img
+                      src={scholarship.flag}
+                      alt={scholarship.country}
+                      className="w-6 h-4 rounded-sm"
+                      whileHover={{ scale: 1.2 }}
+                    />
+                    <span className="text-sm font-bold text-gray-900">{scholarship.country.split(' ')[0]}</span>
+                  </motion.div>
+
+                  {/* Animated Rating */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.7 }}
+                    className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/80 backdrop-blur-sm rounded-full px-4 py-2"
+                  >
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 10, 0]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <AiFillStar className="text-yellow-400 text-lg" />
+                    </motion.div>
+                    <span className="text-white font-bold text-sm">
+                      {scholarship.rating}
+                    </span>
+                  </motion.div>
+
+                  {/* Pulsing Degree Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.9 }}
+                    className="absolute bottom-4 right-4"
+                  >
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.1, 1],
+                        boxShadow: [
+                          "0 0 0px rgba(59, 130, 246, 0.3)",
+                          "0 0 15px rgba(59, 130, 246, 0.6)",
+                          "0 0 0px rgba(59, 130, 246, 0.3)",
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold"
+                    >
+                      {scholarship.degree}
+                    </motion.div>
+                  </motion.div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 space-y-5 relative z-10">
+                  {/* Title & Field */}
+                  <div className="space-y-3">
+                    <motion.h3
+                      whileHover={{ color: "#2563eb" }}
+                      className="text-xl font-bold text-gray-900 line-clamp-2 leading-tight transition-colors duration-300"
+                    >
+                      {scholarship.title}
+                    </motion.h3>
+                    <div className="flex items-center gap-2">
+                      <motion.div
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="w-2 h-2 bg-blue-500 rounded-full"
+                      />
+                      <p className="text-blue-600 font-semibold text-sm">
+                        {scholarship.field}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Amount & Deadline - Single Line */}
+                  <div className="flex items-center justify-between gap-4 pt-2">
+                    <motion.div 
+                      className="space-y-1"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <p className="text-xs text-gray-500 uppercase font-bold tracking-wide">Funding</p>
+                      <motion.p 
+                        className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent"
+                        animate={{ 
+                          backgroundPosition: ["0%", "100%", "0%"] 
+                        }}
+                        transition={{ 
+                          duration: 3, 
+                          repeat: Infinity 
+                        }}
+                        style={{ backgroundSize: "200% 200%" }}
+                      >
+                        {scholarship.amount}
+                      </motion.p>
+                    </motion.div>
+                    <motion.div 
+                      className="space-y-1"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <div className="flex items-center gap-1">
+                        <FaCalendarAlt className="text-gray-400 text-xs" />
+                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wide">Deadline</p>
+                      </div>
+                      <motion.span 
+                        className={`text-sm font-bold px-3 py-1.5 rounded-xl border-2 ${getDeadlineColor(scholarship.deadline)}`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {scholarship.deadline}
+                      </motion.span>
+                    </motion.div>
+                  </div>
+
+                  {/* Action Button - Keeping Original Blue-Emerald Color */}
+                  <motion.button
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -2,
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group/btn"
+                  >
+                    {/* Floating Particles in Button */}
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        animate={{ 
+                          y: [0, -25, 0],
+                          opacity: [0, 1, 0],
+                          scale: [0, 1, 0],
+                        }}
+                        transition={{ 
+                          duration: 2, 
+                          repeat: Infinity,
+                          delay: i * 0.3
+                        }}
+                        className="absolute w-1 h-1 bg-white rounded-full"
+                        style={{
+                          left: `${25 + i * 25}%`,
+                          bottom: "10%",
+                        }}
+                      />
+                    ))}
+                    
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Apply Now
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <AiOutlineDoubleRight />
+                      </motion.div>
+                    </span>
+
+                    {/* Button Shine Effect */}
+                    <motion.div
+                      animate={{
+                        x: ["-100%", "200%"],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12"
+                    />
+                  </motion.button>
+                </div>
+
+                {/* Hover Glow Effect */}
+                <AnimatePresence>
+                  {hoveredCard === scholarship.id && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="absolute inset-0 border-2 border-transparent bg-gradient-to-r from-blue-500/10 to-emerald-500/10 rounded-3xl -z-10 blur-md"
+                    />
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Enhanced CTA Button - Keeping Original Colors */}
+        {limit && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-16"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative"
+            >
+              <Link
+                href="u/scholarships"
+                className="group relative bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold px-12 py-5 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-4 overflow-hidden"
+              >
+                {/* Animated Gradient Shift */}
+                <motion.div
+                  animate={{
+                    background: [
+                      "linear-gradient(135deg, #2563eb, #10b981)",
+                      "linear-gradient(135deg, #10b981, #2563eb)",
+                      "linear-gradient(135deg, #2563eb, #10b981)",
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute inset-0"
+                />
+                
+                {/* Shine Effect */}
+                <motion.div
+                  animate={{ x: ["-100%", "200%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12"
+                />
+                
+                <span className="relative z-10 text-lg">Explore All Scholarships</span>
+                <motion.div
+                  animate={{ x: [0, 8, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="relative z-10"
+                >
+                  <AiOutlineDoubleRight size={24} />
+                </motion.div>
+
+                {/* Floating Dots */}
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ 
+                      y: [0, -20, 0],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity,
+                      delay: i * 0.5
+                    }}
+                    className="absolute w-1 h-1 bg-white rounded-full"
+                    style={{
+                      left: `${20 + i * 30}%`,
+                      bottom: "15%",
+                    }}
+                  />
+                ))}
+              </Link>
+
+              {/* Outer Glow */}
+              <motion.div
+                variants={glowVariants}
+                animate="pulse"
+                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-2xl blur-xl -z-10"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
     </section>
   );
 }
