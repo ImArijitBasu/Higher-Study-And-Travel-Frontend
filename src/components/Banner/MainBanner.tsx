@@ -9,7 +9,7 @@ import Link from "next/link";
 const MainBanner = () => {
   return (
     <section
-      className="relative w-full h-[90vh] min-h-[600px] flex items-center justify-center text-gray-900 overflow-hidden"
+      className="relative w-full h-[100vh] min-h-[600px] flex items-center justify-center text-gray-900 overflow-hidden"
       style={{
         backgroundImage: `linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 40%, #e3f2fd 100%)`, // ❄️ Ice-blue gradient
         backgroundSize: "cover",
