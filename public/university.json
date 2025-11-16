@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "universityName": "The University of Melbourne",
+        "programName": "Bachelor of Commerce",
+        "location": "Parkville, Australia",
+        "worldRank": "39",
+        "degree": "Bachelor Degree",
+        "intakeDate": "02.03.2026",
+        "entryScore": "IELTS 6.5",
+        "tuitionFee": "AUD 52,360",
+        "image": "https://static.sliit.lk/wp-content/uploads/2024/10/28052224/University-of-Melbourne.jpg",
+        "featured": true
+    },
+    {
+        "id": 2,
+        "universityName": "Harvard University",
+        "programName": "Bachelor of Science",
+        "location": "Cambridge, USA",
+        "worldRank": "1",
+        "degree": "Bachelor Degree",
+        "intakeDate": "10.09.2026",
+        "entryScore": "IELTS 7.0",
+        "tuitionFee": "USD 55,000",
+        "image": "https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_1090_29-15:00_o-HARVARD-UNIVERSITY-BUILDING-facebook.jpeg"
+    },
+    {
+        "id": 3,
+        "universityName": "Stanford University",
+        "programName": "Master of Engineering",
+        "location": "California, USA",
+        "worldRank": "3",
+        "degree": "Master Degree",
+        "intakeDate": "15.08.2026",
+        "entryScore": "IELTS 6.5",
+        "tuitionFee": "USD 48,000",
+        "image": "https://www.meridean.org/assets/img/university/16905355981672387200243744.jpg"
+    },
+    {
+        "id": 4,
+        "universityName": "University of Oxford",
+        "programName": "Bachelor of Arts",
+        "location": "Oxford, UK",
+        "worldRank": "2",
+        "degree": "Bachelor Degree",
+        "intakeDate": "05.10.2026",
+        "entryScore": "IELTS 7.5",
+        "tuitionFee": "GBP 40,000",
+        "image": "https://dxp.plus/cdn-cgi/image/w=3840,q=90,f=webp,fit=contain/https://us-cdn.dxp.plus/4e7f1e24-6b44-4103-9287-7bfb88f988b8/Oxford%20City.jpg.preview.png"
+    },
+    {
+        "id": 5,
+        "universityName": "MIT",
+        "programName": "Master of Science",
+        "location": "Cambridge, USA",
+        "worldRank": "4",
+        "degree": "Master Degree",
+        "intakeDate": "12.09.2026",
+        "entryScore": "IELTS 7.0",
+        "tuitionFee": "USD 53,000",
+        "image": "https://images.shiksha.com/mediadata/images/1533214461phpjrUmK2_g.jpg"
+    },
+    {
+        "id": 6,
+        "universityName": "University of Cambridge",
+        "programName": "Bachelor of Engineering",
+        "location": "Cambridge, UK",
+        "worldRank": "5",
+        "degree": "Bachelor Degree",
+        "intakeDate": "15.10.2026",
+        "entryScore": "IELTS 7.5",
+        "tuitionFee": "GBP 42,000",
+        "image": "https://edunirvana.in/wp-content/uploads/2025/07/corpus-christi-1600x0-c-default.jpg"
+    }
+]
