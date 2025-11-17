@@ -6,8 +6,10 @@ import { IoIosSchool } from "react-icons/io";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsCalendarEvent, BsGlobe, BsAward } from "react-icons/bs";
 import { UniversityCardProps } from "@/types";
+import Link from "next/link";
 
 export function UniversityCard({
+  id,
   universityName,
   programName,
   location,
@@ -20,6 +22,7 @@ export function UniversityCard({
   featured,
 }: UniversityCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
+  console.log("Card id: ", id)
 
   return (
     <div className="group bg-white rounded-2xl shadow-sm hover:shadow-2xl border border-gray-100 transition-all duration-300 overflow-hidden hover:translate-y-[-4px]">
@@ -31,10 +34,10 @@ export function UniversityCard({
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        
+
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        
+
         {/* Featured Badge */}
         {featured && (
           <div className="absolute top-4 left-4">
@@ -46,7 +49,7 @@ export function UniversityCard({
         )}
 
         {/* Favorite Button */}
-        <button 
+        <button
           onClick={() => setIsFavorite(!isFavorite)}
           className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-200"
         >
@@ -87,21 +90,21 @@ export function UniversityCard({
             <FaMapMarkerAlt className="text-gray-400 flex-shrink-0" />
             <span className="text-sm">{location}</span>
           </div>
-          
+
           <div className="flex items-center gap-3 text-gray-700">
             <BsCalendarEvent className="text-gray-400 flex-shrink-0" />
             <span className="text-sm">
               <strong>Intake:</strong> {intakeDate}
             </span>
           </div>
-          
+
           <div className="flex items-center gap-3 text-gray-700">
             <BsGlobe className="text-gray-400 flex-shrink-0" />
             <span className="text-sm">
               <strong>Entry:</strong> {entryScore}
             </span>
           </div>
-          
+
           <div className="flex items-center gap-3 text-gray-700">
             <FaMoneyBillWave className="text-gray-400 flex-shrink-0" />
             <span className="text-sm font-semibold text-green-600">
@@ -115,9 +118,13 @@ export function UniversityCard({
           <button className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 px-4 rounded-xl text-sm transition-all duration-200 shadow-lg hover:shadow-blue-500/25">
             Check Eligibility
           </button>
-          <button className="flex-1 border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 text-gray-700 font-medium py-3 px-4 rounded-xl text-sm transition-all duration-200">
-            View Details
-          </button>
+
+          <Link href={`/u/universities/${id}`} className="flex-1">
+            <button className="w-full border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 text-gray-700 font-medium py-3 px-4 rounded-xl text-sm transition-all duration-200">
+              Details
+            </button>
+          </Link>
+
         </div>
       </div>
     </div>

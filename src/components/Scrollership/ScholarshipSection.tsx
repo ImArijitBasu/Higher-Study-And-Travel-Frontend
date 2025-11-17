@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineDoubleRight, AiFillStar } from "react-icons/ai";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaAward, FaGlobe } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaAward } from "react-icons/fa";
 
 interface Scholarship {
   id: number;
@@ -22,70 +22,19 @@ interface Scholarship {
 }
 
 export default function ScholarshipsSection({ limit }: { limit?: number }) {
-  const scholarships: Scholarship[] = [
-    {
-      id: 1,
-      image: "https://static.sliit.lk/wp-content/uploads/2024/10/28052224/University-of-Melbourne.jpg",
-      title: "Harvard Global Excellence Scholarship",
-      university: "Harvard University",
-      field: "Computer Science",
-      country: "United States",
-      degree: "Bachelor's",
-      deadline: "Dec 15, 2025",
-      amount: "$45,000",
-      flag: "https://flagcdn.com/w40/us.png",
-      rating: 4.9,
-      eligibility: "Minimum 3.8 GPA, leadership experience",
-    },
-    {
-      id: 2,
-      image: "https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_1090_29-15:00_o-HARVARD-UNIVERSITY-BUILDING-facebook.jpeg",
-      title: "Stanford Engineering Fellowship",
-      university: "Stanford University",
-      field: "Mechanical Engineering",
-      country: "United States",
-      degree: "Master's",
-      deadline: "Jan 20, 2026",
-      amount: "$35,000",
-      flag: "https://flagcdn.com/w40/us.png",
-      rating: 4.8,
-      eligibility: "Engineering background, research potential",
-    },
-    {
-      id: 3,
-      image: "https://www.meridean.org/assets/img/university/16905355981672387200243744.jpg",
-      title: "Oxford International Humanities Award",
-      university: "University of Oxford",
-      field: "Humanities & Arts",
-      country: "United Kingdom",
-      degree: "PhD",
-      deadline: "Feb 28, 2026",
-      amount: "Fully Funded",
-      flag: "https://flagcdn.com/w40/gb.png",
-      rating: 4.9,
-      eligibility: "Research proposal, academic publications",
-    },
-    {
-      id: 4,
-      image: "https://dxp.plus/cdn-cgi/image/w=3840,q=90,f=webp,fit=contain/https://us-cdn.dxp.plus/4e7f1e24-6b44-4103-9287-7bfb88f988b8/Oxford%20City.jpg.preview.png",
-      title: "Tokyo Tech Innovation Scholarship",
-      university: "University of Tokyo",
-      field: "Artificial Intelligence",
-      country: "Japan",
-      degree: "Master's",
-      deadline: "Mar 10, 2026",
-      amount: "$28,000",
-      flag: "https://flagcdn.com/w40/jp.png",
-      rating: 4.7,
-      eligibility: "STEM background, programming skills",
-    },
-  ];
+  const [scholarships, setScholarships] = useState<Scholarship[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("/scrolarship.json")
+      .then((res) => res.json())
+      .then((data) => setScholarships(data))
+      .catch((err) => console.error("Failed to fetch universities:", err));
+  }, []);
 
   const displayedScholarships = limit
     ? scholarships.slice(0, limit)
     : scholarships;
-
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const getDeadlineColor = (deadline: string) => {
     const deadlineDate = new Date(deadline);
@@ -98,7 +47,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
     return "text-green-600 bg-green-50 border-green-200";
   };
 
-  // New Animation Variants - Premium but not 3D
+  // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -274,7 +223,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
           </motion.p>
         </motion.div>
 
-        {/* Enhanced Cards Grid */}
+        {/* Enhanced Cards Grid - Fixed equal width */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -287,11 +236,11 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
               key={scholarship.id}
               variants={cardVariants}
               whileHover="hover"
-              className="group cursor-pointer"
+              className="group cursor-pointer flex"
               onMouseEnter={() => setHoveredCard(scholarship.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 relative">
+              <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 relative w-full flex flex-col">
                 {/* Magnetic Shine Effect */}
                 <motion.div
                   variants={shimmerVariants}
@@ -301,7 +250,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                 />
 
                 {/* Image Section with Parallax Effect */}
-                <div className="relative h-48 w-full overflow-hidden">
+                <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
                   <motion.img
                     src={scholarship.image}
                     alt={scholarship.title}
@@ -320,7 +269,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
                     className="absolute top-4 left-4"
                   >
-                    <div className="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-2xl border border-white/20">
+                    <div className="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-2xl border border-white/20 max-w-[140px]">
                       <div className="flex items-center gap-2">
                         <motion.div
                           animate={{ rotate: [0, 360] }}
@@ -328,7 +277,9 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                         >
                           <FaUniversity className="text-blue-600 text-sm" />
                         </motion.div>
-                        <p className="text-sm font-bold text-gray-900">{scholarship.university.split(' ')[0]}</p>
+                        <p className="text-sm font-bold text-gray-900 truncate">
+                          {scholarship.university.split(' ')[0]}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -338,15 +289,17 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
-                    className="absolute top-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 shadow-2xl border border-white/20"
+                    className="absolute top-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 shadow-2xl border border-white/20 max-w-[120px]"
                   >
                     <motion.img
                       src={scholarship.flag}
                       alt={scholarship.country}
-                      className="w-6 h-4 rounded-sm"
+                      className="w-6 h-4 rounded-sm object-cover flex-shrink-0"
                       whileHover={{ scale: 1.2 }}
                     />
-                    <span className="text-sm font-bold text-gray-900">{scholarship.country.split(' ')[0]}</span>
+                    <span className="text-sm font-bold text-gray-900 truncate">
+                      {scholarship.country.split(' ')[0]}
+                    </span>
                   </motion.div>
 
                   {/* Animated Rating */}
@@ -387,20 +340,20 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                         ]
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold"
+                      className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold truncate max-w-[100px]"
                     >
                       {scholarship.degree}
                     </motion.div>
                   </motion.div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-5 relative z-10">
+                {/* Content Section - Flex grow to take remaining space */}
+                <div className="p-6 space-y-5 relative z-10 flex-grow flex flex-col">
                   {/* Title & Field */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-grow">
                     <motion.h3
                       whileHover={{ color: "#2563eb" }}
-                      className="text-xl font-bold text-gray-900 line-clamp-2 leading-tight transition-colors duration-300"
+                      className="text-xl font-bold text-gray-900 line-clamp-2 leading-tight transition-colors duration-300 min-h-[56px] flex items-start"
                     >
                       {scholarship.title}
                     </motion.h3>
@@ -408,23 +361,23 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       <motion.div
                         animate={{ scale: [1, 1.5, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="w-2 h-2 bg-blue-500 rounded-full"
+                        className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"
                       />
-                      <p className="text-blue-600 font-semibold text-sm">
+                      <p className="text-blue-600 font-semibold text-sm truncate">
                         {scholarship.field}
                       </p>
                     </div>
                   </div>
 
                   {/* Amount & Deadline - Single Line */}
-                  <div className="flex items-center justify-between gap-4 pt-2">
+                  <div className="flex items-center justify-between gap-4 pt-2 flex-shrink-0">
                     <motion.div 
-                      className="space-y-1"
+                      className="space-y-1 min-w-0"
                       whileHover={{ scale: 1.05 }}
                     >
-                      <p className="text-xs text-gray-500 uppercase font-bold tracking-wide">Funding</p>
+                      <p className="text-xs text-gray-500 uppercase font-bold tracking-wide truncate">Funding</p>
                       <motion.p 
-                        className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent"
+                        className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent truncate"
                         animate={{ 
                           backgroundPosition: ["0%", "100%", "0%"] 
                         }}
@@ -438,31 +391,35 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       </motion.p>
                     </motion.div>
                     <motion.div 
-                      className="space-y-1"
+                      className="space-y-1 min-w-0"
                       whileHover={{ scale: 1.05 }}
                     >
                       <div className="flex items-center gap-1">
-                        <FaCalendarAlt className="text-gray-400 text-xs" />
-                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wide">Deadline</p>
+                        <FaCalendarAlt className="text-gray-400 text-xs flex-shrink-0" />
+                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wide truncate">Deadline</p>
                       </div>
                       <motion.span 
-                        className={`text-sm font-bold px-3 py-1.5 rounded-xl border-2 ${getDeadlineColor(scholarship.deadline)}`}
+                        className={`text-sm font-bold px-3 py-1.5 rounded-xl border-2 ${getDeadlineColor(scholarship.deadline)} truncate block text-center`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        {scholarship.deadline}
+                        {new Date(scholarship.deadline).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
                       </motion.span>
                     </motion.div>
                   </div>
 
-                  {/* Action Button - Keeping Original Blue-Emerald Color */}
+                  {/* Action Button - Fixed at bottom */}
                   <motion.button
                     whileHover={{ 
                       scale: 1.05,
                       y: -2,
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group/btn"
+                    className="w-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group/btn flex-shrink-0"
                   >
                     {/* Floating Particles in Button */}
                     {[...Array(3)].map((_, i) => (
@@ -486,6 +443,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       />
                     ))}
                     
+                   <Link href={`/u/scholarships/${scholarship.id}`}>
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       Apply Now
                       <motion.div
@@ -495,6 +453,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                         <AiOutlineDoubleRight />
                       </motion.div>
                     </span>
+                   </Link>
 
                     {/* Button Shine Effect */}
                     <motion.div
@@ -527,7 +486,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
           ))}
         </motion.div>
 
-        {/* Enhanced CTA Button - Keeping Original Colors */}
+        {/* Enhanced CTA Button */}
         {limit && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -542,7 +501,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
               className="relative"
             >
               <Link
-                href="u/scholarships"
+                href="/u/scholarships"
                 className="group relative bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold px-12 py-5 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-4 overflow-hidden"
               >
                 {/* Animated Gradient Shift */}
