@@ -368,7 +368,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: index * 0.15 + 0.5 }}
-            className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl flex items-center gap-2 shadow-2xl"
+            className="absolute bottom-6 left-145 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl flex items-center gap-2 shadow-2xl"
           >
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
@@ -385,7 +385,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.15 + 0.7 }}
-            className="absolute bottom-6 right-6 left-6"
+            className="absolute bottom-6 right-6 left-6 "
           >
             <motion.h3
               className="text-2xl font-bold text-white mb-3 drop-shadow-2xl leading-tight"
