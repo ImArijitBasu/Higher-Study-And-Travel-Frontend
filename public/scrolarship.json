@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "image": "https://static.sliit.lk/wp-content/uploads/2024/10/28052224/University-of-Melbourne.jpg",
+    "title": "Harvard Global Excellence Scholarship",
+    "university": "Harvard University",
+    "field": "Computer Science",
+    "country": "United States",
+    "degree": "Bachelor's",
+    "deadline": "Dec 15, 2025",
+    "amount": "$45,000",
+    "flag": "https://flagcdn.com/w40/us.png",
+    "rating": 4.9,
+    "eligibility": "Minimum 3.8 GPA, leadership experience"
+  },
+  {
+    "id": 2,
+    "image": "https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_1090_29-15:00_o-HARVARD-UNIVERSITY-BUILDING-facebook.jpeg",
+    "title": "Stanford Engineering Fellowship",
+    "university": "Stanford University",
+    "field": "Mechanical Engineering",
+    "country": "United States",
+    "degree": "Master's",
+    "deadline": "Jan 20, 2026",
+    "amount": "$35,000",
+    "flag": "https://flagcdn.com/w40/us.png",
+    "rating": 4.8,
+    "eligibility": "Engineering background, research potential"
+  },
+  {
+    "id": 3,
+    "image": "https://www.meridean.org/assets/img/university/16905355981672387200243744.jpg",
+    "title": "Oxford International Humanities Award",
+    "university": "University of Oxford",
+    "field": "Humanities & Arts",
+    "country": "United Kingdom",
+    "degree": "PhD",
+    "deadline": "Feb 28, 2026",
+    "amount": "Fully Funded",
+    "flag": "https://flagcdn.com/w40/gb.png",
+    "rating": 4.9,
+    "eligibility": "Research proposal, academic publications"
+  },
+  {
+    "id": 4,
+    "image": "https://dxp.plus/cdn-cgi/image/w=3840,q=90,f=webp,fit=contain/https://us-cdn.dxp.plus/4e7f1e24-6b44-4103-9287-7bfb88f988b8/Oxford%20City.jpg.preview.png",
+    "title": "Tokyo Tech Innovation Scholarship",
+    "university": "University of Tokyo",
+    "field": "Artificial Intelligence",
+    "country": "Japan",
+    "degree": "Master's",
+    "deadline": "Mar 10, 2026",
+    "amount": "$28,000",
+    "flag": "https://flagcdn.com/w40/jp.png",
+    "rating": 4.7,
+    "eligibility": "STEM background, programming skills"
+  }
+]
