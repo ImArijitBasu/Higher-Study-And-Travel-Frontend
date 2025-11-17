@@ -714,7 +714,7 @@ export default function TopTravelPackages() {
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12"
               />
               
-              <span className="relative z-10 text-lg font-semibold">Explore All Destinations</span>
+              <span className="relative z-10 text-lg font-semibold">Explore All Travel </span>
               <motion.div
                 animate={{ x: [0, 6, 0], rotate: [0, 8, 0] }} // Reduced movement
                 transition={{ duration: 2, repeat: Infinity }}
