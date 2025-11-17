@@ -120,7 +120,7 @@ function ApplicationForm({ scholarship, isOpen, onClose }: { scholarship: any; i
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 mt-20"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -129,7 +129,7 @@ function ApplicationForm({ scholarship, isOpen, onClose }: { scholarship: any; i
             className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-emerald-600 p-6 text-white">
+            <div className="bg-gradient-to-r from-blue-600 to-emerald-600 p-6 text-white mt-20">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold">
@@ -587,7 +587,7 @@ export default function ScholarshipDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/30 mt-20">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4">
