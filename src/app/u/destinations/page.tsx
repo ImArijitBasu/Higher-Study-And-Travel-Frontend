@@ -18,10 +18,10 @@ interface Deal {
 const deals: Deal[] = [
   { id: 1, image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", destination: "Bali, Indonesia", duration: "1h 15m, direct", dates: "Mon 24/11 → Fri 28/11", price: "from Tk 18,450" },
   { id: 2, image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34", destination: "Paris, France", duration: "11h 30m, 1 stop", dates: "Fri 14/11 → Fri 21/11", price: "from Tk 82,540" },
-  { id: 3, image: "https://images.unsplash.com/photo-1563720223185-96788d7a7e6e", destination: "Kuala Lumpur, Malaysia", duration: "3h 55m, direct", dates: "Fri 21/11 → Thu 27/11", price: "from Tk 34,682" },
+  { id: 3, image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86", destination: "Kuala Lumpur, Malaysia", duration: "3h 55m, direct", dates: "Fri 21/11 → Thu 27/11", price: "from Tk 34,682" },
   { id: 4, image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb", destination: "Bangkok, Thailand", duration: "2h 40m, direct", dates: "Tue 4/11 → Tue 11/11", price: "from Tk 36,137" },
   { id: 5, image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c", destination: "Dubai, UAE", duration: "5h 30m, direct", dates: "Mon 10/11 → Fri 14/11", price: "from Tk 58,220" },
-  { id: 6, image: "https://images.unsplash.com/photo-1540959733332-45e1c2c7c8e1", destination: "Tokyo, Japan", duration: "7h 10m, direct", dates: "Wed 12/11 → Mon 17/11", price: "from Tk 69,300" },
+  { id: 6, image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee", destination: "Tokyo, Japan", duration: "7h 10m, direct", dates: "Wed 12/11 → Mon 17/11", price: "from Tk 69,300" },
   { id: 7, image: "https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a", destination: "Sydney, Australia", duration: "10h 45m, 1 stop", dates: "Fri 21/11 → Thu 27/11", price: "from Tk 95,600" },
   { id: 8, image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b", destination: "Rome, Italy", duration: "10h 20m, 1 stop", dates: "Sat 15/11 → Fri 21/11", price: "from Tk 77,890" },
 ];
@@ -124,7 +124,7 @@ export default function DestinationsPage() {
             <div className="relative flex items-center bg-white rounded-full  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl focus-within:shadow-xl">
               <input
                 type="text"
-                placeholder="Search Universities"
+                placeholder="Find the best destination for you..."
                 className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200 border-4 rounded-full "
               />
               <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">

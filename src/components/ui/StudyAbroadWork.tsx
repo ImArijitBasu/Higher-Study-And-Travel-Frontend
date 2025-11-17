@@ -189,7 +189,7 @@ const StudyAbroadWork: React.FC = () => {
           </h2>
           
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
-            From choosing the perfect destination to boarding your flight — here's a simple step-by-step
+            From choosing the perfect destination to boarding your flight — here&apos;s a simple step-by-step
             guide to begin your global education journey with confidence and clarity.
           </p>
         </motion.div>
@@ -205,7 +205,7 @@ const StudyAbroadWork: React.FC = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+              variants={{itemVariants}}
               className="group relative"
             >
               {/* Connection Line (Desktop only) */}
@@ -214,7 +214,7 @@ const StudyAbroadWork: React.FC = () => {
               )}
 
               <motion.div
-                variants={cardVariants}
+                variants={{cardVariants}}
                 whileHover="hover"
                 className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl border border-gray-100/80 p-8 h-full flex flex-col group-hover:border-blue-200/50 transition-all duration-500 overflow-hidden"
               >
@@ -229,7 +229,7 @@ const StudyAbroadWork: React.FC = () => {
 
                 {/* Animated Icon Container */}
                 <motion.div
-                  variants={iconVariants}
+                  variants={{iconVariants}}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}

@@ -1,7 +1,7 @@
 // "use client";
 
-import ScholarshipsSection from "@/components/Scrollership/ScholarshipSection";
-import SciBanner from "@/components/Scrollership/sciBanner";
+import ScholarshipsSection from "@/components/Scholarship/ScholarshipSection";
+import SciBanner from "@/components/Scholarship/sciBanner";
 import UniBanner from "@/components/University/uniBanner";
 import FilterSection from "@/components/University/uniFilter";
 import { UniversitiesSection } from "@/components/University/university_section";

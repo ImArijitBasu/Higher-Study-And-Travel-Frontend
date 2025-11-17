@@ -2,7 +2,13 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowRight, FaGlobe, FaUserGraduate, FaLightbulb } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaGlobe,
+  FaUserGraduate,
+  FaLightbulb,
+} from "react-icons/fa";
+import Image from "next/image";
 
 interface Tab {
   id: "what" | "who" | "why";
@@ -21,20 +27,20 @@ const AboutStudy: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"what" | "who" | "why">("what");
 
   const tabs: Tab[] = [
-    { 
-      id: "what", 
-      label: "What Is Study Abroad?", 
-      icon: <FaGlobe className="text-lg" />
+    {
+      id: "what",
+      label: "What Is Study Abroad?",
+      icon: <FaGlobe className="text-lg" />,
     },
-    { 
-      id: "who", 
-      label: "Who Can Study Abroad?", 
-      icon: <FaUserGraduate className="text-lg" />
+    {
+      id: "who",
+      label: "Who Can Study Abroad?",
+      icon: <FaUserGraduate className="text-lg" />,
     },
-    { 
-      id: "why", 
-      label: "Why Study Abroad?", 
-      icon: <FaLightbulb className="text-lg" />
+    {
+      id: "why",
+      label: "Why Study Abroad?",
+      icon: <FaLightbulb className="text-lg" />,
     },
   ];
 
@@ -47,7 +53,7 @@ const AboutStudy: React.FC = () => {
         "Beyond academics, you'll develop valuable life skills, expand your global network, and create unforgettable memories.",
       ],
       image:
-        "https://scholarszone.com.bd/wp-content/uploads/2025/06/Study-Abroad-2025.jpg.webp",
+        "https://platform.edu.np/wp-content/uploads/2019/12/Study-aroad-platform-1.jpg",
       link: "HOW TO PICK A PROGRAM",
     },
     who: {
@@ -79,9 +85,9 @@ const AboutStudy: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -91,9 +97,9 @@ const AboutStudy: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const imageVariants = {
@@ -104,17 +110,17 @@ const AboutStudy: React.FC = () => {
       rotateY: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
+        ease: "easeOut",
+      },
     },
     hover: {
       scale: 1.05,
       rotateY: 5,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const textVariants = {
@@ -124,9 +130,9 @@ const AboutStudy: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.7,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -146,7 +152,8 @@ const AboutStudy: React.FC = () => {
           </span>
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Everything you need to know about studying abroad - from the basics to the benefits
+          Everything you need to know about studying abroad - from the basics to
+          the benefits
         </p>
       </motion.div>
 
@@ -166,9 +173,10 @@ const AboutStudy: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             className={`
               relative flex items-center gap-3 px-6 py-4 rounded-2xl font-semibold transition-all duration-300
-              ${activeTab === tab.id
-                ? "bg-gradient-to-r from-blue-600 to-emerald-600 text-white shadow-2xl shadow-blue-500/25"
-                : "bg-white text-gray-700 shadow-lg hover:shadow-xl border border-gray-100"
+              ${
+                activeTab === tab.id
+                  ? "bg-gradient-to-r from-blue-600 to-emerald-600 text-white shadow-2xl shadow-blue-500/25"
+                  : "bg-white text-gray-700 shadow-lg hover:shadow-xl border border-gray-100"
               }
             `}
           >
@@ -196,19 +204,19 @@ const AboutStudy: React.FC = () => {
           className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
         >
           {/* Text Content */}
-          <motion.div variants={textVariants} className="space-y-6">
+          <motion.div variants={{ textVariants }} className="space-y-6">
             <motion.h3
-              variants={itemVariants}
+              variants={{ itemVariants }}
               className="text-3xl md:text-4xl font-bold text-gray-900"
             >
               {content[activeTab].title}
             </motion.h3>
 
-            <motion.div variants={itemVariants} className="space-y-4">
+            <motion.div variants={{ itemVariants }} className="space-y-4">
               {content[activeTab].text.map((para, i) => (
                 <motion.p
                   key={i}
-                  variants={itemVariants}
+                  variants={{ itemVariants }}
                   className="text-gray-600 leading-relaxed text-lg"
                 >
                   {para}
@@ -216,7 +224,7 @@ const AboutStudy: React.FC = () => {
               ))}
             </motion.div>
 
-            <motion.div variants={itemVariants}>
+            <motion.div variants={{ itemVariants }}>
               <motion.a
                 href="#"
                 whileHover={{ x: 10 }}
@@ -231,16 +239,20 @@ const AboutStudy: React.FC = () => {
 
             {/* Additional Info Cards */}
             <motion.div
-              variants={itemVariants}
+              variants={{ itemVariants }}
               className="grid grid-cols-2 gap-4 mt-8"
             >
               <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-                <div className="text-blue-600 font-semibold text-sm">Global Network</div>
+                <div className="text-blue-600 font-semibold text-sm">
+                  Global Network
+                </div>
                 <div className="text-2xl font-bold text-gray-900">190+</div>
                 <div className="text-xs text-gray-600">Countries</div>
               </div>
               <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-100">
-                <div className="text-emerald-600 font-semibold text-sm">Students</div>
+                <div className="text-emerald-600 font-semibold text-sm">
+                  Students
+                </div>
                 <div className="text-2xl font-bold text-gray-900">5M+</div>
                 <div className="text-xs text-gray-600">Annually</div>
               </div>
@@ -249,24 +261,24 @@ const AboutStudy: React.FC = () => {
 
           {/* Image Content */}
           <motion.div
-            variants={imageVariants}
+            variants={{ imageVariants }}
             whileHover="hover"
             className="relative"
           >
             <motion.div
-              variants={imageVariants}
-              className="relative rounded-3xl overflow-hidden shadow-2xl"
+              variants={{ imageVariants }}
+              whileHover="hover"
+              className="relative rounded-3xl overflow-hidden shadow-2xl h-80 md:h-96"
             >
-              <img
+              <Image
                 src={content[activeTab].image}
                 alt={content[activeTab].title}
-                className="w-full h-[400px] object-cover"
+                fill
+                className="object-cover"
+                unoptimized={false}
               />
-              
-              {/* Gradient Overlay */}
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Shine Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </motion.div>
 
@@ -279,7 +291,7 @@ const AboutStudy: React.FC = () => {
             >
               <FaGlobe className="text-white text-sm" />
             </motion.div>
-            
+
             <motion.div
               initial={{ scale: 0, rotate: 180 }}
               animate={{ scale: 1, rotate: 0 }}

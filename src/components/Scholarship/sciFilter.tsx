@@ -2,7 +2,7 @@
 
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { FaGlobe, FaBook, FaGraduationCap, FaMoneyBillWave, FaCalendarAlt } from "react-icons/fa";
+import { FaGlobe, FaGraduationCap, FaMoneyBillWave, FaCalendarAlt } from "react-icons/fa";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 const filters = [

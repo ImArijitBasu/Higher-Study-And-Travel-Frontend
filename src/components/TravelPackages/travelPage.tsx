@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import DestinationCard from "./destinationcard";
-import { FiSearch, FiFilter, FiGrid, FiList, FiChevronDown } from "react-icons/fi";
+import DestinationCard from "./travelCard";
+import { FiFilter, FiGrid, FiList, FiChevronDown } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 
 const DestinationsPage = () => {

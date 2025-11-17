@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, GraduationCap, Calendar, DollarSign } from "lucide-react";
+import { GraduationCap, Calendar, DollarSign } from "lucide-react";
 import Image from "next/image";
 import { ScholarshipCardProps } from "@/types";
 

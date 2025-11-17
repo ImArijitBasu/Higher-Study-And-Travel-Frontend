@@ -11,13 +11,9 @@ import {
   AiFillHeart,
   AiOutlineClockCircle,
   AiOutlineDollarCircle,
-  AiOutlineGlobal,
   AiOutlineBook,
-  AiOutlineUser,
   AiOutlineCheckCircle,
   AiOutlineClose,
-  AiOutlineUpload,
-  AiOutlineFileText,
   AiOutlineLoading3Quarters
 } from "react-icons/ai";
 import { 
@@ -25,11 +21,9 @@ import {
   FaGraduationCap, 
   FaMapMarkerAlt, 
   FaCalendarAlt,
-  FaGlobe,
-  FaLanguage,
-  FaUsers
 } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Scholarship {
   id: number;
@@ -55,7 +49,7 @@ interface Scholarship {
 }
 
 // Application Form Component
-function ApplicationForm({ scholarship, isOpen, onClose }: { scholarship: any; isOpen: boolean; onClose: () => void }) {
+function ApplicationForm({ scholarship, isOpen, onClose }: { scholarship: Scholarship; isOpen: boolean; onClose: () => void }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -192,7 +186,7 @@ function ApplicationForm({ scholarship, isOpen, onClose }: { scholarship: any; i
                   </h3>
                   <p className="text-gray-600 mb-6">
                     Thank you for applying to the {scholarship.title} at {scholarship.university}. 
-                    We've sent a confirmation email to {formData.email}. Our admission team will 
+                    We&apos;ve sent a confirmation email to {formData.email}. Our admission team will 
                     review your application and contact you within 2-3 weeks.
                   </p>
                   <div className="space-y-4">
@@ -505,7 +499,7 @@ export default function ScholarshipDetailPage() {
   const [isApplicationOpen, setIsApplicationOpen] = useState(false);
 
   useEffect(() => {
-    fetch("/scrolarship.json")
+    fetch("/scholarship.json")
       .then((res) => res.json())
       .then((data) => {
         const scholarshipId = parseInt(params.id as string);
@@ -643,7 +637,7 @@ export default function ScholarshipDetailPage() {
                     whileHover={{ scale: 1.05 }}
                     className="relative w-32 h-32 rounded-2xl overflow-hidden shadow-lg"
                   >
-                    <img
+                    <Image
                       src={scholarship.image}
                       alt={scholarship.university}
                       className="w-full h-full object-cover"
@@ -912,7 +906,7 @@ export default function ScholarshipDetailPage() {
                       className="block p-4 border border-gray-200 rounded-2xl hover:border-blue-300 hover:shadow-md transition-all duration-300"
                     >
                       <div className="flex items-center gap-3">
-                        <img
+                        <Image
                           src={related.image}
                           alt={related.university}
                           className="w-12 h-12 rounded-lg object-cover"

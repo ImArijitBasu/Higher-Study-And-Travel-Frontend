@@ -2,7 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import { FaSearch, FaUniversity, FaGlobeAmericas, FaUserGraduate, FaAward, FaStar, FaHeart } from "react-icons/fa";
+import {
+  FaSearch,
+  FaUniversity,
+  FaGlobeAmericas,
+  FaUserGraduate,
+  FaAward,
+  FaStar,
+  FaHeart,
+} from "react-icons/fa";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,7 +31,7 @@ const MainBanner = () => {
     "Cut the cost, not the experience.",
     "Your global education journey starts here.",
     "Study smarter, travel further.",
-    "Affordable excellence in education."
+    "Affordable excellence in education.",
   ];
   const [currentTagline, setCurrentTagline] = useState(0);
 
@@ -31,7 +39,11 @@ const MainBanner = () => {
     setIsVisible(true);
 
     // Animate counting for statistics
-    const animateCount = (setter, target, duration) => {
+    const animateCount = (
+      setter: (value: number) => void,
+      target: number,
+      duration: number
+    ) => {
       let start = 0;
       const increment = target / (duration / 20);
       const timer = setInterval(() => {
@@ -58,7 +70,7 @@ const MainBanner = () => {
     }, 3000);
 
     return () => clearInterval(taglineInterval);
-  }, []);
+  }, [taglines.length]);
 
   // NEW: Geometric Pattern Background
   const GeometricPattern = () => (
@@ -148,7 +160,10 @@ const MainBanner = () => {
             rotate: "-2deg",
           }}
           animate={{
-            x: [index % 2 === 0 ? "-100%" : "0%", index % 2 === 0 ? "0%" : "-100%"],
+            x: [
+              index % 2 === 0 ? "-100%" : "0%",
+              index % 2 === 0 ? "0%" : "-100%",
+            ],
           }}
           transition={{
             duration: 15 + index * 5,
@@ -181,7 +196,6 @@ const MainBanner = () => {
             repeat: Infinity,
             ease: "easeOut",
             delay: i * 2,
-            
           }}
         />
       ))}
@@ -200,10 +214,14 @@ const MainBanner = () => {
             height: Math.random() * 8 + 2,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            background: i % 4 === 0 ? 'rgba(255, 255, 255, 0.6)' : 
-                        i % 4 === 1 ? 'rgba(6, 182, 212, 0.5)' :
-                        i % 4 === 2 ? 'rgba(34, 211, 238, 0.5)' : 
-                        'rgba(59, 130, 246, 0.5)'
+            background:
+              i % 4 === 0
+                ? "rgba(255, 255, 255, 0.6)"
+                : i % 4 === 1
+                ? "rgba(6, 182, 212, 0.5)"
+                : i % 4 === 2
+                ? "rgba(34, 211, 238, 0.5)"
+                : "rgba(59, 130, 246, 0.5)",
           }}
           animate={{
             y: [0, -60, 0],
@@ -225,24 +243,23 @@ const MainBanner = () => {
 
   // NEW: Animated gradient mesh background
   // SIMPLE BACKGROUND ANIMATION
-const SimpleBackground = () => (
-  <motion.div
-    className="absolute inset-0"
-    style={{
-      background:
-        "linear-gradient(135deg, #0f172a, #1e3a8a, #164e63)",
-      backgroundSize: "300% 300%",
-    }}
-    animate={{
-      backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-    }}
-    transition={{
-      duration: 20,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  />
-);
+  const SimpleBackground = () => (
+    <motion.div
+      className="absolute inset-0"
+      style={{
+        background: "linear-gradient(135deg, #0f172a, #1e3a8a, #164e63)",
+        backgroundSize: "300% 300%",
+      }}
+      animate={{
+        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -255,18 +272,18 @@ const SimpleBackground = () => (
     },
   };
 
-  const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
+  // const itemVariants = {
+  //   hidden: { y: 40, opacity: 0 },
+  //   visible: {
+  //     y: 0,
+  //     opacity: 1,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 100,
+  //       damping: 12,
+  //     },
+  //   },
+  // };
 
   const taglineVariants = {
     enter: { y: 20, opacity: 0 },
@@ -278,21 +295,21 @@ const SimpleBackground = () => (
     <section className="relative w-full h-[100vh] min-h-[700px] flex items-center justify-center text-white overflow-hidden">
       {/* NEW: Mesh Gradient Background */}
       <SimpleBackground />
-      
+
       {/* NEW: Geometric Pattern */}
       <GeometricPattern />
-      
+
       {/* NEW: Pulsating Grid */}
       <PulsatingGrid />
-      
+
       {/* NEW: Wave Animation */}
       <WaveBackground />
-      
+
       {/* NEW: Radial Pulse */}
       <RadialPulse />
 
       {/* Enhanced overlay */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px]"
         animate={{
           opacity: [0.1, 0.2, 0.1],
@@ -317,7 +334,18 @@ const SimpleBackground = () => (
         {/* Heading with enhanced animation */}
         <motion.h1
           className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
-          variants={itemVariants}
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+              },
+            },
+          }}
         >
           Study and Travel for{" "}
           <motion.span
@@ -346,14 +374,40 @@ const SimpleBackground = () => (
         {/* Subtitle */}
         <motion.p
           className="text-lg md:text-xl lg:text-2xl text-blue-100 mb-6 leading-relaxed max-w-3xl mx-auto"
-          variants={itemVariants}
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+              },
+            },
+          }}
         >
-          Quality education and incredible destinations — your dream study abroad program made affordable.
+          Quality education and incredible destinations — your dream study
+          abroad program made affordable.
         </motion.p>
 
         {/* Animated Tagline */}
-        <motion.div className="my-8 flex justify-center" variants={itemVariants}>
-          <motion.div 
+        <motion.div
+          className="my-8 flex justify-center"
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+              },
+            },
+          }}
+        >
+          <motion.div
             className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-white/30 min-h-[48px] flex items-center"
             whileHover={{
               scale: 1.05,
@@ -386,13 +440,44 @@ const SimpleBackground = () => (
         {/* Feature Icons with enhanced animations */}
         <motion.div
           className="flex justify-center gap-8 mb-8"
-          variants={itemVariants}
+          variants={{
+            hidden: { y: 40, opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+              },
+            },
+          }}
         >
           {[
-            { icon: FaUniversity, text: "500+ Universities", color: "text-cyan-300", bg: "bg-cyan-500/20" },
-            { icon: FaGlobeAmericas, text: "50+ Countries", color: "text-blue-300", bg: "bg-blue-500/20" },
-            { icon: FaAward, text: "98% Success", color: "text-amber-300", bg: "bg-amber-500/20" },
-            { icon: FaStar, text: "24/7 Support", color: "text-emerald-300", bg: "bg-emerald-500/20" },
+            {
+              icon: FaUniversity,
+              text: "500+ Universities",
+              color: "text-cyan-300",
+              bg: "bg-cyan-500/20",
+            },
+            {
+              icon: FaGlobeAmericas,
+              text: "50+ Countries",
+              color: "text-blue-300",
+              bg: "bg-blue-500/20",
+            },
+            {
+              icon: FaAward,
+              text: "98% Success",
+              color: "text-amber-300",
+              bg: "bg-amber-500/20",
+            },
+            {
+              icon: FaStar,
+              text: "24/7 Support",
+              color: "text-emerald-300",
+              bg: "bg-emerald-500/20",
+            },
           ].map((feature, index) => (
             <motion.div
               key={feature.text}
@@ -414,16 +499,26 @@ const SimpleBackground = () => (
               >
                 <feature.icon size={20} />
               </motion.div>
-              <span className="text-sm text-blue-100 font-medium">{feature.text}</span>
+              <span className="text-sm text-blue-100 font-medium">
+                {feature.text}
+              </span>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Enhanced Search Bar */}
-        <motion.div
-          className="max-w-2xl mx-auto mb-8"
-          variants={itemVariants}
-        >
+        <motion.div className="max-w-2xl mx-auto mb-8" variants={{
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  }}>
           <motion.div
             className="relative group"
             whileHover={{ scale: 1.02 }}
@@ -437,7 +532,7 @@ const SimpleBackground = () => (
               className="w-full py-3 pl-6 pr-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder-blue-200 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-all duration-300 text-base shadow-lg"
               whileFocus={{
                 scale: 1.02,
-                boxShadow: "0 10px 30px rgba(6, 182, 212, 0.3)"
+                boxShadow: "0 10px 30px rgba(6, 182, 212, 0.3)",
               }}
             />
             <motion.div
@@ -455,7 +550,18 @@ const SimpleBackground = () => (
         {/* Enhanced CTA Button with gradient animation */}
         <motion.div
           className="flex justify-center mb-8"
-          variants={itemVariants}
+          variants={{
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  }}
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -500,44 +606,55 @@ const SimpleBackground = () => (
           variants={containerVariants}
         >
           {[
-            { 
-              icon: FaUniversity, 
-              number: partnerCount, 
-              suffix: "+", 
+            {
+              icon: FaUniversity,
+              number: partnerCount,
+              suffix: "+",
               text: "Partner Universities",
               description: "World-class institutions",
-              gradient: "from-cyan-400 to-blue-400"
+              gradient: "from-cyan-400 to-blue-400",
             },
-            { 
-              icon: FaGlobeAmericas, 
-              number: countryCount, 
-              suffix: "+", 
+            {
+              icon: FaGlobeAmericas,
+              number: countryCount,
+              suffix: "+",
               text: "Countries Worldwide",
               description: "Global destinations",
-              gradient: "from-blue-400 to-cyan-400"
+              gradient: "from-blue-400 to-cyan-400",
             },
-            { 
-              icon: FaUserGraduate, 
-              number: studentCount, 
-              suffix: "+", 
+            {
+              icon: FaUserGraduate,
+              number: studentCount,
+              suffix: "+",
               text: "Students Placed",
               description: "Successful placements",
-              gradient: "from-cyan-400 to-emerald-400"
+              gradient: "from-cyan-400 to-emerald-400",
             },
-            { 
-              icon: FaAward, 
-              number: programCount, 
-              suffix: "+", 
+            {
+              icon: FaAward,
+              number: programCount,
+              suffix: "+",
               text: "Programs Available",
               description: "Various courses",
-              gradient: "from-emerald-400 to-cyan-400"
+              gradient: "from-emerald-400 to-cyan-400",
             },
           ].map((stat, index) => (
             <motion.div
               key={stat.text}
               className="text-center group p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer relative overflow-hidden"
-              variants={itemVariants}
-              whileHover={{ 
+              variants={{
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  }}
+              whileHover={{
                 y: -8,
                 scale: 1.05,
               }}
@@ -546,40 +663,39 @@ const SimpleBackground = () => (
               <motion.div
                 className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
               />
-              
+
               <div className="relative z-10">
                 <div className="flex justify-center mb-3">
                   <motion.div
                     className="p-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.2,
-                      rotate: [0, -10, 10, 0] 
+                      rotate: [0, -10, 10, 0],
                     }}
                     transition={{ type: "spring", stiffness: 400 }}
                   >
                     <stat.icon size={18} />
                   </motion.div>
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                   className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text  mb-1"
                   initial={{ scale: 0.5 }}
-                  animate={{ scale:  1}}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 200, 
-                    delay: index * 0.1 + 0.5 
+                  animate={{ scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    delay: index * 0.1 + 0.5,
                   }}
                 >
-                  {stat.number.toLocaleString()}{stat.suffix}
+                  {stat.number.toLocaleString()}
+                  {stat.suffix}
                 </motion.div>
-                
+
                 <div className="text-white font-semibold text-sm mb-1">
                   {stat.text}
                 </div>
-                <div className="text-blue-200 text-xs">
-                  {stat.description}
-                </div>
+                <div className="text-blue-200 text-xs">{stat.description}</div>
               </div>
             </motion.div>
           ))}
@@ -588,31 +704,48 @@ const SimpleBackground = () => (
         {/* Trust Indicators */}
         <motion.div
           className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4 text-sm text-blue-200"
-          variants={itemVariants}
+          variants={{
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  }}
         >
-          <motion.div 
+          <motion.div
             className="flex items-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5 }}
           >
-            {["24/7 Support", "No Hidden Fees", "98% Success"].map((text, index) => (
-              <motion.div
-                key={text}
-                className="flex items-center gap-2 text-sm font-medium"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 2.8 + index * 0.1 }}
-              >
-                <motion.div 
-                  className="w-2 h-2 bg-cyan-300 rounded-full"
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
-                />
-                {text}
-              </motion.div>
-            ))}
+            {["24/7 Support", "No Hidden Fees", "98% Success"].map(
+              (text, index) => (
+                <motion.div
+                  key={text}
+                  className="flex items-center gap-2 text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 2.8 + index * 0.1 }}
+                >
+                  <motion.div
+                    className="w-2 h-2 bg-cyan-300 rounded-full"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: index * 0.5,
+                    }}
+                  />
+                  {text}
+                </motion.div>
+              )
+            )}
           </motion.div>
         </motion.div>
       </motion.div>

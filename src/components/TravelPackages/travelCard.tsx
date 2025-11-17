@@ -31,7 +31,8 @@ interface DestinationCardProps {
   viewMode?: "grid" | "list";
   reviews?: number;
   students?: number;
-  level?: "Beginner" | "Intermediate" | "Advanced";
+  // level?: "Beginner" | "Intermediate" | "Advanced" | "All Levels";
+  level?: string;
   language?: string;
 }
 
@@ -44,14 +45,14 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   country = "Multiple Countries",
   university = "Various Universities",
   duration = "Flexible",
-  type = "Study Program",
+  // type = "Study Program",
   features = ["Cultural Activities", "Academic Sessions"],
   discount,
   bestseller = false,
   viewMode = "grid",
   reviews = 128,
   students = 250,
-  level = "Intermediate",
+  // level = "Intermediate",
   language = "English",
 }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -85,18 +86,18 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   };
 
   /** ---------- Level Badge Color ---------- **/
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case "Beginner":
-        return "bg-green-100 text-green-700 border-green-200";
-      case "Intermediate":
-        return "bg-blue-100 text-blue-700 border-blue-200";
-      case "Advanced":
-        return "bg-purple-100 text-purple-700 border-purple-200";
-      default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
-    }
-  };
+  // const getLevelColor = (level: string) => {
+  //   switch (level) {
+  //     case "Beginner":
+  //       return "bg-green-100 text-green-700 border-green-200";
+  //     case "Intermediate":
+  //       return "bg-blue-100 text-blue-700 border-blue-200";
+  //     case "Advanced":
+  //       return "bg-purple-100 text-purple-700 border-purple-200";
+  //     default:
+  //       return "bg-gray-100 text-gray-700 border-gray-200";
+  //   }
+  // };
 
   /** ---------- Shared Badge Component ---------- **/
   const Badge = ({
@@ -120,7 +121,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
         <div className="flex flex-col bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 group-hover:-translate-y-2">
           {/* Image */}
           <div className="relative h-60 sm:h-64 overflow-hidden">
-            <img
+            <Image
               src={image}
               alt={title}
               fill

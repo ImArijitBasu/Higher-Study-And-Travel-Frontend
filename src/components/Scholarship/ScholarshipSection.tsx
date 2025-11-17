@@ -4,7 +4,12 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineDoubleRight, AiFillStar } from "react-icons/ai";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaAward } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaUniversity,
+  FaCalendarAlt,
+  FaAward,
+} from "react-icons/fa";
 
 interface Scholarship {
   id: number;
@@ -26,7 +31,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("/scrolarship.json")
+    fetch("/scholarship.json")
       .then((res) => res.json())
       .then((data) => setScholarships(data))
       .catch((err) => console.error("Failed to fetch universities:", err));
@@ -53,88 +58,46 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 80,
-      scale: 0.9,
+        staggerChildren: 0.2,
+      },
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    },
-    hover: {
-      y: -15,
-      scale: 1.03,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 25
-      }
-    }
   };
 
-  const floatVariants = {
-    floating: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
 
-  const shimmerVariants = {
-    initial: { x: "-100%", rotate: -45 },
-    animate: {
-      x: "200%",
-      rotate: -45,
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const glowVariants = {
-    pulse: {
-      scale: [1, 1.05, 1],
-      opacity: [0.5, 0.8, 0.5],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/30 relative overflow-hidden">
       {/* Animated Background Elements */}
       <motion.div
-        variants={floatVariants}
+        variants={{
+          floating: {
+            y: [-10, 10, -10],
+            transition: {
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+          },
+        }}
         animate="floating"
         className="absolute top-10 left-10 w-32 h-32 bg-blue-200/30 rounded-full blur-3xl"
       />
       <motion.div
-        variants={floatVariants}
+        variants={{
+          floating: {
+            y: [-10, 10, -10],
+            transition: {
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+          },
+        }}
         animate="floating"
         transition={{ delay: 2 }}
         className="absolute bottom-20 right-20 w-40 h-40 bg-emerald-200/20 rounded-full blur-3xl"
       />
-      
+
       {/* Floating Academic Icons */}
       {[...Array(8)].map((_, i) => (
         <motion.div
@@ -150,7 +113,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
             duration: 6 + Math.random() * 4,
             repeat: Infinity,
             delay: Math.random() * 2,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           style={{
             left: `${Math.random() * 100}%`,
@@ -187,7 +150,17 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
               className="relative"
             >
               <motion.div
-                variants={glowVariants}
+                variants={{
+                  pulse: {
+                    scale: [1, 1.05, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                    transition: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                  },
+                }}
                 animate="pulse"
                 className="absolute inset-0 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full opacity-20 blur-lg"
               />
@@ -218,7 +191,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
-            Discover life-changing opportunities from world-class institutions. 
+            Discover life-changing opportunities from world-class institutions.
             Your future starts with the right scholarship.
           </motion.p>
         </motion.div>
@@ -234,7 +207,31 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
           {displayedScholarships.map((scholarship, index) => (
             <motion.div
               key={scholarship.id}
-              variants={cardVariants}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 80,
+                  scale: 0.9,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                },
+                hover: {
+                  y: -15,
+                  scale: 1.03,
+                  transition: {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25,
+                  },
+                },
+              }}
               whileHover="hover"
               className="group cursor-pointer flex"
               onMouseEnter={() => setHoveredCard(scholarship.id)}
@@ -243,7 +240,18 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
               <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 relative w-full flex flex-col">
                 {/* Magnetic Shine Effect */}
                 <motion.div
-                  variants={shimmerVariants}
+                  variants={{
+                    initial: { x: "-100%", rotate: -45 },
+                    animate: {
+                      x: "200%",
+                      rotate: -45,
+                      transition: {
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                    },
+                  }}
                   initial="initial"
                   animate="animate"
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -255,7 +263,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     src={scholarship.image}
                     alt={scholarship.title}
                     className="w-full h-full object-cover"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.1,
                     }}
                     transition={{ duration: 0.7 }}
@@ -273,12 +281,16 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       <div className="flex items-center gap-2">
                         <motion.div
                           animate={{ rotate: [0, 360] }}
-                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                          transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                         >
                           <FaUniversity className="text-blue-600 text-sm" />
                         </motion.div>
                         <p className="text-sm font-bold text-gray-900 truncate">
-                          {scholarship.university.split(' ')[0]}
+                          {scholarship.university.split(" ")[0]}
                         </p>
                       </div>
                     </div>
@@ -298,7 +310,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       whileHover={{ scale: 1.2 }}
                     />
                     <span className="text-sm font-bold text-gray-900 truncate">
-                      {scholarship.country.split(' ')[0]}
+                      {scholarship.country.split(" ")[0]}
                     </span>
                   </motion.div>
 
@@ -310,9 +322,9 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/80 backdrop-blur-sm rounded-full px-4 py-2"
                   >
                     <motion.div
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.2, 1],
-                        rotate: [0, 10, 0]
+                        rotate: [0, 10, 0],
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
@@ -331,13 +343,13 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     className="absolute bottom-4 right-4"
                   >
                     <motion.div
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.1, 1],
                         boxShadow: [
                           "0 0 0px rgba(59, 130, 246, 0.3)",
                           "0 0 15px rgba(59, 130, 246, 0.6)",
                           "0 0 0px rgba(59, 130, 246, 0.3)",
-                        ]
+                        ],
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                       className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold truncate max-w-[100px]"
@@ -371,50 +383,59 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
 
                   {/* Amount & Deadline - Single Line */}
                   <div className="flex items-center justify-between gap-4 pt-2 flex-shrink-0">
-                    <motion.div 
+                    <motion.div
                       className="space-y-1 min-w-0"
                       whileHover={{ scale: 1.05 }}
                     >
-                      <p className="text-xs text-gray-500 uppercase font-bold tracking-wide truncate">Funding</p>
-                      <motion.p 
+                      <p className="text-xs text-gray-500 uppercase font-bold tracking-wide truncate">
+                        Funding
+                      </p>
+                      <motion.p
                         className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent truncate"
-                        animate={{ 
-                          backgroundPosition: ["0%", "100%", "0%"] 
+                        animate={{
+                          backgroundPosition: ["0%", "100%", "0%"],
                         }}
-                        transition={{ 
-                          duration: 3, 
-                          repeat: Infinity 
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
                         }}
                         style={{ backgroundSize: "200% 200%" }}
                       >
                         {scholarship.amount}
                       </motion.p>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                       className="space-y-1 min-w-0"
                       whileHover={{ scale: 1.05 }}
                     >
                       <div className="flex items-center gap-1">
                         <FaCalendarAlt className="text-gray-400 text-xs flex-shrink-0" />
-                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wide truncate">Deadline</p>
+                        <p className="text-xs text-gray-500 uppercase font-bold tracking-wide truncate">
+                          Deadline
+                        </p>
                       </div>
-                      <motion.span 
-                        className={`text-sm font-bold px-3 py-1.5 rounded-xl border-2 ${getDeadlineColor(scholarship.deadline)} truncate block text-center`}
+                      <motion.span
+                        className={`text-sm font-bold px-3 py-1.5 rounded-xl border-2 ${getDeadlineColor(
+                          scholarship.deadline
+                        )} truncate block text-center`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        {new Date(scholarship.deadline).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}
+                        {new Date(scholarship.deadline).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          }
+                        )}
                       </motion.span>
                     </motion.div>
                   </div>
 
                   {/* Action Button - Fixed at bottom */}
                   <motion.button
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
                       y: -2,
                     }}
@@ -425,15 +446,15 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     {[...Array(3)].map((_, i) => (
                       <motion.div
                         key={i}
-                        animate={{ 
+                        animate={{
                           y: [0, -25, 0],
                           opacity: [0, 1, 0],
                           scale: [0, 1, 0],
                         }}
-                        transition={{ 
-                          duration: 2, 
+                        transition={{
+                          duration: 2,
                           repeat: Infinity,
-                          delay: i * 0.3
+                          delay: i * 0.3,
                         }}
                         className="absolute w-1 h-1 bg-white rounded-full"
                         style={{
@@ -442,18 +463,18 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                         }}
                       />
                     ))}
-                    
-                   <Link href={`/u/scholarships/${scholarship.id}`}>
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      Apply Now
-                      <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <AiOutlineDoubleRight />
-                      </motion.div>
-                    </span>
-                   </Link>
+
+                    <Link href={`/u/scholarships/${scholarship.id}`}>
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        Apply Now
+                        <motion.div
+                          animate={{ x: [0, 5, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          <AiOutlineDoubleRight />
+                        </motion.div>
+                      </span>
+                    </Link>
 
                     {/* Button Shine Effect */}
                     <motion.div
@@ -463,7 +484,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       transition={{
                         duration: 1.5,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12"
                     />
@@ -511,20 +532,26 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       "linear-gradient(135deg, #2563eb, #10b981)",
                       "linear-gradient(135deg, #10b981, #2563eb)",
                       "linear-gradient(135deg, #2563eb, #10b981)",
-                    ]
+                    ],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                   className="absolute inset-0"
                 />
-                
+
                 {/* Shine Effect */}
                 <motion.div
                   animate={{ x: ["-100%", "200%"] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12"
                 />
-                
-                <span className="relative z-10 text-lg">Explore All Scholarships</span>
+
+                <span className="relative z-10 text-lg">
+                  Explore All Scholarships
+                </span>
                 <motion.div
                   animate={{ x: [0, 8, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -537,14 +564,14 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                 {[...Array(3)].map((_, i) => (
                   <motion.div
                     key={i}
-                    animate={{ 
+                    animate={{
                       y: [0, -20, 0],
                       opacity: [0, 1, 0],
                     }}
-                    transition={{ 
-                      duration: 3, 
+                    transition={{
+                      duration: 3,
                       repeat: Infinity,
-                      delay: i * 0.5
+                      delay: i * 0.5,
                     }}
                     className="absolute w-1 h-1 bg-white rounded-full"
                     style={{
@@ -557,7 +584,17 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
 
               {/* Outer Glow */}
               <motion.div
-                variants={glowVariants}
+                variants={{
+                  pulse: {
+                    scale: [1, 1.05, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                    transition: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                  },
+                }}
                 animate="pulse"
                 className="absolute inset-0 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-2xl blur-xl -z-10"
               />

@@ -49,7 +49,7 @@ const Footer = () => {
             STUDY ABROAD FOR EVERYONE
           </h3>
           <p className="text-gray-600 mt-2 leading-relaxed">
-            We’re here to make studying abroad achievable, and we building a
+            We&apos;re here to make studying abroad achievable, and we building a
             community of open-minded, connected, and culturally aware people
             ready to make a real impact in our ever-connected world.
           </p>

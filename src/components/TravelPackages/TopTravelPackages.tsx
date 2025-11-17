@@ -1,10 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { AiOutlineDoubleRight, AiFillStar, AiFillHeart } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
-import { FaCompass, FaMapMarkerAlt, FaCalendarDays, FaPlane, FaUmbrellaBeach } from "react-icons/fa6";
+import {
+  FaCompass,
+  FaCalendarDays,
+  FaPlane,
+  FaUmbrellaBeach,
+} from "react-icons/fa6";
 import Link from "next/link";
 
 const travelPackages = [
@@ -12,53 +23,73 @@ const travelPackages = [
     id: 1,
     title: "Rome Historical Journey",
     location: "Italy",
-    image: "https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/ancient-rome-hero?_a=BAVAZGID0",
+    image:
+      "https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/ancient-rome-hero?_a=BAVAZGID0",
     rating: 4.9,
     reviews: 1247,
     price: "$1,299",
     days: "7 Days",
     featured: true,
-    description: "Explore ancient ruins and Renaissance art in the Eternal City",
-    highlights: ["Colosseum Tour", "Vatican Museums", "Roman Forum", "Gelato Tasting"]
+    description:
+      "Explore ancient ruins and Renaissance art in the Eternal City",
+    highlights: [
+      "Colosseum Tour",
+      "Vatican Museums",
+      "Roman Forum",
+      "Gelato Tasting",
+    ],
   },
   {
     id: 2,
     title: "Kyoto Temple Tour",
     location: "Japan",
-    image: "https://www.hertz.com/content/dam/hertz/global/blog-articles/planning-a-trip/kyoto-japan/kyoto-header.jpg",
+    image:
+      "https://www.hertz.com/content/dam/hertz/global/blog-articles/planning-a-trip/kyoto-japan/kyoto-header.jpg",
     rating: 4.8,
     reviews: 892,
     price: "$1,099",
     days: "6 Days",
     featured: false,
     description: "Discover traditional temples and serene gardens",
-    highlights: ["Fushimi Inari", "Kinkaku-ji Temple", "Geisha District", "Tea Ceremony"]
+    highlights: [
+      "Fushimi Inari",
+      "Kinkaku-ji Temple",
+      "Geisha District",
+      "Tea Ceremony",
+    ],
   },
   {
     id: 3,
     title: "Egypt Pyramids Adventure",
     location: "Egypt",
-    image: "https://egyptescapes.com/wp-content/uploads/2022/12/egypt-adventures.jpg",
+    image:
+      "https://egyptescapes.com/wp-content/uploads/2022/12/egypt-adventures.jpg",
     rating: 4.7,
     reviews: 1563,
     price: "$899",
     days: "5 Days",
     featured: true,
     description: "Uncover ancient mysteries and majestic pyramids",
-    highlights: ["Giza Pyramids", "Nile Cruise", "Valley of Kings", "Camel Ride"]
+    highlights: [
+      "Giza Pyramids",
+      "Nile Cruise",
+      "Valley of Kings",
+      "Camel Ride",
+    ],
   },
   {
     id: 4,
     title: "Machu Picchu Trek",
     location: "Peru",
-    image: "https://rezkit-tour-images.b-cdn.net/01h7ywwd7at70t98wdj69emng5/images/01H8Y65RZZBDRHYNE92FQK8FHF.jpg?width=1920&height=700&crop=2096%2C764%2C19%2C556",
+    image:
+      "https://rezkit-tour-images.b-cdn.net/01h7ywwd7at70t98wdj69emng5/images/01H8Y65RZZBDRHYNE92FQK8FHF.jpg?width=1920&height=700&crop=2096%2C764%2C19%2C556",
     rating: 4.9,
     reviews: 734,
     price: "$1,499",
     days: "8 Days",
     featured: false,
     description: "Hike through ancient Incan trails to the lost city",
-    highlights: ["Inca Trail", "Sun Gate", "Sacred Valley", "Local Markets"]
+    highlights: ["Inca Trail", "Sun Gate", "Sacred Valley", "Local Markets"],
   },
 ];
 
@@ -76,61 +107,61 @@ const TravelLogo = () => (
       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       className="absolute inset-0 border-4 border-blue-500/20 rounded-full"
     />
-    
+
     {/* Middle Ring */}
     <motion.div
       animate={{ rotate: -360 }}
       transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       className="absolute inset-2 border-3 border-cyan-500/30 rounded-full"
     />
-    
+
     {/* Inner Content */}
     <div className="relative w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl flex items-center justify-center shadow-2xl">
       {/* Compass Icon */}
       <motion.div
-        animate={{ 
+        animate={{
           rotate: [0, 10, -10, 0],
-          scale: [1, 1.1, 1]
+          scale: [1, 1.1, 1],
         }}
-        transition={{ 
-          duration: 4, 
+        transition={{
+          duration: 4,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
       >
         <FaCompass className="text-white text-3xl" />
       </motion.div>
-      
+
       {/* Floating Dots */}
       {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
           animate={{
             rotate: [0, 360],
-            x: Math.cos(i * 90 * Math.PI / 180) * 30,
-            y: Math.sin(i * 90 * Math.PI / 180) * 30,
+            x: Math.cos((i * 90 * Math.PI) / 180) * 30,
+            y: Math.sin((i * 90 * Math.PI) / 180) * 30,
           }}
           transition={{
             duration: 3,
             repeat: Infinity,
             delay: i * 0.5,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute w-2 h-2 bg-yellow-400 rounded-full"
         />
       ))}
     </div>
-    
+
     {/* Glow Effect */}
     <motion.div
-      animate={{ 
+      animate={{
         scale: [1, 1.2, 1],
-        opacity: [0.5, 0.8, 0.5]
+        opacity: [0.5, 0.8, 0.5],
       }}
-      transition={{ 
-        duration: 2, 
+      transition={{
+        duration: 2,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut",
       }}
       className="absolute inset-0 bg-blue-500/20 rounded-2xl blur-xl -z-10"
     />
@@ -138,29 +169,35 @@ const TravelLogo = () => (
 );
 
 // Enhanced 3D Card Component with Reduced Lift
-const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: number }) => {
+const TravelCard3D = ({
+  pkg,
+  index,
+}: {
+  pkg: (typeof travelPackages)[0];
+  index: number;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  
+
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   // Reduced rotation for subtler effect
   const rotateX = useSpring(useTransform(y, [-100, 100], [10, -10]), {
     stiffness: 300,
-    damping: 30
+    damping: 30,
   });
   const rotateY = useSpring(useTransform(x, [-100, 100], [-10, 10]), {
     stiffness: 300,
-    damping: 30
+    damping: 30,
   });
 
   const scale = useSpring(1, { stiffness: 400, damping: 30 });
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
-    
+
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -168,7 +205,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
     const mouseY = event.clientY - rect.top;
     const xPct = mouseX / width - 0.5;
     const yPct = mouseY / height - 0.5;
-    
+
     x.set(xPct * 200);
     y.set(yPct * 200);
   };
@@ -196,20 +233,20 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
         rotateY,
         scale,
       }}
-      initial={{ 
-        opacity: 0, 
+      initial={{
+        opacity: 0,
         y: 80,
-        scale: 0.9
+        scale: 0.9,
       }}
-      whileInView={{ 
-        opacity: 1, 
+      whileInView={{
+        opacity: 1,
         y: 0,
-        scale: 1
+        scale: 1,
       }}
       transition={{
         duration: 0.8,
         delay: index * 0.15,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       viewport={{ once: true, margin: "-50px" }}
       className="cursor-pointer group relative"
@@ -241,7 +278,6 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
       </AnimatePresence>
 
       <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 relative h-full backdrop-blur-sm">
-        
         {/* Holographic Effect */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -257,22 +293,22 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
                 <motion.div
                   key={i}
                   initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
-                  animate={{ 
-                    scale: 1, 
+                  animate={{
+                    scale: 1,
                     opacity: 1,
-                    x: Math.cos(i * 90 * Math.PI / 180) * 30,
-                    y: Math.sin(i * 90 * Math.PI / 180) * 30,
+                    x: Math.cos((i * 90 * Math.PI) / 180) * 30,
+                    y: Math.sin((i * 90 * Math.PI) / 180) * 30,
                   }}
                   exit={{ scale: 0, opacity: 0, x: 0, y: 0 }}
                   transition={{
                     duration: 2,
                     delay: i * 0.2,
-                    ease: "easeOut"
+                    ease: "easeOut",
                   }}
                   className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full z-20"
                   style={{
-                    left: '50%',
-                    top: '50%',
+                    left: "50%",
+                    top: "50%",
                     marginLeft: -4,
                     marginTop: -4,
                   }}
@@ -288,7 +324,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             src={pkg.image}
             alt={pkg.title}
             className="w-full h-full object-cover"
-            whileHover={{ 
+            whileHover={{
               scale: 1.1, // Reduced from 1.15 to 1.1
             }}
             transition={{ duration: 0.8 }}
@@ -306,25 +342,29 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 + 0.3, type: "spring" }}
-              className="absolute top-6 left-6 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-3 rounded-2xl font-bold shadow-2xl"
-              whileHover={{
-                scale: 1.05, // Reduced from 1.1
-                transition: { type: "spring", stiffness: 400 }
-              }}
               animate={{
                 boxShadow: [
                   "0 10px 30px rgba(245, 158, 11, 0.3)",
                   "0 15px 40px rgba(245, 158, 11, 0.5)",
                   "0 10px 30px rgba(245, 158, 11, 0.3)",
-                ]
+                ],
               }}
               transition={{
+                // main timing for initial/whileInView
+                duration: 0.6,
+                delay: index * 0.15 + 0.3,
+                type: "spring",
+                // separate config for the boxShadow key (infinite pulse)
                 boxShadow: {
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
-                }
+                  ease: "easeInOut",
+                },
+              }}
+              className="absolute top-6 left-6 bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-3 rounded-2xl font-bold shadow-2xl"
+              whileHover={{
+                scale: 1.05,
+                transition: { type: "spring", stiffness: 400 },
               }}
             >
               <div className="flex items-center gap-2">
@@ -353,9 +393,9 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             className="absolute top-6 right-6 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-2xl z-20"
           >
             <motion.div
-              animate={{ 
+              animate={{
                 scale: isLiked ? [1, 1.3, 1] : 1,
-                color: isLiked ? "#ef4444" : "#6b7280"
+                color: isLiked ? "#ef4444" : "#6b7280",
               }}
               transition={{ duration: 0.3 }}
             >
@@ -393,7 +433,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             >
               {pkg.title}
             </motion.h3>
-            <motion.div 
+            <motion.div
               className="flex items-center text-white/90 bg-black/40 backdrop-blur-sm rounded-xl px-4 py-3 w-fit"
               whileHover={{ scale: 1.05 }}
             >
@@ -410,7 +450,6 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
 
         {/* Card Content */}
         <div className="bg-gradient-to-br from-white to-gray-50 p-6 rounded-b-3xl">
-          
           {/* Description */}
           <motion.p
             initial={{ opacity: 0 }}
@@ -429,12 +468,12 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
             >
               <motion.span
                 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent"
-                animate={{ 
-                  backgroundPosition: ["0%", "100%", "0%"] 
+                animate={{
+                  backgroundPosition: ["0%", "100%", "0%"],
                 }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity 
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
                 }}
                 style={{ backgroundSize: "200% 200%" }}
               >
@@ -442,7 +481,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
               </motion.span>
               <span className="text-gray-600 text-sm">/person</span>
             </motion.div>
-            
+
             <motion.div
               whileHover={{ scale: 1.05, rotate: 2 }} // Reduced rotation
               className="bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-600 px-4 py-3 rounded-2xl text-sm font-bold border border-blue-200 flex items-center gap-3"
@@ -469,10 +508,10 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
                 key={i}
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ 
-                  duration: 0.4, 
+                transition={{
+                  duration: 0.4,
                   delay: index * 0.15 + 1.3 + i * 0.1,
-                  type: "spring" 
+                  type: "spring",
                 }}
                 className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-lg"
                 whileHover={{ scale: 1.05 }}
@@ -484,7 +523,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
 
           {/* Action Button with Liquid Fill */}
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.03, // Reduced from 1.05
             }}
             whileTap={{ scale: 0.95 }}
@@ -497,20 +536,20 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
               className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl"
               transition={{ duration: 0.3 }}
             />
-            
+
             {/* Floating Particles */}
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
-                animate={{ 
+                animate={{
                   y: [0, -20, 0], // Reduced movement
                   opacity: [0, 1, 0],
                   scale: [0, 1, 0],
                 }}
-                transition={{ 
-                  duration: 2, 
+                transition={{
+                  duration: 2,
                   repeat: Infinity,
-                  delay: i * 0.3
+                  delay: i * 0.3,
                 }}
                 className="absolute w-1.5 h-1.5 bg-white rounded-full"
                 style={{
@@ -519,7 +558,7 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
                 }}
               />
             ))}
-            
+
             <span className="relative z-10 flex items-center justify-center gap-3 text-lg font-semibold">
               <FaUmbrellaBeach className="text-lg" />
               Explore Package
@@ -543,9 +582,9 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
         {/* Magnetic Border Glow */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ 
+          animate={{
             opacity: isHovered ? 1 : 0,
-            scale: isHovered ? 1 : 0.95
+            scale: isHovered ? 1 : 0.95,
           }}
           className="absolute inset-0 border-3 border-transparent bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-emerald-500/30 rounded-3xl -z-10 transition-all duration-500 blur-md"
         />
@@ -557,7 +596,6 @@ const TravelCard3D = ({ pkg, index }: { pkg: typeof travelPackages[0]; index: nu
 export default function TopTravelPackages() {
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 relative overflow-hidden">
-      
       {/* Animated Background Elements */}
       <motion.div
         animate={{
@@ -567,11 +605,11 @@ export default function TopTravelPackages() {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
         className="absolute top-20 left-10 w-40 h-40 bg-blue-200/40 rounded-full blur-3xl"
       />
-      
+
       <motion.div
         animate={{
           y: [20, -20, 20], // Reduced movement
@@ -581,7 +619,7 @@ export default function TopTravelPackages() {
           duration: 8,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 2
+          delay: 2,
         }}
         className="absolute bottom-20 right-10 w-48 h-48 bg-cyan-200/30 rounded-full blur-3xl"
       />
@@ -599,7 +637,7 @@ export default function TopTravelPackages() {
             duration: 10 + i * 2,
             repeat: Infinity,
             delay: i * 2,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute text-blue-300/20 z-0"
           style={{
@@ -612,7 +650,6 @@ export default function TopTravelPackages() {
       ))}
 
       <div className="container mx-auto px-4 relative z-10">
-        
         {/* Enhanced Header with Custom Logo */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
@@ -660,7 +697,8 @@ export default function TopTravelPackages() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
-            Discover handpicked destinations that transform ordinary trips into extraordinary memories
+            Discover handpicked destinations that transform ordinary trips into
+            extraordinary memories
           </motion.p>
         </motion.div>
 
@@ -701,20 +739,26 @@ export default function TopTravelPackages() {
                     "linear-gradient(45deg, #2563eb, #0891b2, #0ea5e9)",
                     "linear-gradient(45deg, #0ea5e9, #2563eb, #0891b2)",
                     "linear-gradient(45deg, #0891b2, #0ea5e9, #2563eb)",
-                  ]
+                  ],
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
                 className="absolute inset-0"
               />
-              
+
               {/* 3D Shine Effect */}
               <motion.div
                 animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12"
               />
-              
-              <span className="relative z-10 text-lg font-semibold">Explore All Travel </span>
+
+              <span className="relative z-10 text-lg font-semibold">
+                Explore All Travel{" "}
+              </span>
               <motion.div
                 animate={{ x: [0, 6, 0], rotate: [0, 8, 0] }} // Reduced movement
                 transition={{ duration: 2, repeat: Infinity }}
@@ -727,15 +771,15 @@ export default function TopTravelPackages() {
               {[...Array(4)].map((_, i) => (
                 <motion.div
                   key={i}
-                  animate={{ 
+                  animate={{
                     y: [0, -20, 0], // Reduced movement
                     opacity: [0, 1, 0],
                     scale: [0, 1, 0],
                   }}
-                  transition={{ 
-                    duration: 3, 
+                  transition={{
+                    duration: 3,
                     repeat: Infinity,
-                    delay: i * 0.3
+                    delay: i * 0.3,
                   }}
                   className="absolute w-1.5 h-1.5 bg-white rounded-full"
                   style={{
@@ -755,7 +799,7 @@ export default function TopTravelPackages() {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
               className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur-xl -z-10"
             />
