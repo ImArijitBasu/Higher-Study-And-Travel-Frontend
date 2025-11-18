@@ -1,10 +1,9 @@
 // "use client";
 
 
-import DestinationsPage from "@/components/TravelPackages/destinationsPage";
+import DestinationsPage from "@/components/TravelPackages/travelPage";
 import TriBanner from "@/components/TravelPackages/triBanner";
 
-import { FaSearch } from "react-icons/fa";
 
 export const metadata = {
   title: "Scholarships | Study & Travel Portal",

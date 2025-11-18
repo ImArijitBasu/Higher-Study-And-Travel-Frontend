@@ -4,6 +4,7 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
 import { MdOutlineMail } from "react-icons/md";
 import { PiAirplaneTiltFill } from "react-icons/pi";
+import { GiCommercialAirplane } from "react-icons/gi";
 
 const Footer = () => {
   return (
@@ -34,15 +35,21 @@ const Footer = () => {
         {/* Left Section */}
         <div>
           <div className="flex items-center gap-2">
-            <PiAirplaneTiltFill className="text-4xl text-cyan-400" />
-            <h2 className="text-2xl font-extrabold">STUDY & TRAVEL</h2>
+            {/* Logo */}
+            <Link
+              href={"/"}
+              className="flex justify-start items-center text-xs md:text-xl uppercase font-extrabold text-black"
+            >
+              <GiCommercialAirplane className="text-2xl md:text-4xl mr-2 text-cyan-400" />
+              Study & Travel
+            </Link>
           </div>
 
           <h3 className="mt-6 font-bold text-gray-800">
             STUDY ABROAD FOR EVERYONE
           </h3>
           <p className="text-gray-600 mt-2 leading-relaxed">
-            We’re here to make studying abroad achievable, and we building a
+            We&apos;re here to make studying abroad achievable, and we building a
             community of open-minded, connected, and culturally aware people
             ready to make a real impact in our ever-connected world.
           </p>

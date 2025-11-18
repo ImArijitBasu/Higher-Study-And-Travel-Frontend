@@ -1,4 +1,4 @@
-import ScholarshipsSection from "@/components/Scrollership/ScholarshipSection";
+import ScholarshipsSection from "@/components/Scholarship/ScholarshipSection";
 import TopTravelPackages from "@/components/TravelPackages/TopTravelPackages";
 import { UniversitiesSection } from "@/components/University/university_section";
 import MainBanner from "@/components/Banner/MainBanner";
@@ -7,6 +7,7 @@ import ExtraCard from "@/components/ExtraCard/ExtraCard";
 import StudyAbroadWork from "@/components/ui/StudyAbroadWork";
 import WorkSection from "@/components/Work_Section/Work _Section";
 import CarouselCards from "@/components/CarouselCard/CarouselCard";
+import DestinationsPage from "@/components/TravelPackages/destination";
 
 export default function Home() {
   return (
@@ -16,9 +17,9 @@ export default function Home() {
       <ScholarshipsSection limit={4}/>
       <TopTravelPackages />
       <CarouselCards />
+      <WorkSection />
       <AboutStudy />
       <StudyAbroadWork />
-      <WorkSection />
       <ExtraCard/>
     </div>
   );

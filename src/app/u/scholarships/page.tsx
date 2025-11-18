@@ -1,16 +1,17 @@
 // "use client";
 
-import ScholarshipsSection from "@/components/Scrollership/ScholarshipSection";
-import SciBanner from "@/components/Scrollership/sciBanner";
-import SciFilterSection from "@/components/Scrollership/sciFilter";
-
+import ScholarshipsSection from "@/components/Scholarship/ScholarshipSection";
+import SciBanner from "@/components/Scholarship/sciBanner";
+import UniBanner from "@/components/University/uniBanner";
+import FilterSection from "@/components/University/uniFilter";
+import { UniversitiesSection } from "@/components/University/university_section";
 import { FaSearch } from "react-icons/fa";
 
 export const metadata = {
-  title: "Scholarships | Study & Travel Portal",
-  description: "Find and explore top Scholarships.",
+  title: "Universities | Study & Travel Portal",
+  description: "Find and explore top universities worldwide.",
 };
-export default function ScholarshipsPage() {
+export default function UniversitiesPage() {
   return (
     <>
       <div className="w-full flex flex-col items-center mt-20">
@@ -22,7 +23,7 @@ export default function ScholarshipsPage() {
           <div className="relative flex items-center bg-white rounded-full  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl focus-within:shadow-xl">
             <input
               type="text"
-              placeholder="Search Scholarships"
+              placeholder="Search Universities"
               className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200 border-4 rounded-full "
             />
             <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
@@ -50,10 +51,10 @@ export default function ScholarshipsPage() {
             ))}
           </div>
         </div> */}
-        <SciFilterSection/>
+        <FilterSection/>
 
         {/* University Section */}
-        <ScholarshipsSection limit={undefined}/>
+        <ScholarshipsSection limit={undefined} />
       </div>
     </>
   );
