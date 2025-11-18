@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import Link from "next/link";
+import Image from "next/image";
 
 export function UniversitiesSection({ limit }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -129,7 +130,7 @@ export function UniversitiesSection({ limit }) {
             >
               {/* Image Container */}
               <div className="relative w-full h-56 overflow-hidden">
-                <img
+                <Image
                   src={uni.image}
                   alt={uni.universityName}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

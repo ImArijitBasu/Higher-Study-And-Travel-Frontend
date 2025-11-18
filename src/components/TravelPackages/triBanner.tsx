@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { FaSearch } from "react-icons/fa";
+
 
 const TriBanner = () => {
     return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
@@ -309,7 +309,7 @@ export default function WorkSection() {
           {steps.map((step, index) => (
             <motion.div
               key={step.id}
-              variants={itemVariants}
+              variants={{itemVariants}}
               custom={index}
               className="relative group"
             >
@@ -326,7 +326,7 @@ export default function WorkSection() {
               </motion.div>
 
               <motion.div
-                variants={cardVariants}
+                variants={{cardVariants}}
                 whileHover="hover"
                 className={`relative h-full bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100/80 overflow-hidden group-hover:border-blue-200/50 transition-all duration-500 ${step.borderColor} group-hover:${step.borderColor.replace('200', '300')}`}
               >
@@ -338,7 +338,7 @@ export default function WorkSection() {
                 <CardContent className="flex flex-col items-center text-center space-y-6 p-8 relative z-10 h-full">
                   {/* Enhanced Icon Container */}
                   <motion.div
-                    variants={iconContainerVariants}
+                    variants={{iconContainerVariants}}
                     whileHover="hover"
                     className={`p-5 rounded-2xl ${step.bgGradient} group-hover:${step.hoverGradient} shadow-2xl flex items-center justify-center relative overflow-hidden group/icon transition-all duration-500`}
                   >
