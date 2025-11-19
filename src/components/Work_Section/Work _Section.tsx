@@ -71,9 +71,13 @@ const stats = [
   { icon: <FaGlobe className="w-5 h-5" />, value: 80, label: "Countries", suffix: "+" },
   { icon: <FaStar className="w-5 h-5" />, value: 4.9, label: "Student Rating", suffix: "/5" },
 ];
-
+type AnimatedCounterProps = {
+  value: number;
+  suffix?: string;
+  duration?: number;
+};
 // Animated Counter Component
-const AnimatedCounter = ({ value, suffix = "", duration = 2 }) => {
+const AnimatedCounter = ({ value, suffix = "" }:AnimatedCounterProps) => {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef(null);
   
@@ -119,9 +123,9 @@ const AnimatedCounter = ({ value, suffix = "", duration = 2 }) => {
 
 export default function WorkSection() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
+  const sectionInView = useInView(sectionRef, { once: true, threshold: 0.1 });
   const statsRef = useRef(null);
-  const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
+  const statsSectionInView = useInView(statsRef, { once: true, threshold: 0.1 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -233,14 +237,14 @@ export default function WorkSection() {
         {/* Enhanced Header with Better Animations */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-center mb-20"
         >
           {/* Animated Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+            animate={sectionInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 mb-8"
           >
@@ -253,7 +257,7 @@ export default function WorkSection() {
           {/* Main Title */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            animate={sectionInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex justify-center items-center gap-4 mb-6"
           >
@@ -270,7 +274,7 @@ export default function WorkSection() {
 
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
           >
@@ -282,7 +286,7 @@ export default function WorkSection() {
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light"
           >
@@ -295,13 +299,13 @@ export default function WorkSection() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={sectionInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 relative"
         >
           {/* Animated Connection Line */}
           <motion.div
             initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+            animate={sectionInView ? { scaleX: 1 } : { scaleX: 0 }}
             transition={{ duration: 1.5, delay: 0.8, ease: "easeInOut" }}
             className="hidden lg:block absolute top-16 left-8 right-8 h-1 bg-gradient-to-r from-blue-200 via-purple-200 to-emerald-200 rounded-full -z-10"
           />
@@ -316,7 +320,7 @@ export default function WorkSection() {
               {/* Step Number with Animation */}
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
-                animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+                animate={sectionInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                 transition={{ duration: 0.6, delay: step.delay, type: "spring" }}
                 className="absolute -top-3 -left-3 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center border border-gray-100 z-20 group-hover:shadow-2xl transition-all duration-300"
               >
@@ -371,7 +375,7 @@ export default function WorkSection() {
                   {/* Animated CTA */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    animate={sectionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ duration: 0.6, delay: step.delay + 0.5 }}
                     className={`flex items-center gap-2 text-sm font-semibold ${step.color} group-hover:${step.color.replace('600', '700')} transition-colors duration-300 cursor-pointer`}
                   >
@@ -399,13 +403,13 @@ export default function WorkSection() {
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 50 }}
-          animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          animate={statsSectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100/80 p-12 mb-16"
         >
           <motion.h3
             initial={{ opacity: 0 }}
-            animate={statsInView ? { opacity: 1 } : { opacity: 0 }}
+            animate={statsSectionInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-3xl font-bold text-center text-gray-900 mb-12"
           >
@@ -417,7 +421,7 @@ export default function WorkSection() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                animate={statsInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 30 }}
+                animate={statsSectionInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.9 + index * 0.1, type: "spring" }}
                 className="text-center group"
               >
@@ -435,7 +439,7 @@ export default function WorkSection() {
                 
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={statsInView ? { opacity: 1 } : { opacity: 0 }}
+                  animate={statsSectionInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.6, delay: 1.1 + index * 0.1 }}
                   className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent mb-2 min-h-[48px] flex items-center justify-center"
                 >
@@ -448,7 +452,7 @@ export default function WorkSection() {
                 
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={statsInView ? { opacity: 1 } : { opacity: 0 }}
+                  animate={statsSectionInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
                   className="text-sm text-gray-600 font-medium uppercase tracking-wider group-hover:text-gray-700 transition-colors duration-300"
                 >
@@ -462,7 +466,7 @@ export default function WorkSection() {
         {/* Enhanced CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 1.5 }}
           className="text-center"
         >
@@ -489,7 +493,7 @@ export default function WorkSection() {
           
           <motion.p
             initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            animate={sectionInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 1.7 }}
             className="text-gray-500 text-sm mt-6 flex items-center justify-center gap-2"
           >

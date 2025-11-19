@@ -166,7 +166,7 @@ const AuthToggle = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
-
+const niloy="hello";
 
   useEffect(() => {
     const fetchUser = async () => {
