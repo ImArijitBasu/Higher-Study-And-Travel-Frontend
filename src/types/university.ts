@@ -16,7 +16,7 @@ export interface UniversityCardProps {
   entryScore: string;
   tuitionFee: string;
   image?: string;
-  // isFeatured?: boolean;
+  isFeatured?: boolean;
   // description?: string;
   // website?: string;
   // highlights?: string[];

@@ -104,6 +104,36 @@ const nextConfig = {
         hostname: "cdn.prod.website-files.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "static.sliit.lk",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "image-static.collegedunia.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.meridean.org",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "dxp.plus",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.shiksha.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "edunirvana.in",
+        pathname: "/**",
+      },
     ],
   },
 };

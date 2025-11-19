@@ -66,7 +66,8 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
 
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/30 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-emerald-50 to-transparent relative overflow-hidden">
+
       {/* Animated Background Elements */}
       <motion.div
         variants={{
@@ -102,7 +103,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute text-blue-300/20"
+          className="absolute text-cyan-300/50 "
           animate={{
             y: [0, -30, 0],
             x: [0, Math.sin(i) * 20, 0],
@@ -120,7 +121,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
             top: `${Math.random() * 100}%`,
           }}
         >
-          <FaGraduationCap size={24} />
+          <FaGraduationCap size={48} />
         </motion.div>
       ))}
 

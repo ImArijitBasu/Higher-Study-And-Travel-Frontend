@@ -595,7 +595,7 @@ const TravelCard3D = ({
 
 export default function TopTravelPackages() {
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-cyan-600/10 to-transparent relative overflow-hidden">
       {/* Animated Background Elements */}
       <motion.div
         animate={{
@@ -625,7 +625,7 @@ export default function TopTravelPackages() {
       />
 
       {/* Floating Travel Icons */}
-      {[...Array(4)].map((_, i) => (
+      {[...Array(10)].map((_, i) => (
         <motion.div
           key={i}
           animate={{
@@ -639,13 +639,13 @@ export default function TopTravelPackages() {
             delay: i * 2,
             ease: "easeInOut",
           }}
-          className="absolute text-blue-300/20 z-0"
+          className="absolute text-blue-300/60 z-0"
           style={{
             left: `${10 + i * 20}%`,
             top: `${10 + i * 15}%`,
           }}
         >
-          <FaPlane size={24} /> {/* Smaller icon */}
+          <FaPlane size={48} /> {/* Smaller icon */}
         </motion.div>
       ))}
 

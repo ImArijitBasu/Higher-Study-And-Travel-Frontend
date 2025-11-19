@@ -2,12 +2,32 @@
 import React, { useRef, useEffect, useState } from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import Link from "next/link";
+import Image from "next/image";
 
-export function UniversitiesSection({ limit }) {
+type Particle = {
+  left: string;
+  top: string;
+  animationDelay: string;
+  animationDuration: string;
+  color: string;
+};
+type University = {
+  id: string;
+  universityName: string;
+  programName: string;
+  location: string;
+  worldRank: number;
+  tuitionFee: string;
+  image: string;
+};
+type UniversitiesSectionProps = {
+  limit?: number; 
+};
+export function UniversitiesSection({limit}:UniversitiesSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [universities, setUniversities] = useState([]);
-  const [particlePositions, setParticlePositions] = useState([]);
+  const [universities, setUniversities] = useState<University[]>([]);
   const sectionRef = useRef(null);
+  const [particlePositions, setParticlePositions] = useState<Particle[]>([]);
 
   useEffect(() => {
     fetch("/university.json")
@@ -18,12 +38,17 @@ export function UniversitiesSection({ limit }) {
 
   // Client-side only particle positions
   useEffect(() => {
-    const positions = Array.from({ length: 15 }, () => ({
+    const colors = ["bg-cyan-300", "bg-emerald-300", "bg-purple-300"];
+    const particleCount = 30;
+
+    const positions: Particle[] = Array.from({ length: particleCount }, () => ({
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animationDelay: `${Math.random() * 5}s`,
-      animationDuration: `${15 + Math.random() * 10}s`
+      animationDuration: `${15 + Math.random() * 10}s`,
+      color: colors[Math.floor(Math.random() * colors.length)],
     }));
+
     setParticlePositions(positions);
   }, []);
 
@@ -70,32 +95,46 @@ export function UniversitiesSection({ limit }) {
             {/* Main title with gradient and effects */}
             <div className="relative">
               <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                <span className="block transform transition-all duration-700 delay-300"
+                <span
+                  className="block transform transition-all duration-700 delay-300"
                   style={{
                     opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0)' : 'translateY(-30px)'
-                  }}>
+                    transform: isVisible
+                      ? "translateY(0)"
+                      : "translateY(-30px)",
+                  }}
+                >
                   Featured
                 </span>
-                <span className="block text-cyan-500 bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 font-black tracking-tighter transform transition-all duration-700 delay-500"
+                <span
+                  className="block text-cyan-500 bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 font-black tracking-tighter transform transition-all duration-700 delay-500"
                   style={{
                     opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(-20px) scale(0.95)'
-                  }}>
+                    transform: isVisible
+                      ? "translateY(0) scale(1)"
+                      : "translateY(-20px) scale(0.95)",
+                  }}
+                >
                   Universities
                 </span>
               </h2>
 
               {/* Underline effect */}
               <div className="relative h-1 w-24 mx-auto mt-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 transform transition-all duration-1000 delay-700"
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 transform transition-all duration-1000 delay-700"
                   style={{
-                    transform: isVisible ? 'translateX(0)' : 'translateX(-100%)'
-                  }}></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 transform transition-all duration-1000 delay-800"
+                    transform: isVisible
+                      ? "translateX(0)"
+                      : "translateX(-100%)",
+                  }}
+                ></div>
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 transform transition-all duration-1000 delay-800"
                   style={{
-                    transform: isVisible ? 'translateX(0)' : 'translateX(100%)'
-                  }}></div>
+                    transform: isVisible ? "translateX(0)" : "translateX(100%)",
+                  }}
+                ></div>
               </div>
             </div>
 
@@ -104,12 +143,15 @@ export function UniversitiesSection({ limit }) {
             <div className="absolute -bottom-4 -right-4 w-4 h-4 bg-cyan-500 rounded-full opacity-0 animate-bounce-in delay-1200"></div>
           </div>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light transform transition-all duration-1000 delay-700"
+          <p
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light transform transition-all duration-1000 delay-700"
             style={{
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(-20px)'
-            }}>
-            Partnering with world-class institutions to provide exceptional educational opportunities globally.
+              transform: isVisible ? "translateY(0)" : "translateY(-20px)",
+            }}
+          >
+            Partnering with world-class institutions to provide exceptional
+            educational opportunities globally.
           </p>
         </div>
 
@@ -122,16 +164,20 @@ export function UniversitiesSection({ limit }) {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible
-                  ? 'translateY(0) scale(1)'
-                  : 'translateY(50px) scale(0.9)',
-                transition: `all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`
+                  ? "translateY(0) scale(1)"
+                  : "translateY(50px) scale(0.9)",
+                transition: `all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${
+                  index * 0.1
+                }s`,
               }}
             >
               {/* Image Container */}
               <div className="relative w-full h-56 overflow-hidden">
-                <img
+                <Image
                   src={uni.image}
                   alt={uni.universityName}
+                  width={300}
+                  height={200}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 {/* Gradient Overlay */}
@@ -166,21 +212,21 @@ export function UniversitiesSection({ limit }) {
                     {uni.tuitionFee}
                   </span>
                   {/* Fixed Details Button */}
-                  <Link 
-                    href={`/u/universities/${uni.id}`} 
+                  <Link
+                    href={`/u/universities/${uni.id}`}
                     className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-5 py-2.5 rounded-xl font-semibold transform transition-all duration-500 flex items-center gap-2 shadow-lg hover:shadow-blue-300 group/btn hover:scale-105 hover:-translate-y-0.5"
                   >
                     <span className="relative z-10 transform group-hover/btn:translate-x-1 transition-transform duration-300">
                       Details
                     </span>
                     <AiOutlineDoubleRight className="relative z-10 transform group-hover/btn:translate-x-2 transition-transform duration-300" />
-                    
+
                     {/* Button Shine Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                    
+
                     {/* Pulse Ring Effect */}
                     <div className="absolute inset-0 border-2 border-white rounded-xl opacity-0 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all duration-500"></div>
-                    
+
                     {/* Ripple Effect Container */}
                     <div className="absolute inset-0 overflow-hidden rounded-xl">
                       <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 group-hover/btn:scale-150 transition-all duration-500 ease-out rounded-full transform origin-center"></div>
@@ -198,11 +244,13 @@ export function UniversitiesSection({ limit }) {
 
         {/* Enhanced CTA Button with Premium Animation */}
         {limit && (
-          <div className="mt-16 text-center transform transition-all duration-1000 delay-800"
+          <div
+            className="mt-16 text-center transform transition-all duration-1000 delay-800"
             style={{
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
-            }}>
+              transform: isVisible ? "translateY(0)" : "translateY(30px)",
+            }}
+          >
             <div className="relative inline-block">
               {/* Background Glow Effect */}
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
@@ -214,7 +262,10 @@ export function UniversitiesSection({ limit }) {
                 <span className="relative z-10 transform group-hover:translate-x-2 transition-transform duration-300">
                   Browse All Universities
                 </span>
-                <AiOutlineDoubleRight size={24} className="relative z-10 transform group-hover:translate-x-3 group-hover:scale-110 transition-transform duration-300" />
+                <AiOutlineDoubleRight
+                  size={24}
+                  className="relative z-10 transform group-hover:translate-x-3 group-hover:scale-110 transition-transform duration-300"
+                />
 
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -230,8 +281,8 @@ export function UniversitiesSection({ limit }) {
                       className="absolute w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-float-particles"
                       style={{
                         left: `${20 + i * 30}%`,
-                        bottom: '10%',
-                        animationDelay: `${i * 0.2}s`
+                        bottom: "10%",
+                        animationDelay: `${i * 0.2}s`,
                       }}
                     />
                   ))}
@@ -247,16 +298,16 @@ export function UniversitiesSection({ limit }) {
       </div>
 
       {/* Floating Particles - Fixed with client-side only rendering */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none bg-emerald-50">
         {particlePositions.map((position, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-30 animate-float"
+            className={`absolute w-8 h-8 rounded-full opacity-30 animate-float ${position.color}`}
             style={{
               left: position.left,
               top: position.top,
               animationDelay: position.animationDelay,
-              animationDuration: position.animationDuration
+              animationDuration: position.animationDuration,
             }}
           />
         ))}
