@@ -7,6 +7,7 @@ import ExtraCard from "@/components/ExtraCard/ExtraCard";
 import StudyAbroadWork from "@/components/ui/StudyAbroadWork";
 import WorkSection from "@/components/Work_Section/Work _Section";
 import CarouselCards from "@/components/CarouselCard/CarouselCard";
+import PartnersPage from "@/components/PartnerSection/Partner";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <AboutStudy />
       <StudyAbroadWork />
       <ExtraCard/>
+      <PartnersPage></PartnersPage>
     </div>
   );
 }

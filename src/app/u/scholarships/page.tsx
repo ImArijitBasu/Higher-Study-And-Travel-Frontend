@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import ScholarshipsSection from "@/components/Scholarship/ScholarshipSection";
 import SciBanner from "@/components/Scholarship/sciBanner";
