@@ -134,6 +134,11 @@ const nextConfig = {
         hostname: "edunirvana.in",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "facts.net",
+        pathname: "/**",
+      },
     ],
   },
 };
