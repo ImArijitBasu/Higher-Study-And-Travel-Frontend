@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "flowbite-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import {
@@ -366,9 +367,9 @@ const BlogPage = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
+            <Button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
               <FaSearch />
-            </button>
+            </Button>
           </div>
         </div>
         {/* All Articles */}

@@ -16,6 +16,7 @@ import {
   FaChevronRight,
   FaRegClock,
 } from "react-icons/fa";
+import { Button } from "flowbite-react";
 
 interface Deal {
   id: number;
@@ -470,7 +471,7 @@ export default function DestinationsCarousel() {
             className="flex justify-center mt-8 space-x-3"
           >
             {Array.from({ length: totalItems }).map((_, index) => (
-              <button
+              <Button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${

@@ -158,9 +158,10 @@ import LoginModal from "../Auth/LoginModal";
 import SignupModal from "../Auth/SignupModal";
 import Link from "next/link";
 import axios from "axios";
+import { Button } from "flowbite-react";
 
 const AuthToggle = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<unknown>(null);
   const [activeTab, setActiveTab] = useState<"login" | "signup">("signup");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
@@ -208,22 +209,20 @@ const niloy="hello";
             <Link href="/profile" className="px-3 py-2 text-sm font-semibold">
               {user.name}
             </Link>
-            <button
+            <Button
               onClick={handleLogout}
 
 
               className="px-3 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-100 rounded-full"
 
-           
-
 
             >
               LOGOUT
-            </button>
+            </Button>
           </>
         ) : (
           <>
-            <button
+            <Button
               onClick={() => {
                 setActiveTab("login");
                 setIsLoginOpen(true);
@@ -235,8 +234,8 @@ const niloy="hello";
               }`}
             >
               LOGIN
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => {
                 setActiveTab("signup");
                 setIsSignupOpen(true);
@@ -248,7 +247,7 @@ const niloy="hello";
               }`}
             >
               SIGN UP
-            </button>
+            </Button>
           </>
         )}
       </div>
