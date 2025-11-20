@@ -27,25 +27,32 @@ const partners = [
     { id: 20, src: "https://i.ibb.co.com/N2RNs51j/16733482751513-Berkeley-College-removebg-preview.png", name: "Berkeley College", external: true },
 ];
 
-// CountUp Component for animated numbers
-const CountUp = ({ end, duration = 2000, suffix = "" }) => {
-  const [count, setCount] = useState(0);
-  const countRef = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+type CountUpProps = {
+  end: number;
+  duration?: number;
+  suffix?: string;
+};
+
+const CountUp: React.FC<CountUpProps> = ({ end, duration = 2000, suffix = "" }) => {
+  const [count, setCount] = useState<number>(0);
+  const countRef = useRef<HTMLSpanElement | null>(null);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
 
   useEffect(() => {
+    let timerId: number | undefined;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
           let start = 0;
           const increment = end / (duration / 16);
-          
-          const timer = setInterval(() => {
+
+          timerId = window.setInterval(() => {
             start += increment;
-            if (start > end) {
+            if (start >= end) {
               setCount(end);
-              clearInterval(timer);
+              if (timerId !== undefined) window.clearInterval(timerId);
             } else {
               setCount(Math.ceil(start));
             }
@@ -55,185 +62,184 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
       { threshold: 0.5 }
     );
 
-    if (countRef.current) {
-      observer.observe(countRef.current);
-    }
+    if (countRef.current) observer.observe(countRef.current);
 
     return () => {
-      if (countRef.current) {
-        observer.unobserve(countRef.current);
-      }
+      if (countRef.current) observer.unobserve(countRef.current);
+      if (timerId !== undefined) window.clearInterval(timerId);
     };
   }, [end, duration, hasAnimated]);
 
   return (
     <span ref={countRef}>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 };
 
+
 function PartnersSection() {
   React.useEffect(() => {
     const styleSheet = document.createElement("style");
-    styleSheet.innerText = `
-      @keyframes partners-marquee {
-        0% {
-          transform: translateX(0%);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
+    // styleSheet.innerText = `
+    //   @keyframes partners-marquee {
+    //     0% {
+    //       transform: translateX(0%);
+    //     }
+    //     100% {
+    //       transform: translateX(-50%);
+    //     }
+    //   }
       
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+    //   @keyframes fadeInUp {
+    //     from {
+    //       opacity: 0;
+    //       transform: translateY(30px);
+    //     }
+    //     to {
+    //       opacity: 1;
+    //       transform: translateY(0);
+    //     }
+    //   }
       
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-15px);
-        }
-      }
+    //   @keyframes float {
+    //     0%, 100% {
+    //       transform: translateY(0px);
+    //     }
+    //     50% {
+    //       transform: translateY(-15px);
+    //     }
+    //   }
       
-      @keyframes pulse-glow {
-        0%, 100% {
-          box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
-        }
-        50% {
-          box-shadow: 0 0 35px rgba(34, 211, 238, 0.8);
-        }
-      }
+    //   @keyframes pulse-glow {
+    //     0%, 100% {
+    //       box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
+    //     }
+    //     50% {
+    //       box-shadow: 0 0 35px rgba(34, 211, 238, 0.8);
+    //     }
+    //   }
       
-      @keyframes shimmer {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
+    //   @keyframes shimmer {
+    //     0% {
+    //       transform: translateX(-100%);
+    //     }
+    //     100% {
+    //       transform: translateX(100%);
+    //     }
+    //   }
       
-      @keyframes bounce-subtle {
-        0%, 100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-5px);
-        }
-      }
+    //   @keyframes bounce-subtle {
+    //     0%, 100% {
+    //       transform: translateY(0);
+    //     }
+    //     50% {
+    //       transform: translateY(-5px);
+    //     }
+    //   }
       
-      .animate-fade-in-up {
-        animation: fadeInUp 0.8s ease-out forwards;
-      }
+    //   .animate-fade-in-up {
+    //     animation: fadeInUp 0.8s ease-out forwards;
+    //   }
       
-      .animate-float {
-        animation: float 4s ease-in-out infinite;
-      }
+    //   .animate-float {
+    //     animation: float 4s ease-in-out infinite;
+    //   }
       
-      .animate-pulse-glow {
-        animation: pulse-glow 3s ease-in-out infinite;
-      }
+    //   .animate-pulse-glow {
+    //     animation: pulse-glow 3s ease-in-out infinite;
+    //   }
       
-      .animate-bounce-subtle {
-        animation: bounce-subtle 2s ease-in-out infinite;
-      }
+    //   .animate-bounce-subtle {
+    //     animation: bounce-subtle 2s ease-in-out infinite;
+    //   }
       
-      .partner-card {
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        background: linear-gradient(145deg, #ffffff, #f8fafc);
-        border: 1px solid #e2e8f0;
-      }
+    //   .partner-card {
+    //     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    //     background: linear-gradient(145deg, #ffffff, #f8fafc);
+    //     border: 1px solid #e2e8f0;
+    //   }
       
-      .partner-card:hover {
-        transform: translateY(-12px) scale(1.08);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        border-color: #22d3ee;
-      }
+    //   .partner-card:hover {
+    //     transform: translateY(-12px) scale(1.08);
+    //     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    //     border-color: #22d3ee;
+    //   }
       
-      .partner-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #22d3ee, #0d9488, #22d3ee);
-        background-size: 200% 100%;
-        border-radius: 8px 8px 0 0;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
+    //   .partner-card::before {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     right: 0;
+    //     height: 3px;
+    //     background: linear-gradient(90deg, #22d3ee, #0d9488, #22d3ee);
+    //     background-size: 200% 100%;
+    //     border-radius: 8px 8px 0 0;
+    //     opacity: 0;
+    //     transition: opacity 0.3s ease;
+    //   }
       
-      .partner-card:hover::before {
-        opacity: 1;
-        animation: shimmer 2s infinite;
-      }
+    //   .partner-card:hover::before {
+    //     opacity: 1;
+    //     animation: shimmer 2s infinite;
+    //   }
       
-      .partner-tooltip {
-        opacity: 0;
-        transform: translateY(15px) scale(0.9);
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        pointer-events: none;
-      }
+    //   .partner-tooltip {
+    //     opacity: 0;
+    //     transform: translateY(15px) scale(0.9);
+    //     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    //     pointer-events: none;
+    //   }
       
-      .partner-card:hover .partner-tooltip {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    //   .partner-card:hover .partner-tooltip {
+    //     opacity: 1;
+    //     transform: translateY(0) scale(1);
+    //   }
       
-      .image-container {
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        filter: grayscale(30%);
-      }
+    //   .image-container {
+    //     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    //     filter: grayscale(30%);
+    //   }
       
-      .partner-card:hover .image-container {
-        filter: grayscale(0%);
-        transform: scale(1.15) rotate(2deg);
-      }
+    //   .partner-card:hover .image-container {
+    //     filter: grayscale(0%);
+    //     transform: scale(1.15) rotate(2deg);
+    //   }
       
-      .shine-effect {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.6),
-          transparent
-        );
-        transition: left 0.8s ease;
-        z-index: 10;
-      }
+    //   .shine-effect {
+    //     position: absolute;
+    //     top: 0;
+    //     left: -100%;
+    //     width: 50%;
+    //     height: 100%;
+    //     background: linear-gradient(
+    //       90deg,
+    //       transparent,
+    //       rgba(255, 255, 255, 0.6),
+    //       transparent
+    //     );
+    //     transition: left 0.8s ease;
+    //     z-index: 10;
+    //   }
       
-      .partner-card:hover .shine-effect {
-        left: 100%;
-      }
+    //   .partner-card:hover .shine-effect {
+    //     left: 100%;
+    //   }
       
-      .stats-card {
-        transition: all 0.4s ease;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        border: 1px solid #f1f5f9;
-      }
+    //   .stats-card {
+    //     transition: all 0.4s ease;
+    //     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    //     border: 1px solid #f1f5f9;
+    //   }
       
-      .stats-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        border-color: #22d3ee;
-      }
-    `;
+    //   .stats-card:hover {
+    //     transform: translateY(-8px);
+    //     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    //     border-color: #22d3ee;
+    //   }
+    // `;
     document.head.appendChild(styleSheet);
     return () => {
       document.head.removeChild(styleSheet);
@@ -305,10 +311,10 @@ function PartnersSection() {
               </div>
               
               {/* Enhanced Tooltip */}
-              <div className="partner-tooltip absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-cyan-600 to-teal-600 text-white text-sm font-semibold py-2 px-4 rounded-full text-center z-20 shadow-2xl min-w-max">
+              {/* <div className="partner-tooltip absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-cyan-600 to-teal-600 text-white text-sm font-semibold py-2 px-4 rounded-full text-center z-20 shadow-2xl min-w-max">
                 {partner.name}
                 <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyan-600 rotate-45"></div>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
@@ -378,21 +384,21 @@ function PartnersSection() {
             partnersList={partners} 
             direction="forwards" 
             speed="120s"
-            className="h-[160px]"
+            className="h-[160px] flex items-center py-22 bg-gradient-to-b from-cyan-50/70 to-transparent"
           />
           
           <PartnersMarquee 
             partnersList={partners} 
             direction="reverse" 
             speed="110s"
-            className="h-[160px]"
+            className="h-[160px] flex items-center py-22 bg-gradient-to-b from-cyan-50/70 to-transparent"
           />
           
           <PartnersMarquee 
             partnersList={partners} 
             direction="forwards" 
             speed="130s"
-            className="h-[160px]"
+            className="h-[160px] flex items-center py-22 bg-gradient-to-b from-cyan-50/70 to-transparent"
           />
         </div>
 
