@@ -317,7 +317,7 @@ function PartnersSection() {
   };
 
   return (
-    <section className="py-24  relative overflow-hidden">
+    <section className="py-16  relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute top-10 left-10 w-24 h-24 bg-cyan-300/50 rounded-full animate-float"></div>
       <div className="absolute top-40 right-20 w-20 h-20 bg-teal-300/50 rounded-full animate-float" style={{animationDelay: '1.5s'}}></div>
@@ -328,7 +328,7 @@ function PartnersSection() {
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-cyan-300/60 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-teal-300/50 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
 
-      <div className="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         {/* Enhanced Animated header */}
         <div className="animate-fade-in-up mb-16">
           <div className="inline-block animate-bounce-subtle mb-6">
@@ -346,7 +346,7 @@ function PartnersSection() {
         </div>
 
         {/* Enhanced Stats section with counting numbers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-5xl mx-auto">
           <div className="stats-card rounded-2xl p-8 text-center animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             <div className="text-4xl font-bold text-cyan-600 mb-4 ">
               <CountUp end={20} duration={2000} suffix="+" />
