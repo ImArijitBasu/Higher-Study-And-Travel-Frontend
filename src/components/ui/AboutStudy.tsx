@@ -9,6 +9,7 @@ import {
   FaLightbulb,
 } from "react-icons/fa";
 import Image from "next/image";
+import { Button } from "flowbite-react";
 
 interface Tab {
   id: "what" | "who" | "why";
@@ -313,7 +314,7 @@ const AboutStudy: React.FC = () => {
       >
         <div className="flex gap-2">
           {tabs.map((tab) => (
-            <button
+            <Button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${

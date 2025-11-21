@@ -1,148 +1,162 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
-import { IoLogoInstagram } from "react-icons/io";
+import { IoLogoInstagram } from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
-import { PiAirplaneTiltFill } from "react-icons/pi";
 import { GiCommercialAirplane } from "react-icons/gi";
+import { PiGlobe } from "react-icons/pi";
+import { motion } from "framer-motion";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Footer = () => {
+export default function FooterSexy() {
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((s) => ({ ...s, [name]: value }));
+  };
+
+  const validateEmail = (email:string) => /^\S+@\S+\.\S+$/.test(email);
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!form.firstName || !form.email) return toast.error("First name and email are required");
+    if (!validateEmail(form.email)) return toast.error("Please provide a valid email");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setForm({ firstName: "", lastName: "", email: "" });
+      toast.success("Thanks for subscribing!");
+    }, 900);
+  };
+
   return (
-    <footer className="bg-white py-10 text-justify">
-      {/* Top Blue Banner */}
-      <div className="bg-[#8bd8f7] container mx-auto flex flex-col md:flex-row justify-around items-center px-6 md:px-16 py-8 rounded-2xl shadow-sm gap-6">
-        <h2 className="text-xl md:text-2xl font-bold text-black text-center md:text-left">
-          JOIN OUR COMMUNITY. CONNNECT WITH US ON SOCIAL
-        </h2>
-        <ul className="flex gap-6 text-2xl mt-4 md:mt-0">
-          <Link href="#" className="hover:text-blue-700">
-            <FaFacebookF />
-          </Link>
-          <Link href="#" className="hover:text-pink-500">
-            <IoLogoInstagram />
-          </Link>
-          <Link href="#" className="hover:text-red-600">
-            <FaYoutube />
-          </Link>
-          <Link href="#" className="hover:text-gray-700">
-            <MdOutlineMail />
-          </Link>
-        </ul>
-      </div>
+    <footer className="relative bg-gradient-to-b from-cyan-50 via-emerald-50 to-cyan-100 py-12 overflow-hidden ">
+      <ToastContainer position="top-right" theme="light" />
 
-      {/* Bottom Section */}
-      <div className="grid max-w-11/12 mx-auto md:grid-cols-2 gap-10 px-6 md:px-16 mt-10 container">
-        {/* Left Section */}
-        <div>
-          <div className="flex items-center gap-2">
-            {/* Logo */}
-            <Link
-              href={"/"}
-              className="flex justify-start items-center text-xs md:text-xl uppercase font-extrabold text-black"
-            >
-              <GiCommercialAirplane className="text-2xl md:text-4xl mr-2 text-cyan-400" />
-              Study & Travel
+      {/* Animated Globe Background */}
+      <motion.div
+        className="absolute text-cyan-100/20 text-[40rem] -top-64 -left-64 pointer-events-none"
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+      >
+        <PiGlobe />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full mx-auto px-6 md:px-16"
+      >
+        {/* Top CTA */}
+        <div className="bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-2xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h2 className="text-lg md:text-2xl font-extrabold text-white">
+              JOIN OUR COMMUNITY
+            </h2>
+            <p className="text-white/90 mt-1 max-w-xl">
+              Connect with students and travellers. Tips, scholarships and travel hacks straight to your inbox.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link href="#" className="inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 text-white rounded-full px-4 py-2 backdrop-blur-sm transition">
+              <FaFacebookF /> <span className="hidden sm:inline">Facebook</span>
+            </Link>
+            <Link href="#" className="inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 text-white rounded-full px-4 py-2 backdrop-blur-sm transition">
+              <IoLogoInstagram /> <span className="hidden sm:inline">Instagram</span>
+            </Link>
+            <Link href="#" className="inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 text-white rounded-full px-4 py-2 backdrop-blur-sm transition">
+              <FaYoutube /> <span className="hidden sm:inline">YouTube</span>
             </Link>
           </div>
+        </div>
 
-          <h3 className="mt-6 font-bold text-gray-800">
-            STUDY ABROAD FOR EVERYONE
-          </h3>
-          <p className="text-gray-600 mt-2 leading-relaxed">
-            We&apos;re here to make studying abroad achievable, and we building a
-            community of open-minded, connected, and culturally aware people
-            ready to make a real impact in our ever-connected world.
-          </p>
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 items-start">
+          {/* Branding & Info */}
+          <div className="md:col-span-1">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <div className="p-2 rounded-2xl bg-gradient-to-tr from-cyan-200 to-emerald-200 shadow-md">
+                <GiCommercialAirplane className="text-3xl text-cyan-500 transform -rotate-12" />
+              </div>
+              <span className="font-extrabold text-xl md:text-2xl text-cyan-700">Study & Travel</span>
+            </Link>
 
-          <div className="flex flex-col sm:flex-row mt-10 gap-10">
-            <div>
-              <h4 className="font-bold mb-2">CONTACT US</h4>
-              <p className="text-gray-600">+156-4844-456</p>
-              <p className="text-gray-600">Info@studyabrod.com</p>
+            <p className="mt-4 text-gray-700">
+              We make studying abroad achievable. We build a community of open minded people ready to make an impact in an ever-connected world.
+            </p>
+
+            <div className="mt-6 flex gap-4 text-2xl text-cyan-600">
+              <Link href="#" className="hover:text-emerald-500 transition"><FaFacebookF /></Link>
+              <Link href="#" className="hover:text-emerald-500 transition"><IoLogoInstagram /></Link>
+              <Link href="#" className="hover:text-emerald-500 transition"><FaYoutube /></Link>
+              <Link href="#" className="hover:text-emerald-500 transition"><MdOutlineMail /></Link>
             </div>
 
-            <div className="border-l-3 border-cyan-300 pl-6">
-              <h4 className="font-bold mb-2">GET STARTED</h4>
-              <ul className="space-y-1 text-gray-600">
-                <li>
-                  <Link href="#">Contact us</Link>
-                </li>
-                <li>
-                  <Link href="#">Inquire Now</Link>
-                </li>
-                <li>
-                  <Link href="#">Apply Now</Link>
-                </li>
-              </ul>
+            <div className="mt-6 text-sm text-gray-700 space-y-1">
+              <div>
+                <strong>Contact</strong>
+                <div>+156-4844-456</div>
+                <div>info@studyabrod.com</div>
+              </div>
             </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="md:col-span-1">
+            <h4 className="font-bold mb-3 text-cyan-700">GET STARTED</h4>
+            <ul className="space-y-2 text-cyan-600">
+              <li><Link href="#" className="hover:text-emerald-500 transition">Contact us</Link></li>
+              <li><Link href="#" className="hover:text-emerald-500 transition">Inquire Now</Link></li>
+              <li><Link href="#" className="hover:text-emerald-500 transition">Apply Now</Link></li>
+              <li><Link href="#" className="hover:text-emerald-500 transition">Scholarships</Link></li>
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div className="md:col-span-1 bg-white/60 border border-cyan-200 rounded-2xl p-6 shadow-sm">
+            <h3 className="font-bold mb-2 text-cyan-700">SUBSCRIBE TO OUR NEWSLETTER</h3>
+            <p className="text-cyan-600 mb-4 text-sm">No spam. Useful tips, scholarships and travel deals.</p>
+
+            <form onSubmit={submit} className="space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name" className="w-full rounded-full px-4 py-2 border border-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+                <input name="lastName" value={form.lastName} onChange={handleChange} placeholder="Last name" className="w-full rounded-full px-4 py-2 border border-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+              </div>
+
+              <input name="email" value={form.email} onChange={handleChange} placeholder="Email address" className="w-full rounded-full px-4 py-2 border border-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" type="email" />
+
+              <label className="flex items-start gap-3 text-sm text-cyan-600">
+                <input type="checkbox" className="mt-1" />
+                <span>I consent to Study&Travel collecting my data and sending marketing communications. See our <Link href="#" className="text-emerald-500 underline">Privacy Policy</Link>.</span>
+              </label>
+
+              <button type="submit" disabled={loading} className="w-full rounded-full py-2 font-semibold bg-cyan-500 text-white hover:bg-emerald-500 transition disabled:opacity-60">{loading ? "Joining..." : "Subscribe"}</button>
+            </form>
           </div>
         </div>
 
-        {/* Right Section - Newsletter */}
-        <div>
-          <h3 className="font-bold mb-2">SUBSCRIBE TO OUR NEWSLETTER</h3>
-          <p className="text-gray-600 mb-5">
-            Stay Up to date with the latest study abroad programs, news and
-            promotions! No spam, just good content.
-          </p>
-
-          <form className="space-y-4">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="text"
-                placeholder="First Name"
-                className="border border-cyan-300 rounded-full px-4 py-2 w-full focus:outline-none focus:border-cyan-400"
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="border border-cyan-300 rounded-full px-4 py-2 w-full focus:outline-none focus:border-cyan-400"
-              />
+        {/* Bottom Copyright + Wave */}
+        <div className="mt-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cyan-700">
+            <div>© {new Date().getFullYear()} Study&Travel.com. All rights reserved.</div>
+            <div className="space-x-4">
+              <Link href="#" className="underline hover:text-emerald-500">Privacy Policy</Link>
+              <Link href="#" className="underline hover:text-emerald-500">Terms</Link>
             </div>
+          </div>
 
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="border border-cyan-300 rounded-full px-4 py-2 w-full focus:outline-none focus:border-cyan-400"
-            />
-
-            <div className="flex items-start gap-2 text-sm text-gray-600">
-              <span className="text-cyan-400 text-lg mt-1">*</span>
-              <p>
-                By checking this box, I consent to Study&Travel.com collecting
-                and storing my data through the submission of this form, sending
-                marketing communications, and I agree to the StudyAbroad.com{" "}
-                <Link href="#" className="text-cyan-500 underline">
-                  Privacy Policy
-                </Link>
-                .
-              </p>
-            </div>
-
-            <button
-              type="submit"
-              className="bg-cyan-400 text-white font-semibold w-full py-2 rounded-full hover:bg-cyan-500 transition"
-            >
-              SUBSCRIBE
-            </button>
-          </form>
+          <svg className="mt-6 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 10 C 200 80 400 0 720 20 C 1040 40 1240 10 1440 50 L1440 100 L0 100 Z" fill="rgba(16, 185, 129,0.12)" />
+          </svg>
         </div>
-      </div>
-
-      {/* copyright section */}
-      <div
-        className="mt-16 text-center py-5 text-sm text-black font-semibold"
-        style={{ background: "linear-gradient(to right, #8bd8f7, #64cdf4)" }}
-      >
-        <p>
-          © 2025 Study&Travel.com. All rights reserved.{" "}
-          <Link href="#" className="ml-2 underline">
-            Privacy Policy
-          </Link>
-        </p>
-      </div>
+      </motion.div>
     </footer>
   );
-};
-
-export default Footer;
+}

@@ -2,9 +2,8 @@
 
 import ScholarshipsSection from "@/components/Scholarship/ScholarshipSection";
 import SciBanner from "@/components/Scholarship/sciBanner";
-import UniBanner from "@/components/University/uniBanner";
 import FilterSection from "@/components/University/uniFilter";
-import { UniversitiesSection } from "@/components/University/university_section";
+import { Button } from "flowbite-react";
 import { FaSearch } from "react-icons/fa";
 
 export const metadata = {
@@ -26,9 +25,9 @@ export default function UniversitiesPage() {
               placeholder="Search Universities"
               className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200 border-4 rounded-full "
             />
-            <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
+            <Button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
               <FaSearch />
-            </button>
+            </Button>
           </div>
         </div>
 

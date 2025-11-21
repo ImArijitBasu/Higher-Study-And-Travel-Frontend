@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaArrowRight, FaCompass } from "react-icons/fa";
+import { FaArrowRight} from "react-icons/fa";
 
 interface Story {
   id: number;
@@ -15,7 +15,7 @@ const storiesData: Story[] = [
   { id: 1, imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", title: "Bali, Indonesia" },
   { id: 2, imageUrl: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34", title: "Paris, France" },
   { id: 3, imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470", title: "Swiss Alps, Switzerland" },
-  { id: 4, imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi4sX87VY9hnQGyebt2t0aYuu9bpKDhhokOw&s", title: "Kyoto, Japan" },
+  { id: 4, imageUrl: "https://facts.net/wp-content/uploads/2023/07/32-facts-about-kyoto-1688365737.jpeg", title: "Kyoto, Japan" },
   { id: 5, imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470", title: "Sahara Desert, Morocco" },
   { id: 6, imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", title: "Santorini, Greece" },
   { id: 7, imageUrl: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86", title: "Patagonia, Chile" },
@@ -39,7 +39,7 @@ const CarouselCards = () => {
 
   return (
     <div className="w-full py-16 bg-gradient-to-br from-slate-50 to-blue-50/30">
-      <div className="container mx-auto px-4">
+      <div className="w-full mx-auto px-4">
         {/* Enhanced Header with More Engaging Title */}
         <div className="text-center mb-16">
           <motion.div
@@ -108,7 +108,7 @@ const CarouselCards = () => {
         {/* Carousel Container */}
         <div
           ref={containerRef}
-          className="relative overflow-hidden"
+          className="relative overflow-hidden border-b-1 border-emerald-100 h-[500px] flex items-center"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -134,7 +134,7 @@ const CarouselCards = () => {
             {[...storiesData, ...storiesData].map((story, index) => (
               <motion.div
                 key={`${story.id}-${index}`}
-                className="flex-shrink-0 w-80 h-96 mx-4 relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
+                className="flex-shrink-0 w-80 h-[450px] mx-4 relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",

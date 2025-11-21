@@ -14,6 +14,7 @@ import {
   FiAward,
   FiCheck,
 } from "react-icons/fi";
+import { Button } from "flowbite-react";
 
 interface DestinationCardProps {
   image: string;
@@ -152,7 +153,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
             {/* Action Buttons */}
             <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
               <div className="flex flex-col gap-2">
-                <button
+                <Button
                   onClick={() => setIsLiked(!isLiked)}
                   className={`p-2 rounded-xl border backdrop-blur-sm transition-all duration-300 ${
                     isLiked
@@ -161,10 +162,10 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
                   }`}
                 >
                   <FiHeart className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`} />
-                </button>
-                <button className="p-2 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300">
+                </Button>
+                <Button className="p-2 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300">
                   <FiShare2 className="w-4 h-4" />
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -217,10 +218,10 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
                 <div className="text-2xl font-bold text-gray-900">{price}</div>
                 <div className="text-xs text-gray-500">total package</div>
               </div>
-              <button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-black px-5 py-2.5 rounded-xl font-semibold shadow-md hover:shadow-lg hover:from-cyan-600 hover:to-blue-600 transition-transform transform hover:scale-105 flex items-center gap-2">
+              <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-5 py-2.5 rounded-xl font-semibold shadow-md  transition-transform transform hover:scale-105 flex items-center gap-2">
                 <FiEye className="w-4 h-4" />
                 Details
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -304,12 +305,12 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
           </div>
 
           <div className="flex gap-3">
-            <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-semibold">
+            <Button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-semibold">
               <FiEye className="w-4 h-4 inline mr-2" /> Preview
-            </button>
-            <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black rounded-xl hover:from-cyan-600 hover:to-blue-600 font-semibold shadow-lg transition-all hover:scale-105">
+            </Button>
+            <Button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-black rounded-xl hover:from-cyan-600 hover:to-blue-600 font-semibold shadow-lg transition-all hover:scale-105">
               Enroll Now
-            </button>
+            </Button>
           </div>
         </div>
       </div>

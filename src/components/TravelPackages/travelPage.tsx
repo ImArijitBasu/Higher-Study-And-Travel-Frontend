@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DestinationCard from "./travelCard";
 import { FiFilter, FiGrid, FiList, FiChevronDown } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
+import { Button, Select } from "flowbite-react";
 
 const DestinationsPage = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -197,9 +198,9 @@ const DestinationsPage = () => {
                         placeholder="Search Scholarships"
                         className="w-full py-3 px-5 text-gray-700 text-base placeholder-gray-400 focus:outline-none transition-all duration-200 border-4 rounded-full "
                       />
-                      <button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
+                      <Button className="absolute right-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors duration-200">
                         <FaSearch />
-                      </button>
+                      </Button>
                     </div>
                   </div>
         </div>
@@ -211,10 +212,10 @@ const DestinationsPage = () => {
               <span className="font-semibold text-gray-700">{filteredDestinations.length} Programs</span>
             </div>
             
-            <button className="lg:hidden flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors">
+            <Button className="lg:hidden flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors">
               <FiFilter className="text-lg" />
               Filters
-            </button>
+            </Button>
           </div>
 
           <div className="flex items-center gap-4">
@@ -222,7 +223,7 @@ const DestinationsPage = () => {
             <div className="flex items-center gap-2">
               <span className="text-gray-600 font-medium hidden sm:block">Sort by:</span>
               <div className="relative">
-                <select
+                <Select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
@@ -232,14 +233,14 @@ const DestinationsPage = () => {
                   <option value="price-low">Price: Low to High</option>
                   <option value="price-high">Price: High to Low</option>
                   <option value="duration">Duration</option>
-                </select>
+                </Select>
                 <FiChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
             {/* View Mode Toggle */}
             <div className="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
-              <button
+              <Button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-lg transition-colors ${
                   viewMode === "grid" 
@@ -248,8 +249,8 @@ const DestinationsPage = () => {
                 }`}
               >
                 <FiGrid className="text-lg" />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-lg transition-colors ${
                   viewMode === "list" 
@@ -258,7 +259,7 @@ const DestinationsPage = () => {
                 }`}
               >
                 <FiList className="text-lg" />
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -277,9 +278,9 @@ const DestinationsPage = () => {
         {/* Load More Section */}
         {filteredDestinations.length > 0 && (
           <div className="text-center mt-12">
-            <button className="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-200 shadow-sm hover:shadow-md">
+            <Button className="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-200 shadow-sm hover:shadow-md">
               Load More Programs
-            </button>
+            </Button>
             <p className="text-gray-500 mt-4">
               Showing {filteredDestinations.length} of {destinations.length}+ quality programs
             </p>
@@ -292,12 +293,12 @@ const DestinationsPage = () => {
             <div className="text-gray-400 text-6xl mb-4">🔍</div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">No programs found</h3>
             <p className="text-gray-600 mb-6">Try adjusting your search terms or filters</p>
-            <button 
+            <Button
               onClick={() => setSearchQuery('')}
               className="px-6 py-3 bg-blue-500 text-white rounded-xl font-semibold hover:bg-blue-600 transition-colors"
             >
               Clear Search
-            </button>
+            </Button>
           </div>
         )}
       </div>

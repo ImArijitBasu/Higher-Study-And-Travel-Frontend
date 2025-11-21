@@ -66,7 +66,8 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
 
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/30 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-emerald-50 to-transparent relative overflow-hidden">
+
       {/* Animated Background Elements */}
       <motion.div
         variants={{
@@ -102,7 +103,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute text-blue-300/20"
+          className="absolute text-cyan-300/50 "
           animate={{
             y: [0, -30, 0],
             x: [0, Math.sin(i) * 20, 0],
@@ -120,7 +121,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
             top: `${Math.random() * 100}%`,
           }}
         >
-          <FaGraduationCap size={24} />
+          <FaGraduationCap size={48} />
         </motion.div>
       ))}
 
@@ -301,7 +302,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
-                    className="absolute top-4 right-4 flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 shadow-2xl border border-white/20 max-w-[120px]"
+                    className="absolute top-4 right-4 flex items-center gap-2  backdrop-blur-sm rounded-2xl px-3 py-2 shadow-2xl border border-white/20 max-w-[120px]"
                   >
                     <motion.img
                       src={scholarship.flag}
@@ -309,7 +310,7 @@ export default function ScholarshipsSection({ limit }: { limit?: number }) {
                       className="w-6 h-4 rounded-sm object-cover flex-shrink-0"
                       whileHover={{ scale: 1.2 }}
                     />
-                    <span className="text-sm font-bold text-gray-900 truncate">
+                    <span className="text-sm font-bold text-white truncate lg:hidden xl:block">
                       {scholarship.country.split(" ")[0]}
                     </span>
                   </motion.div>
