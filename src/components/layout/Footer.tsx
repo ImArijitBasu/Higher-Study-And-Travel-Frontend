@@ -2,161 +2,381 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebookF, FaYoutube, FaTwitter, FaLinkedin, FaPaperPlane,
+  FaGlobe, FaMapMarkerAlt, FaChevronRight, FaGraduationCap,
+  FaUniversity, FaPassport, FaRocket, FaCompass, FaHeart,
+  FaPlane, FaMap, FaLanguage, FaUsers
+} from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
-import { MdOutlineMail } from "react-icons/md";
-import { GiCommercialAirplane } from "react-icons/gi";
-import { PiGlobe } from "react-icons/pi";
-import { motion } from "framer-motion";
+import { MdOutlineMail, MdPhone, MdLocationOn, MdFlight, MdSchool } from "react-icons/md";
+import { motion, AnimatePresence } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function FooterSexy() {
-  const [form, setForm] = useState({ firstName: "", lastName: "", email: "" });
+export default function CompactDarkFooter() {
+  const [form, setForm] = useState({ 
+    firstName: "",
+    lastName: "",
+    email: "" 
+  });
   const [loading, setLoading] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [currentHeaderText, setCurrentHeaderText] = useState(0);
+
+  const headerTexts = [
+    "Transform your future through international education",
+    "Discover life-changing study abroad experiences",
+    "Your journey to global academic excellence starts here",
+    "Bridge cultures, build careers, create memories",
+    "Where education meets global adventure",
+    "Unlock world-class learning opportunities abroad"
+  ];
+
+  // Rotate header text every 3 seconds
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeaderText((prev) => (prev + 1) % headerTexts.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((s) => ({ ...s, [name]: value }));
   };
 
-  const validateEmail = (email:string) => /^\S+@\S+\.\S+$/.test(email);
+  const validateEmail = (email: string) => /^\S+@\S+\.\S+$/.test(email);
 
   const submit = (e) => {
     e.preventDefault();
-    if (!form.firstName || !form.email) return toast.error("First name and email are required");
-    if (!validateEmail(form.email)) return toast.error("Please provide a valid email");
+    if (!form.firstName || !form.lastName || !form.email) {
+      return toast.error("All fields are required");
+    }
+    if (!validateEmail(form.email)) {
+      return toast.error("Please provide a valid email");
+    }
+
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      setIsSubscribed(true);
       setForm({ firstName: "", lastName: "", email: "" });
-      toast.success("Thanks for subscribing!");
-    }, 900);
+      toast.success("Welcome to our global education community!");
+    }, 800);
   };
 
   return (
-    <footer className="relative bg-gradient-to-b from-cyan-50 via-emerald-50 to-cyan-100 py-12 overflow-hidden ">
-      <ToastContainer position="top-right" theme="light" />
+    <footer className="relative bg-blue-950 text-white overflow-hidden min-h-[540px]">
+      <ToastContainer
+        position="top-right"
+        theme="dark"
+        autoClose={2000}
+      />
 
-      {/* Animated Globe Background */}
-      <motion.div
-        className="absolute text-cyan-100/20 text-[40rem] -top-64 -left-64 pointer-events-none"
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-      >
-        <PiGlobe />
-      </motion.div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        {/* Responsive Header Section */}
+        <div className="text-center mb-10">
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              className="relative mb-3 sm:mb-0"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="p-3 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
+                <FaGlobe className="text-xl text-white" />
+              </div>
+            </motion.div>
+            <div className="text-center sm:text-left">
+              <motion.h2
+                className="text-2xl sm:text-3xl lg:text-3xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-white"
+                animate={{
+                  backgroundPosition: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                }}
+              >
+                Global Education & Travel Pathways
+              </motion.h2>
+              <motion.p
+                className="text-blue-200 text-sm mt-2 flex items-center justify-center sm:justify-start gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <FaHeart className="text-rose-400 animate-pulse text-xs" />
+                Study Smart • Travel Wide • Grow Beyond
+              </motion.p>
+            </div>
+          </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full mx-auto px-6 md:px-16"
-      >
-        {/* Top CTA */}
-        <div className="bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-2xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-lg md:text-2xl font-extrabold text-white">
-              JOIN OUR COMMUNITY
-            </h2>
-            <p className="text-white/90 mt-1 max-w-xl">
-              Connect with students and travellers. Tips, scholarships and travel hacks straight to your inbox.
-            </p>
+          <div className="h-12 flex items-center justify-center mt-4 mb-4">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentHeaderText}
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                className="text-base sm:text-lg text-blue-100 font-light text-center max-w-2xl leading-relaxed px-2"
+                transition={{ duration: 0.5 }}
+              >
+                {headerTexts[currentHeaderText]}
+              </motion.p>
+            </AnimatePresence>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link href="#" className="inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 text-white rounded-full px-4 py-2 backdrop-blur-sm transition">
-              <FaFacebookF /> <span className="hidden sm:inline">Facebook</span>
-            </Link>
-            <Link href="#" className="inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 text-white rounded-full px-4 py-2 backdrop-blur-sm transition">
-              <IoLogoInstagram /> <span className="hidden sm:inline">Instagram</span>
-            </Link>
-            <Link href="#" className="inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 text-white rounded-full px-4 py-2 backdrop-blur-sm transition">
-              <FaYoutube /> <span className="hidden sm:inline">YouTube</span>
-            </Link>
-          </div>
+          {/* Responsive Stats with Icons */}
+          <motion.div
+            className="grid grid-cols-2 sm:flex sm:justify-center gap-6 sm:gap-8 lg:gap-10 mt-8"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            {[
+              { number: "50+", label: "Global Destinations", icon: FaMap, color: "text-blue-400" },
+              { number: "10K+", label: "Students Empowered", icon: FaUsers, color: "text-cyan-400" },
+              { number: "98%", label: "Success Stories", icon: FaGraduationCap, color: "text-green-400" },
+              { number: "24/7", label: "Student Support", icon: FaHeart, color: "text-rose-400" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className="text-center group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="relative inline-block mb-3">
+                  <div className={`p-3 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-all duration-300 ${stat.color} group-hover:scale-110`}>
+                    <stat.icon className="text-lg" />
+                  </div>
+                </div>
+                <div className={`font-bold text-lg sm:text-xl mb-1 ${stat.color}`}>
+                  {stat.number}
+                </div>
+                <div className="text-gray-300 text-xs group-hover:text-white transition-colors duration-300">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 items-start">
-          {/* Branding & Info */}
-          <div className="md:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <div className="p-2 rounded-2xl bg-gradient-to-tr from-cyan-200 to-emerald-200 shadow-md">
-                <GiCommercialAirplane className="text-3xl text-cyan-500 transform -rotate-12" />
+        {/* Responsive Main Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-10">
+          {/* Contact */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-white text-sm lg:text-[15px] mb-3 hover:text-blue-300 transition-colors duration-300 flex items-center gap-2">
+              <FaMapMarkerAlt className="text-blue-400 text-sm" />
+              GLOBAL CONTACT
+            </h3>
+            <div className="space-y-3 text-gray-300 text-xs lg:text-[13px]">
+              <div className="flex items-center gap-2 group hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-white/5">
+                <MdPhone className="text-blue-400 text-sm group-hover:text-blue-300 transition-colors duration-300" />
+                <div>
+                  <div className="font-semibold">+1 (555) 123-4567</div>
+                  <div className="text-blue-300 text-[11px]">International Helpline</div>
+                </div>
               </div>
-              <span className="font-extrabold text-xl md:text-2xl text-cyan-700">Study & Travel</span>
-            </Link>
-
-            <p className="mt-4 text-gray-700">
-              We make studying abroad achievable. We build a community of open minded people ready to make an impact in an ever-connected world.
-            </p>
-
-            <div className="mt-6 flex gap-4 text-2xl text-cyan-600">
-              <Link href="#" className="hover:text-emerald-500 transition"><FaFacebookF /></Link>
-              <Link href="#" className="hover:text-emerald-500 transition"><IoLogoInstagram /></Link>
-              <Link href="#" className="hover:text-emerald-500 transition"><FaYoutube /></Link>
-              <Link href="#" className="hover:text-emerald-500 transition"><MdOutlineMail /></Link>
-            </div>
-
-            <div className="mt-6 text-sm text-gray-700 space-y-1">
-              <div>
-                <strong>Contact</strong>
-                <div>+156-4844-456</div>
-                <div>info@studyabrod.com</div>
+              <div className="flex items-center gap-2 group hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-white/5">
+                <MdOutlineMail className="text-blue-400 text-sm group-hover:text-blue-300 transition-colors duration-300" />
+                <div>
+                  <div className="font-semibold">admissions@globaledupathways.com</div>
+                  <div className="text-blue-300 text-[11px]">Priority Response</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 group hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-white/5">
+                <FaGlobe className="text-blue-400 text-sm mt-0.5 group-hover:text-blue-300 transition-colors duration-300" />
+                <div>
+                  <div className="font-semibold">Worldwide Offices</div>
+                  <div className="text-blue-300 text-[11px]">NY • London • Singapore • Sydney</div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="md:col-span-1">
-            <h4 className="font-bold mb-3 text-cyan-700">GET STARTED</h4>
-            <ul className="space-y-2 text-cyan-600">
-              <li><Link href="#" className="hover:text-emerald-500 transition">Contact us</Link></li>
-              <li><Link href="#" className="hover:text-emerald-500 transition">Inquire Now</Link></li>
-              <li><Link href="#" className="hover:text-emerald-500 transition">Apply Now</Link></li>
-              <li><Link href="#" className="hover:text-emerald-500 transition">Scholarships</Link></li>
+          {/* Programs */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-white text-sm lg:text-[15px] mb-3 hover:text-cyan-300 transition-colors duration-300 flex items-center gap-2">
+              <FaUniversity className="text-cyan-400 text-sm" />
+              ACADEMIC PROGRAMS
+            </h3>
+            <ul className="space-y-2 text-gray-300 text-xs lg:text-[13px]">
+              {[
+                { name: "Bachelor's Degrees Abroad", icon: FaGraduationCap },
+                { name: "Master's & PhD Programs", icon: MdSchool },
+                { name: "Language Immersion Courses", icon: FaLanguage },
+                { name: "Summer Study Programs", icon: FaCompass }
+              ].map((program, index) => (
+                <li key={index} className="group">
+                  <Link href="#" className="hover:text-white transition-colors duration-300 flex items-center gap-2 p-1 rounded hover:bg-white/5">
+                    <program.icon className="text-cyan-400 text-xs group-hover:text-cyan-300 transition-colors duration-300" />
+                    <span className="flex-1">{program.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-white text-sm lg:text-[15px] mb-3 hover:text-green-300 transition-colors duration-300 flex items-center gap-2">
+              <FaHeart className="text-green-400 text-sm" />
+              STUDENT SUPPORT
+            </h3>
+            <ul className="space-y-2 text-gray-300 text-xs lg:text-[13px]">
+              {[
+                "Visa & Immigration Guidance",
+                "Scholarship Opportunities",
+                "Housing & Accommodation",
+                "Cultural Integration",
+                "Career Counseling",
+                "24/7 Emergency Support"
+              ].map((link, index) => (
+                <li key={index} className="group">
+                  <Link href="#" className="hover:text-white transition-colors duration-300 flex items-center gap-2 p-1 rounded hover:bg-white/5">
+                    <FaChevronRight className="text-green-400 text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
+                    <span>{link}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Newsletter */}
-          <div className="md:col-span-1 bg-white/60 border border-cyan-200 rounded-2xl p-6 shadow-sm">
-            <h3 className="font-bold mb-2 text-cyan-700">SUBSCRIBE TO OUR NEWSLETTER</h3>
-            <p className="text-cyan-600 mb-4 text-sm">No spam. Useful tips, scholarships and travel deals.</p>
-
-            <form onSubmit={submit} className="space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name" className="w-full rounded-full px-4 py-2 border border-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-                <input name="lastName" value={form.lastName} onChange={handleChange} placeholder="Last name" className="w-full rounded-full px-4 py-2 border border-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-              </div>
-
-              <input name="email" value={form.email} onChange={handleChange} placeholder="Email address" className="w-full rounded-full px-4 py-2 border border-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" type="email" />
-
-              <label className="flex items-start gap-3 text-sm text-cyan-600">
-                <input type="checkbox" className="mt-1" />
-                <span>I consent to Study&Travel collecting my data and sending marketing communications. See our <Link href="#" className="text-emerald-500 underline">Privacy Policy</Link>.</span>
-              </label>
-
-              <button type="submit" disabled={loading} className="w-full rounded-full py-2 font-semibold bg-cyan-500 text-white hover:bg-emerald-500 transition disabled:opacity-60">{loading ? "Joining..." : "Subscribe"}</button>
-            </form>
+          <div className="space-y-4 lg:col-span-1">
+            <h3 className="font-bold text-white text-sm lg:text-[15px] mb-3 hover:text-purple-300 transition-colors duration-300 flex items-center gap-2">
+              <FaPaperPlane className="text-purple-400 text-sm" />
+              GLOBAL INSIGHTS
+            </h3>
+            <AnimatePresence mode="wait">
+              {!isSubscribed ? (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="space-y-3"
+                >
+                  <p className="text-blue-200 text-xs leading-relaxed">
+                    Get exclusive access to scholarship opportunities and program updates.
+                  </p>
+                  <form onSubmit={submit} className="space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      <input
+                        name="firstName"
+                        value={form.firstName}
+                        onChange={handleChange}
+                        placeholder="First Name"
+                        className="w-full rounded px-3 py-2 bg-white/5 border border-white/10 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-transparent placeholder-gray-400 text-white text-xs hover:border-white/20 transition-all duration-300"
+                        type="text"
+                      />
+                      <input
+                        name="lastName"
+                        value={form.lastName}
+                        onChange={handleChange}
+                        placeholder="Last Name"
+                        className="w-full rounded px-3 py-2 bg-white/5 border border-white/10 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-transparent placeholder-gray-400 text-white text-xs hover:border-white/20 transition-all duration-300"
+                        type="text"
+                      />
+                    </div>
+                    <input
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="Enter your email"
+                      className="w-full rounded px-3 py-2 bg-white/5 border border-white/10 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-transparent placeholder-gray-400 text-white text-xs hover:border-white/20 transition-all duration-300"
+                      type="email"
+                    />
+                    <motion.button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full rounded py-3 text-xs font-semibold bg-gradient-to-r from-purple-600 to-blue-600 text-white  transition-all duration-300 disabled:opacity-60 flex items-center justify-center gap-2 hover:scale-105 transform shadow-lg shadow-purple-500/25"
+                      whileHover={{ scale: loading ? 1 : 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {loading ? (
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          className="flex items-center gap-2"
+                        >
+                          <FaPaperPlane className="text-xs" />
+                          Joining...
+                        </motion.div>
+                      ) : (
+                        <>
+                          <FaPaperPlane className="text-xs" />
+                          Get Global Updates
+                        </>
+                      )}
+                    </motion.button>
+                  </form>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center p-4 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-lg border border-purple-500/30"
+                >
+                  <FaGlobe className="text-purple-400 text-lg mx-auto mb-2" />
+                  <p className="text-white text-sm font-semibold mb-1">Welcome Aboard!</p>
+                  <p className="text-purple-300 text-xs">Check your email for exclusive content</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
-        {/* Bottom Copyright + Wave */}
-        <div className="mt-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cyan-700">
-            <div>© {new Date().getFullYear()} Study&Travel.com. All rights reserved.</div>
-            <div className="space-x-4">
-              <Link href="#" className="underline hover:text-emerald-500">Privacy Policy</Link>
-              <Link href="#" className="underline hover:text-emerald-500">Terms</Link>
+        {/* Responsive Bottom Bar */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Copyright */}
+            <div className="text-gray-500 text-sm text-center md:text-left hover:text-gray-400 transition-colors duration-300 order-2 md:order-1">
+              <p>© {new Date().getFullYear()} Global Education & Travel Pathways.</p>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3 order-1 md:order-2 mb-4 md:mb-0">
+              {[
+                { icon: FaFacebookF, href: "#", color: "hover:bg-blue-600", label: "Facebook" },
+                { icon: IoLogoInstagram, href: "#", color: "hover:bg-pink-600", label: "Instagram" },
+                { icon: FaTwitter, href: "#", color: "hover:bg-sky-500", label: "Twitter" },
+                { icon: FaLinkedin, href: "#", color: "hover:bg-blue-700", label: "LinkedIn" },
+                { icon: FaYoutube, href: "#", color: "hover:bg-red-600", label: "YouTube" }
+              ].map((SocialIcon, index) => (
+                <a
+                  key={index}
+                  href={SocialIcon.href}
+                  className={`p-3 bg-gray-800 rounded-lg text-gray-400 ${SocialIcon.color} hover:text-white transition-all duration-300 hover:scale-110 transform`}
+                >
+                  <SocialIcon.icon className="text-sm" />
+                </a>
+              ))}
+            </div>
+
+            {/* Legal Links */}
+            <div className="flex items-center gap-4 text-gray-500 text-sm order-3">
+              <Link href="#" className="hover:text-blue-300 transition-colors duration-300 hover:underline">Privacy</Link>
+              <Link href="#" className="hover:text-blue-300 transition-colors duration-300 hover:underline">Terms</Link>
+              <Link href="#" className="hover:text-blue-300 transition-colors duration-300 hover:underline">Compliance</Link>
             </div>
           </div>
-
-          <svg className="mt-6 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 10 C 200 80 400 0 720 20 C 1040 40 1240 10 1440 50 L1440 100 L0 100 Z" fill="rgba(16, 185, 129,0.12)" />
-          </svg>
         </div>
-      </motion.div>
+      </div>
+
+      {/* Accent Line */}
+      <div className="h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600" />
     </footer>
   );
 }

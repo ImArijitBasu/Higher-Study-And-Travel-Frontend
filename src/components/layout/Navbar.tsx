@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="fixed top-0 z-50 w-full navbar px-6 shadow-md" style={{ backgroundColor: '#0f172a' }}>
+      <div className="fixed top-0 z-50 w-full navbar px-6 shadow-md" style={{ backgroundColor: '#083545' }}>
         {/* Left Side */}
         <div className="navbar-start">
           {/* Mobile Menu */}
@@ -49,7 +49,7 @@ const Navbar = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`font-light text-[18px] ${pathname === link.href ? 'text-cyan-300' : 'text-black'} hover:text-cyan-300 transition-colors duration-300`}
+                    className={`font-light text-[18px] ${pathname === link.href ? 'text-cyan-600' : 'text-black'} hover:text-cyan-600 transition-colors duration-300`}
                   >
                     {link.name}
                   </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
                   href={link.href}
                   className={`font-light text-[18px] ${
                     pathname === link.href ? 'text-cyan-300' : 'text-white'
-                  } hover:text-cyan-300 transition-colors duration-300`}
+                  } hover:text-cyan-200 transition-colors duration-300`}
                 >
                   {link.name}
                 </Link>
