@@ -1,23 +1,23 @@
 "use client";
-import Image from "next/image";
+
 import { FC, useState } from "react";
 import axios from "axios";
-import planeBg from "../../../public/plane-bg.jpg";
-import boyImg from "../../../public/boy.jpg";
-import { PiAirplaneTiltFill } from "react-icons/pi";
-import { FaGoogle, FaTwitter } from "react-icons/fa";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { FaEye, FaEyeSlash, FaGoogle, FaTwitter } from "react-icons/fa";
 
 interface LoginModalProps {
   onClose: () => void;
+  onOpenRegister?: () => void;
 }
 
-const LoginModal: FC<LoginModalProps> = ({ onClose }) => {
+const LoginModal: FC<LoginModalProps> = ({ onClose, onOpenRegister }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,119 +25,118 @@ const LoginModal: FC<LoginModalProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        formData
+        "https://higher-study-and-travel-website-bac.vercel.app/api/auth/login",
+        formData,
+        { withCredentials: true }
       );
 
-      console.log("✅ Login successful:", res.data);
+      // Login success
+      toast.success("Login Successful! 🎉", { position: "top-center" });
 
-      toast.success("Login Successful! 🎉", {
+      // Save token and user info in localStorage
+      localStorage.setItem("hst_token", res.data.token);
+      // localStorage.setItem("hst_user", JSON.stringify(res.data.user));
+
+      console.log("LOGIN SUCCESS:", res.data);
+
+      onClose(); // Close modal
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Login failed!", {
         position: "top-center",
       });
-
-      onClose();
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(
-          error.response?.data?.message || "Failed to connect to server!",
-          { position: "top-center" }
-        );
-      } else {
-        toast.error("Something went wrong!", { position: "top-center" });
-      }
-      console.error("❌ Login error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      {/* Blur Background */}
-      <div
-        className="absolute inset-0 bg-black/30 backdrop-blur-sm opacity-0 animate-[fadeBg_0.3s_ease-out_forwards]"
-        onClick={onClose}
-      ></div>
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
+          Login to your Account
+        </h2>
+        <p className="text-center text-gray-500 text-sm mb-6">
+          Welcome back! Please enter your details.
+        </p>
 
-      {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-xl w-[90%] md:w-[850px] max-w-4xl overflow-hidden flex flex-col md:flex-row opacity-0 scale-95 animate-[fadeIn_0.3s_ease-out_forwards]">
-        {/* Left: Form Section */}
-        <div
-          className="relative flex-1 flex flex-col justify-center p-8 bg-cover bg-center"
-          style={{ backgroundImage: `url(${planeBg.src})` }}
-        >
-          <div className="absolute inset-0 bg-white/80"></div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border px-3 py-2 rounded-lg mt-1 focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="Enter your email"
+            />
+          </div>
 
-          <div className="relative z-10 text-center">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <PiAirplaneTiltFill className="text-4xl text-cyan-400" />
-              <span className="font-semibold text-gray-800">
-                STUDY & TRAVEL
-              </span>
-            </div>
-
-            <h2 className="text-xl md:text-2xl font-bold text-sky-500 mb-4">
-              Login
-            </h2>
-
-            <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
+          <div>
+            <label className="text-sm font-medium">Password</label>
+            <div className="relative">
               <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                className="border rounded-md p-2 focus:outline-sky-500"
-                required
-              />
-              <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Password"
+                required
                 value={formData.password}
                 onChange={handleChange}
-                className="border rounded-md p-2 focus:outline-sky-500"
-                required
+                className="w-full border px-3 py-2 rounded-lg mt-1 focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="Enter your password"
               />
-
               <button
-                type="submit"
-                className="bg-sky-500 text-white py-2 rounded-md hover:bg-sky-600 transition font-semibold"
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
               >
-                Login
-              </button>
-            </form>
-
-            <p className="text-gray-700 mt-4 text-sm">
-              Don’t have an account?{" "}
-              <span className="text-sky-500 cursor-pointer hover:underline">
-                Sign Up
-              </span>
-            </p>
-
-            <div className="mt-5 text-sm font-semibold text-gray-700">
-              Continue With
-            </div>
-            <div className="flex justify-center gap-3 mt-2">
-              <button className="border rounded-full p-2 hover:bg-gray-100">
-                <FaGoogle />
-              </button>
-              <button className="border rounded-full p-2 hover:bg-gray-100">
-                <FaTwitter />
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
           </div>
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium transition disabled:opacity-60"
+          >
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        <p className="text-center mt-5 text-sm text-gray-600">
+          Don’t have an account?{" "}
+          <button
+            onClick={onOpenRegister}
+            className="text-blue-600 font-semibold hover:underline"
+          >
+            Register
+          </button>
+        </p>
+
+        <div className="mt-6 text-sm font-semibold text-center text-gray-700">
+          Or continue with
         </div>
 
-        {/* Right: Image Section */}
-        <div className="hidden md:block flex-1">
-          <Image
-            src={boyImg}
-            alt="Traveler"
-            className="h-full w-full object-cover"
-          />
+        <div className="flex justify-center gap-3 mt-3">
+          <button className="border rounded-full p-2 hover:bg-gray-100 text-gray-700">
+            <FaGoogle />
+          </button>
+          <button className="border rounded-full p-2 hover:bg-gray-100 text-gray-700">
+            <FaTwitter />
+          </button>
         </div>
+
+        <button
+          onClick={onClose}
+          className="mt-5 w-full text-center text-blue-600 hover:underline"
+        >
+          Close
+        </button>
       </div>
     </div>
   );
